@@ -22,9 +22,30 @@ Connect hdmi and keyboard to the pis and run raspi-config to enable ssh and set 
 Configure a static ip address by editing /etc/dhcpcd.conf. At the end there is an example config for the static address. 
 
 
+- Update system
 
+apt update && apt upgrade
 
+- Install docker
 
+curl -sSL get.docker.com | sh && \
+usermod pi -aG docker && \
+newgrp docker
+
+add 'cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory' at the end of the line in /boot/cmdline.txt
+
+- Install kubeadm (which includes kubectl)
+
+Swap need to be disabled
+dphys-swapfile swapoff && \
+dphys-swapfile uninstall && \
+update-rc.d dphys-swapfile remove
+
+Add 'deb http://apt.kubernetes.io/ kubernetes-xenial main' to /etc/apt/sources.list.d/kubernetes.list and download key with:
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+
+apt-get update
+apt-get install -qy kubeadm
 
 
 - Install a kubernetes master node
