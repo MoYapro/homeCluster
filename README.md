@@ -39,7 +39,6 @@ apt install -y kubelet kubeadm kubectl
 # hold - kubeadm is used to upgrade
 apt-mark hold kubelet kubeadm kubectl
 
-echo 'deb http://apt.kubernetes.io/ kubernetes-xenial main' >> /etc/apt/sources.list.d/kubernetes.list && cat /etc/apt/sources.list.d/kubernetes.list
 - Install a kubernetes master node
 
 kubeadm config images pull 
@@ -54,12 +53,12 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 - Install a pod network
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/62e44c867a2846fefb68bd5f178daf4da3095ccb/Documentation/kube-flannel.yml
 
-=============== WORKS UP UNTIL HERE ====================
-
 use kubeadm token list to display the join token
 
+You can join any number of worker nodes by running the following on each as root:
 
-
+kubeadm join 192.168.1.100:6443 --token ltn2dr.o4tav7d4isjb1t36 \
+    --discovery-token-ca-cert-hash sha256:aa9d3d164ea11094f20cc9ac757818d870ebd56b9e4ca022e0c288975c92fbbf 
 
 
 - Install at least one kubernetes worker node
