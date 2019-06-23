@@ -7,7 +7,7 @@ Create infrastructure to run local services in a kubernetes cluster and to creat
 TODOs
 ===
 
-Install Raspbian light on all SD cards
+Install Hypriot on all SD cards
 ---
 
 Insert your SD card into your computer.
@@ -17,59 +17,36 @@ Copy the contents of the image file onto the SD card by running
 Of course, you'll need to change the name of the image file above as appropriate.
 sudo dd bs=1M if=your_image_file_name.img of=/dev/sdx
 
-Connect hdmi and keyboard to the pis and run raspi-config to enable ssh and set hostname
+default username: pirate
+default password: hypriot
 
 Configure a static ip address by editing /etc/dhcpcd.conf. At the end there is an example config for the static address. 
-
+changehostname by editing /boot/user-data and /etc/hostname
 
 - Update system
 
-apt update && apt upgrade
+apt update && apt upgrade -y
 
-- Install git
-
-apt instal git
-
-- Install docker
-
-curl -sSL get.docker.com | sh && \
-usermod pi -aG docker && \
-newgrp docker
-
-cat > /etc/docker/daemon.json <<EOF
-{
-  "exec-opts": ["native.cgroupdriver=systemd"],
-  "log-driver": "json-file",
-  "log-opts": {
-    "max-size": "100m"
-  },
-  "storage-driver": "overlay2"
-}
-EOF
-
-mkdir -p /etc/systemd/system/docker.service.d
-
-# Restart docker.
-systemctl daemon-reload
-systemctl restart docker
+- Reboot
 
 - Install kubeadm (which includes kubectl)
 
-Swap need to be disabled
-dphys-swapfile swapoff && \
-dphys-swapfile uninstall && \
-update-rc.d dphys-swapfile remove
-
-Add 'deb http://apt.kubernetes.io/ kubernetes-xenial main' to /etc/apt/sources.list.d/kubernetes.list and download key with:
+echo 'deb http://apt.kubernetes.io/ kubernetes-xenial main' > /etc/apt/sources.list.d/kubernetes.list && cat /etc/apt/sources.list.d/kubernetes.list
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 
-apt-get update
-apt-get install -qy kubeadm
+apt update
+apt install -y kubelet kubeadm kubectl
+# hold - kubeadm is used to upgrade
+apt-mark hold kubelet kubeadm kubectl
 
+echo 'deb http://apt.kubernetes.io/ kubernetes-xenial main' >> /etc/apt/sources.list.d/kubernetes.list && cat /etc/apt/sources.list.d/kubernetes.list
 - Install a kubernetes master node
 
-kubeadm config images pull -v3
-kubeadm init --token-ttl=0
+kubeadm config images pull 
+kubeadm init --token-ttl=0 --apiserver-advertise-address=0.0.0.0 --pod-network-cidr=10.244.0.0/16
+
+=============== WORKS UP UNTIL HERE ====================
+
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
