@@ -26,13 +26,32 @@ Configure a static ip address by editing /etc/dhcpcd.conf. At the end there is a
 
 apt update && apt upgrade
 
+- Install git
+
+apt instal git
+
 - Install docker
 
 curl -sSL get.docker.com | sh && \
 usermod pi -aG docker && \
 newgrp docker
 
-add 'cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory' at the end of the line in /boot/cmdline.txt
+cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+
+mkdir -p /etc/systemd/system/docker.service.d
+
+# Restart docker.
+systemctl daemon-reload
+systemctl restart docker
 
 - Install kubeadm (which includes kubectl)
 
@@ -47,8 +66,20 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 apt-get update
 apt-get install -qy kubeadm
 
-
 - Install a kubernetes master node
+
+kubeadm config images pull -v3
+kubeadm init --token-ttl=0
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+use kubeadm token list to display the join token
+
+
+
+
+
 - Install at least one kubernetes worker node
 - Dynamic DNS refresher (DuckDNS)
 - Generate Let's Entrypt Certificates
