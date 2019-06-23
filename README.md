@@ -55,16 +55,18 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/62e44c867a2846
 
 use kubeadm token list to display the join token
 
+
+- Install at least one kubernetes worker node
 You can join any number of worker nodes by running the following on each as root:
 
 kubeadm join 192.168.1.100:6443 --token ltn2dr.o4tav7d4isjb1t36 \
     --discovery-token-ca-cert-hash sha256:aa9d3d164ea11094f20cc9ac757818d870ebd56b9e4ca022e0c288975c92fbbf 
 
 
-- Install at least one kubernetes worker node
+- Create namespace for home assistant
 - Dynamic DNS refresher (DuckDNS)
 - Generate Let's Entrypt Certificates
-- Deploy Ingress Reverse Proxy
+- Deploy Ingress Reverse Proxy (Traefik?)
 - Create Port forwarding for 443 (possibly 80)
 - Create Endpoint reachable from Internet 
 - Create Endpoint reachable only from LAN
