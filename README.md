@@ -45,11 +45,16 @@ echo 'deb http://apt.kubernetes.io/ kubernetes-xenial main' >> /etc/apt/sources.
 kubeadm config images pull 
 kubeadm init --token-ttl=0 --apiserver-advertise-address=0.0.0.0 --pod-network-cidr=10.244.0.0/16
 
-=============== WORKS UP UNTIL HERE ====================
+exit root and continue as default user
 
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+- Install a pod network
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/62e44c867a2846fefb68bd5f178daf4da3095ccb/Documentation/kube-flannel.yml
+
+=============== WORKS UP UNTIL HERE ====================
 
 use kubeadm token list to display the join token
 
