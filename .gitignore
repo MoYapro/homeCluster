@@ -1,3 +1,6 @@
 *.img
 *.swp
 .gitsecret/keys/random_seed
+.idea
+*.retry
+*.iml
