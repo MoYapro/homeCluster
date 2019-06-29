@@ -1,2 +1,3 @@
 *.img
 *.swp
+.gitsecret/keys/random_seed
