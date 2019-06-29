@@ -63,8 +63,8 @@ kubeadm join 192.168.1.100:6443 --token ltn2dr.o4tav7d4isjb1t36 \
     --discovery-token-ca-cert-hash sha256:aa9d3d164ea11094f20cc9ac757818d870ebd56b9e4ca022e0c288975c92fbbf 
 
 
-- Create namespace for home assistant
-- Dynamic DNS refresher (DuckDNS)
+✔ Create namespace for home assistant - just deployed it
+✔ Dynamic DNS refresher (DuckDNS) - deployed cron job with token as secret
 - Generate Let's Entrypt Certificates
 - Deploy Ingress Reverse Proxy (Traefik?)
 - Create Port forwarding for 443 (possibly 80)
