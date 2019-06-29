@@ -3,9 +3,11 @@ Goal
 
 Create infrastructure to run local services in a kubernetes cluster and to create documentation / automation to recreate all of it.
 
+Disclaimer
+---
 
-TODOs
-===
+This is only for my personal pleasure. Feel free to use at your own risk.
+
 
 Install Hypriot on all SD cards
 ---
