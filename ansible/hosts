@@ -1,0 +1,11 @@
+[master]
+pi-master
+
+[worker]
+pi-worker-1
+#pi-worker-2
+
+[all:vars]
+ansible_connection=ssh
+ansible_user=pirate
+ansible_ssh_pass=hypriot
