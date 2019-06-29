@@ -22,9 +22,40 @@
         update_cache: yes
         cache_valid_time: 86400 #One day
 
-    - name: install kubeadm
+    - name: install kubeadm package
       become: true
       apt:
         name: kubeadm
         state: present
         update_cache: yes
+      register: install_kubeadm_package
+
+- hosts: master
+  tasks:
+    - name: Pull required images to build the cluster
+        become: true
+        shell: |
+          kubeadm config images pull
+
+    - name: Init the masternode in the cluster
+      when: install_kubeadm_package is succeeded
+        become: true
+        shell: |
+          kubeadm init --token-ttl=0 --apiserver-advertise-address=0.0.0.0 --pod-network-cidr=10.244.0.0/16
+        register: init_cluster
+
+    - name: Create Kubernetes config directory
+      file:
+        path: ".kube/"
+        state: directory
+
+    - name: Copy admin.conf to Home directory
+      when: init_cluster is succeeded
+      copy:
+        src: "/etc/kubernetes/admin.conf"
+        dest: ".kube/config"
+        owner: "{{ ansible_user | default(ansible_user_id) }}"
+        group: "{{ ansible_user | default(ansible_user_id) }}"
+        mode: 0755
+        remote_src: true
+
