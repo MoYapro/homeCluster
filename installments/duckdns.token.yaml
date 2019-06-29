@@ -1,6 +1,0 @@
-apiVersion: v1
-data:
-  token: insert token here ;)
-kind: Secret
-metadata:
-  name: duckdns
