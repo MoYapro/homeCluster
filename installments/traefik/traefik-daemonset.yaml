@@ -61,3 +61,19 @@ spec:
     - protocol: TCP
       port: 8080
       name: admin
+  type: ClusterIP
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: traefik-web-ui
+  namespace: kube-system
+spec:
+  rules:
+    - host: traefik-ui.pi-master
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: traefik-ingress-service
+              servicePort: web
