@@ -7,8 +7,8 @@ sleep 3
 kubectl apply -f flannel/kube-flannel.yaml
 
 kubectl apply -f whoami-test/deployment.yaml
-kubectl apply -f whoami-test/service.yaml
+kubectl apply -f whoami-test/ingress.yaml
 
-#kubectl apply -f traefik/traefik-rbac.yaml
-#kubectl apply -f traefik/traefik-daemonset.yaml
+kubectl apply -f traefik/traefik-rbac.yaml
+kubectl apply -f traefik/traefik-daemonset.yaml
 
