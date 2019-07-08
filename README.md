@@ -29,19 +29,32 @@ changehostname by editing /boot/user-data and /etc/hostname
 
 apt update && apt upgrade -y
 
+###### update docker daemon to use systemd as cgroup driver
+cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+
+
 - Reboot
 
-- Install kubeadm (which includes kubectl)
+# Install kubeadm (which includes kubectl)
 
 echo 'deb http://apt.kubernetes.io/ kubernetes-xenial main' > /etc/apt/sources.list.d/kubernetes.list && cat /etc/apt/sources.list.d/kubernetes.list
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 
 apt update
 apt install -y kubelet kubeadm kubectl
-# hold - kubeadm is used to upgrade
+###### hold - kubeadm is used to upgrade
 apt-mark hold kubelet kubeadm kubectl
 
-- Install a kubernetes master node
+# Install a kubernetes master node
 
 kubeadm config images pull 
 kubeadm init --token-ttl=0 --apiserver-advertise-address=0.0.0.0 --pod-network-cidr=10.244.0.0/16
@@ -53,7 +66,7 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 - Install a pod network
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/62e44c867a2846fefb68bd5f178daf4da3095ccb/Documentation/kube-flannel.yml
+kubectl apply -f installment/kube-flannel.yaml
 
 use kubeadm token list to display the join token
 
