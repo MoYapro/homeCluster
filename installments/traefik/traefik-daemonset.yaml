@@ -61,7 +61,7 @@ spec:
     - protocol: TCP
       port: 8080
       name: admin
-  type: ClusterIP
+  type: NodePort
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
