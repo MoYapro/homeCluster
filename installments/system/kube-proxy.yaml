@@ -1,15 +1,10 @@
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
-  creationTimestamp: 2019-07-08T08:46:58Z
-  generation: 1
   labels:
     k8s-app: kube-proxy
   name: kube-proxy
   namespace: kube-system
-  resourceVersion: "399"
-  selfLink: /apis/extensions/v1beta1/namespaces/kube-system/daemonsets/kube-proxy
-  uid: aaf9d8a5-196b-4c7a-9e98-017e25f88429
 spec:
   revisionHistoryLimit: 10
   selector:
@@ -17,7 +12,6 @@ spec:
       k8s-app: kube-proxy
   template:
     metadata:
-      creationTimestamp: null
       labels:
         k8s-app: kube-proxy
     spec:
@@ -81,11 +75,3 @@ spec:
     rollingUpdate:
       maxUnavailable: 1
     type: RollingUpdate
-status:
-  currentNumberScheduled: 1
-  desiredNumberScheduled: 1
-  numberAvailable: 1
-  numberMisscheduled: 0
-  numberReady: 1
-  observedGeneration: 1
-  updatedNumberScheduled: 1

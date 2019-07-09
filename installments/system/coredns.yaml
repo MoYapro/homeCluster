@@ -3,15 +3,10 @@ kind: Deployment
 metadata:
   annotations:
     deployment.kubernetes.io/revision: "1"
-  creationTimestamp: 2019-07-08T08:46:58Z
-  generation: 1
   labels:
     k8s-app: kube-dns
   name: coredns
   namespace: kube-system
-  resourceVersion: "1744"
-  selfLink: /apis/extensions/v1beta1/namespaces/kube-system/deployments/coredns
-  uid: 49387757-c293-4cb1-b9d3-b3869d1e4e9c
 spec:
   progressDeadlineSeconds: 600
   replicas: 2
@@ -26,7 +21,6 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         k8s-app: kube-dns
     spec:
@@ -109,22 +103,3 @@ spec:
             path: Corefile
           name: coredns
         name: config-volume
-status:
-  availableReplicas: 2
-  conditions:
-  - lastTransitionTime: 2019-07-08T09:00:38Z
-    lastUpdateTime: 2019-07-08T09:00:38Z
-    message: Deployment has minimum availability.
-    reason: MinimumReplicasAvailable
-    status: "True"
-    type: Available
-  - lastTransitionTime: 2019-07-08T08:47:14Z
-    lastUpdateTime: 2019-07-08T09:00:39Z
-    message: ReplicaSet "coredns-5c98db65d4" has successfully progressed.
-    reason: NewReplicaSetAvailable
-    status: "True"
-    type: Progressing
-  observedGeneration: 1
-  readyReplicas: 2
-  replicas: 2
-  updatedReplicas: 2
