@@ -6,7 +6,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-    - host: whoami.localhost
+    - host: whoami.pi-worker-1
       http:
         paths:
           - path: /
