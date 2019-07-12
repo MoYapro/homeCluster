@@ -1,7 +1,8 @@
-apiVersion: apps/v1 #  for k8s versions before 1.9.0 use apps/v1beta2  and before 1.8.0 use extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: home-assistant
+  namespace: home-assistant
 spec:
   selector:
     matchLabels:
@@ -20,3 +21,33 @@ spec:
 #          volumeMounts:
 #            - name: vmfs-vmdk-storage
 #              mountPath: /data/
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: home-assistant-service
+  namespace: home-assistant
+spec:
+  selector:
+    app: home-assistant
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: xxx
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: home-assistant-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+    - host: home-assistant.pi-worker-1
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: home-assistant-service
+              servicePort: 80
