@@ -1,0 +1,22 @@
+apiVersion: apps/v1 #  for k8s versions before 1.9.0 use apps/v1beta2  and before 1.8.0 use extensions/v1beta1
+kind: Deployment
+metadata:
+  name: deployment
+spec:
+  selector:
+    matchLabels:
+      app: home-assistant
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: home-assistant
+    spec:
+      containers:
+        - name: home-assistant
+          image: homeassistant/raspberrypi3-homeassistant
+          ports:
+            - containerPort: 80
+#          volumeMounts:
+#            - name: vmfs-vmdk-storage
+#              mountPath: /data/

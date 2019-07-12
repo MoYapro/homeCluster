@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: home-assistant
+  labels:
+    name: home-assistant
+spec:
+  containers:
+    - name: home-assistant
+      image: homeassistant/raspberrypi3-homeassistant
+      ports:
+        - containerPort: 80
