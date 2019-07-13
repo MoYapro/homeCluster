@@ -18,9 +18,13 @@ spec:
           image: homeassistant/raspberrypi3-homeassistant
           ports:
             - containerPort: 8123
-#          volumeMounts:
-#            - name: vmfs-vmdk-storage
-#              mountPath: /data/
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: home-assistant-config
 ---
 kind: Service
 apiVersion: v1

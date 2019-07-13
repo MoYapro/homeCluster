@@ -1,4 +1,8 @@
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: home-assistant-config
+  namespace: home-assistant
 data:
   known_devices.yaml: |
 
@@ -7,15 +11,12 @@ data:
     # Configuration.yaml example
     automation: !include automations.yaml
     config: {}
-    zwave:
-      usb_path: /dev/ttyACM0
-      network_key: {generate a zwave net key}
     # Configure a default setup of Home Assistant (frontend, api, etc)
     default_config:
     # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
     http:
       server_port: 8123
-      base_url: {your url}
+      base_url: home-assistant.pi-worker-1
       use_x_forwarded_for: true
       trusted_proxies: 127.0.0.1
     # Discover some devices automatically
@@ -34,9 +35,5 @@ data:
       latitude: { your latitude }
       longitude: { your longitude }
       unit_system: imperial
-      time_zone: America/Chicago
-      name: Orndorff House
-kind: ConfigMap
-metadata:
-  name: home-assistant-config
-  namespace: home-assistant
+      time_zone: Europe/Berlin
+      name: Tom home
