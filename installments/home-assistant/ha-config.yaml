@@ -32,8 +32,8 @@ data:
     #automation: !include automations.yaml
     #script: !include scripts.yaml
     homeassistant:
-      latitude: { your latitude }
-      longitude: { your longitude }
+      latitude: 54.0323199
+      longitude: 11.6652349
       unit_system: imperial
       time_zone: Europe/Berlin
       name: Tom home
