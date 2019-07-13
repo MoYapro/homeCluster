@@ -19,12 +19,22 @@ spec:
           ports:
             - containerPort: 8123
           volumeMounts:
+            - name: persistence
+              mountPath: /config/
             - name: config-volume
-              mountPath: /etc/config
+              mountPath: /config/configuration.yaml
+              subPath: configuration.yaml
+            - name: config-volume
+              mountPath: /config/automations.yaml
+              subPath: automations.yaml
       volumes:
         - name: config-volume
           configMap:
             name: home-assistant-config
+        - name: persistence
+          hostPath:
+            path: /app/ha_config
+
 ---
 kind: Service
 apiVersion: v1
