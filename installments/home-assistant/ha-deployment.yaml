@@ -17,7 +17,7 @@ spec:
         - name: home-assistant
           image: homeassistant/raspberrypi3-homeassistant
           ports:
-            - containerPort: 80
+            - containerPort: 8123
 #          volumeMounts:
 #            - name: vmfs-vmdk-storage
 #              mountPath: /data/
@@ -33,8 +33,8 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
-      name: xxx
+      targetPort: 8123
+      name: web
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
