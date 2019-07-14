@@ -82,15 +82,14 @@ IPCLUSTER=192.168.1.100:6443;echo "kubeadm join --token $(kubeadm token list | s
      
 
 
-✔ Create namespace for home assistant - installments/homeAssistant/homeAssistantNamespace.yaml
-✔ Dynamic DNS refresher (DuckDNS) - deployed cron job with token as secret
+✔ Create store for secrets (certificates, api-keys, etc) - using git-secret
+✔ Dynamic DNS refresher (DuckDNS) - deployed cron job with token as secret - installments/duckdns
+✔ Create deployment for HomeAssistant - installments/homeAssistant
 ✔ Deploy Ingress Reverse Proxy (Traefik)
 - Generate Let's Entrypt Certificates
 - Create Port forwarding for 443 (possibly 80)
 - Create Endpoint reachable from Internet 
 - Create Endpoint reachable only from LAN
-- Create store for secrets (certificates, api-keys, etc)
-- Create deployment for HomeAssistant
 - Create config for HomeAssistant in a configMap
 - Create deployment for NodeRed
 - Create config for NodeRead in configMap
