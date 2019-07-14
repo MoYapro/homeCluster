@@ -33,7 +33,7 @@ spec:
             name: home-assistant-config
         - name: persistence
           persistentVolumeClaim:
-            claimName: home-assistant-storage
+            claimName: nas-persitant-volume-claim
 
 ---
 kind: Service
