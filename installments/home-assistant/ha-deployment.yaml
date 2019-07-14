@@ -32,8 +32,8 @@ spec:
           configMap:
             name: home-assistant-config
         - name: persistence
-          hostPath:
-            path: /app/ha_config
+          persistentVolumeClaim:
+            claimName: home-assistant-storage
 
 ---
 kind: Service

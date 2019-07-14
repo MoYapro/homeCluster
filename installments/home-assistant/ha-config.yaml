@@ -7,33 +7,107 @@ data:
   known_devices.yaml: |
 
   automations.yaml: |
+
   configuration.yaml: |
-    # Configuration.yaml example
-    automation: !include automations.yaml
-    config: {}
-    # Configure a default setup of Home Assistant (frontend, api, etc)
-    default_config:
+    homeassistant:
+      # Name of the location where Home Assistant is running
+      name: Home
+      # Location required to calculate the time the sun rises and sets
+      latitude: 51.483
+      longitude: 11.972
+      # Impacts weather/sunrise data (altitude above sea level in meters)
+      elevation: 1
+      # metric for Metric, imperial for Imperial
+      unit_system: metric
+      time_zone: Europe/Berlin
+
+    # Show links to resources in log and frontend
+    introduction:
+
+    # Enables the frontend
+    frontend:
+
+    # Enables configuration UI
+    config:
+
     # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
     http:
       server_port: 8123
       base_url: home-assistant.pi-worker-1
       use_x_forwarded_for: true
       trusted_proxies: 127.0.0.1
+
+    # Checks for available updates
+    # Note: This component will send some information about your system to
+    # the developers to assist with development of Home Assistant.
+    # For more information, please see:
+    # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+    updater:
+      # Optional, allows Home Assistant developers to focus on popular components.
+      # include_used_components: true
+
     # Discover some devices automatically
     discovery:
+
+    # Allows you to issue voice commands from the frontend in enabled browsers
+    conversation:
+
+    # Enables support for tracking state changes over time
+    history:
+
+    # View all events in a logbook
+    logbook:
+
+    # Enables a map showing the location of tracked devices
+    map:
+
+    # Track the sun
+    sun:
+
+    # Allow diagnosing system problems
+    system_health:
+
     # Sensors
     sensor:
       # Weather prediction
       - platform: yr
+
     # Text to speech
     tts:
       - platform: google_translate
-    #group: !include groups.yaml
-    #automation: !include automations.yaml
-    #script: !include scripts.yaml
-    homeassistant:
-      latitude: 54.0323199
-      longitude: 11.6652349
-      unit_system: imperial
-      time_zone: Europe/Berlin
-      name: Tom home
+        service_name: google_say
+
+    #mqtt
+    mqtt:
+      password: hello
+      discovery: true
+
+    # Cloud
+    cloud:
+
+    light:
+      - platform: mqtt
+        name: "Sonoff power"
+        state_topic: "stat/sonoff/RESULT"
+        value_template: "{{ value_json.POWER }}"
+        command_topic: "cmnd/sonoff/POWER"
+        availability_topic: "tele/sonoff/LWT"
+        qos: 1
+        payload_on: "ON"
+        payload_off: "OFF"
+        payload_available: "Online"
+        payload_not_available: "Offline"
+        retain: false
+
+    google_assistant:
+      project_id: hassio-integration-1e887
+      api_key: AIzaSyA-6kOMTvYajbaBSQZo1_qnOuGaLHTwnlU
+      expose_by_default: true
+      exposed_domains:
+        - light
+        - switch
+        - script
+        - fan
+
+    automation: !include automations.yaml
+
