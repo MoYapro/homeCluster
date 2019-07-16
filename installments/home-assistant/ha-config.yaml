@@ -82,7 +82,7 @@ data:
       Broker: mqtt-service
       Port: 1883
       username: home-assistant
-      password: hello
+      password: password
       discovery: true
 
     # Cloud
