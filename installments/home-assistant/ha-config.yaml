@@ -79,6 +79,9 @@ data:
 
     #mqtt
     mqtt:
+      Broker: mqtt-service
+      Port: 1883
+      username: home-assistant
       password: hello
       discovery: true
 
