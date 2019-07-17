@@ -86,14 +86,14 @@ IPCLUSTER=192.168.1.100:6443;echo "kubeadm join --token $(kubeadm token list | s
 ✔ Dynamic DNS refresher (DuckDNS) - deployed cron job with token as secret - installments/duckdns
 ✔ Deploy Ingress Reverse Proxy (Traefik)
 ✔ Create deployment for HomeAssistant - installments/homeAssistant
-✔ Create config for HomeAssistant in a configMap
-- Create deployment for mqtt server
+✔ Create config for HomeAssistant in a configMap - installments/homeAssistant
+✔ Create deployment for mqtt server - installments/mosquitto
+✔ Create deployment for NodeRed - installments/node-red
 - Configure mqtt server in home assistant
 - Generate Let's Entrypt Certificates
 - Create Port forwarding for 443 (possibly 80)
 - Create Endpoint reachable from Internet 
 - Create Endpoint reachable only from LAN
-- Create deployment for NodeRed
 - Create config for NodeRead in configMap
 - Find out how to save changes from NodeRed in Backup
 - Find out how to restore backup of NodeRed data
