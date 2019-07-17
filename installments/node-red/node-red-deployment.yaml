@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-red-deployment
+  namespace: home-assistant
+  labels:
+    app: node-red
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-red
+  template:
+    metadata:
+      labels:
+        app: node-red
+    spec:
+      containers:
+        - name: node-red
+          image: nodered/node-red-docker:rpi
+          ports:
+            - containerPort: 1880
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: node-red-service
+  namespace: home-assistant
+spec:
+  selector:
+    app: node-red
+  ports:
+    - protocol: TCP
+      port: 1880
+      targetPort: 1880
+      name: node-red
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: node-red-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+    - host: node-red.pi-worker-1
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: node-red-service
+              servicePort: 1880
