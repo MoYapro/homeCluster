@@ -17,9 +17,23 @@ spec:
     spec:
       containers:
         - name: pihole
-          image: pihole/pihole
+          image: pihole/pihole:latest
           ports:
-            - containerPort: 80
+          - containerPort: 80
+            name: pihole-http
+            protocol: TCP
+          - containerPort: 53
+            name: dns
+            protocol: TCP
+          - containerPort: 53
+            name: dns-udp
+            protocol: UDP
+          - containerPort: 443
+            name: pihole-ssl
+            protocol: TCP
+          - containerPort: 67
+            name: client-udp
+            protocol: UDP
           env:
             - name: WEBPASSWORD
               value: admin
@@ -38,20 +52,26 @@ spec:
       targetPort: 80
       name: pihole
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
+  labels:
+    app: pihole
   name: pihole-dns-service
-  namespace: home-assistant
 spec:
   selector:
     app: pihole
   ports:
-    - protocol: TCP
+    - protocol: UDP
+      name: dns-udp
       port: 53
       targetPort: 53
-      name: pihole
+    - name: client-udp
+      port: 67
+      protocol: UDP
+      targetPort: 67
   type: NodePort
+  sessionAffinity: None
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
