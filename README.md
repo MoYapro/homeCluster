@@ -89,6 +89,8 @@ IPCLUSTER=192.168.1.100:6443;echo "kubeadm join --token $(kubeadm token list | s
 ✔ Create config for HomeAssistant in a configMap - installments/homeAssistant
 ✔ Create deployment for mqtt server - installments/mosquitto
 ✔ Create deployment for NodeRed - installments/node-red
+✔ Create deployment for PiHole - installments/pihole (using daemonset to expose dns port 53)
+- Create configMap for PiHole
 - Configure mqtt server in home assistant
 - Generate Let's Entrypt Certificates
 - Create Port forwarding for 443 (possibly 80)
@@ -97,5 +99,3 @@ IPCLUSTER=192.168.1.100:6443;echo "kubeadm join --token $(kubeadm token list | s
 - Create config for NodeRead in configMap
 - Find out how to save changes from NodeRed in Backup
 - Find out how to restore backup of NodeRed data
-- Create deployment for PiHole
-- Create configMap for PiHole
