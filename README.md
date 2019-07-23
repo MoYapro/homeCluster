@@ -90,6 +90,9 @@ IPCLUSTER=192.168.1.100:6443;echo "kubeadm join --token $(kubeadm token list | s
 ✔ Create deployment for mqtt server - installments/mosquitto
 ✔ Create deployment for NodeRed - installments/node-red
 ✔ Create deployment for PiHole - installments/pihole (using daemonset to expose dns port 53)
+- Setup memory limits for pods
+- Setup basic monitoring
+- Use central logging service
 - Create configMap for PiHole
 - Configure mqtt server in home assistant
 - Generate Let's Entrypt Certificates
