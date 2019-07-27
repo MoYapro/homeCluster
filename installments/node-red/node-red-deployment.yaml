@@ -20,6 +20,11 @@ spec:
           image: nodered/node-red-docker:rpi
           ports:
             - containerPort: 1880
+          resources:
+            requests:
+              memory: 75Mi
+            limits:
+              memory: 150Mi
 ---
 kind: Service
 apiVersion: v1

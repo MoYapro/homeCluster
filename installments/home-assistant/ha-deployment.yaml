@@ -27,6 +27,11 @@ spec:
             - name: config-volume
               mountPath: /config/automations.yaml
               subPath: automations.yaml
+          resources:
+            requests:
+              memory: 75Mi
+            limits:
+              memory: 150Mi
       volumes:
         - name: config-volume
           configMap:

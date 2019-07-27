@@ -13,6 +13,11 @@ spec:
           containers:
           - name: dns-update
             image: evns/rpi-utilities
+            resources:
+              requests:
+                memory: 1Mi
+              limits:
+                memory: 5Mi
             command: [ "/bin/sh"]
             args: ["-c", "curl https://www.duckdns.org/update?domains=${DNS_UPDATE_DOMAIN}\\&token=${DNS_UPDATE_TOKEN}\\&verbose=true"]
             env:

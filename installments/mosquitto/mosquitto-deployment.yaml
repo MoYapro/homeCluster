@@ -18,6 +18,11 @@ spec:
       containers:
         - name: mosquitto
           image: eclipse-mosquitto:latest
+          resources:
+            requests:
+              memory: 1Mi
+            limits:
+              memory: 10Mi
           ports:
             - containerPort: 1883
           volumeMounts:
