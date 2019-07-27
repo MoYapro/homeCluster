@@ -3,6 +3,9 @@ kind: ConfigMap
 data:
   # Modify this to set any custom DNS entries
   02-custom.conf: |
-    address=/pi.hole/192.168.1.101
+    address=/pihole.cluster/192.168.1.101
+    address=/node-red.cluster/192.168.1.101
+    address=/home-assistant.cluster/192.168.1.101
+    address=/traefik.cluster/192.168.1.101
 metadata:
   name: pihole-custom-dnsmasq

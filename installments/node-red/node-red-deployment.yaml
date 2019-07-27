@@ -43,7 +43,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-    - host: node-red.pi-worker-1
+    - host: node-red.cluster
       http:
         paths:
           - path: /

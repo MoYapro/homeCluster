@@ -58,7 +58,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-    - host: home-assistant.pi-worker-1
+    - host: home-assistant.cluster
       http:
         paths:
           - path: /
