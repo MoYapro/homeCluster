@@ -3,7 +3,7 @@ pi-master
 
 [worker]
 pi-worker-1
-#pi-worker-2
+pi-worker-2
 
 [all:vars]
 ansible_connection=ssh
