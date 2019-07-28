@@ -26,21 +26,36 @@ spec:
               hostPort: 53
             - name: admin
               containerPort: 80
-          env:
-            - name: WEBPASSWORD
-              value: admin
+          envFrom:
+            - configMapRef:
+                name: pihole-config-env
           volumeMounts:
             - mountPath: /etc/pihole
               name: config
             - mountPath: /etc/dnsmasq.d/02-custom.conf
-              name: custom-dnsmasq
+              name: pihole-config
               subPath: 02-custom.conf
+            - mountPath: /etc/pihole/whitelist.txt
+              name: pihole-config
+              subPath: whitelist.txt
+          livenessProbe:
+            httpGet:
+              path: /admin/index.php
+              port: 80
+            initialDelaySeconds: 60
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /admin/index.php
+              port: 80
+            initialDelaySeconds: 25
+            periodSeconds: 5
       volumes:
         - name: config
         - configMap:
             defaultMode: 420
-            name: pihole-custom-dnsmasq
-          name: custom-dnsmasq
+            name: pihole-configmap
+          name: pihole-config
   selector:
     matchLabels:
       app: pihole
