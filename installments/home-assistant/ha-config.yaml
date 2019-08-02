@@ -32,8 +32,8 @@ data:
 
     # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
     http:
-      server_port: 8123
-      base_url: home-assistant.pi-worker-1
+      server_port: 80
+      base_url: home-assistant.cluster
       use_x_forwarded_for: true
       trusted_proxies: 127.0.0.1
 
