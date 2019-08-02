@@ -102,3 +102,4 @@ IPCLUSTER=192.168.1.100:6443;echo "kubeadm join --token $(kubeadm token list | s
 - Create config for NodeRead in configMap
 - Find out how to save changes from NodeRed in Backup
 - Find out how to restore backup of NodeRed data
+- Install git server (e.g. https://github.com/stevenaldinger/k8s-gogs/tree/master/k8s)
