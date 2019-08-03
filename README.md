@@ -96,7 +96,7 @@ IPCLUSTER=192.168.1.100:6443;echo "kubeadm join --token $(kubeadm token list | s
 - Setup basic monitoring
 - Use central logging service
 - Generate Let's Entrypt Certificates
-- Create Port forwarding for 443 (possibly 80)
+- Create Port forwarding to make home assistant api available for google cloud (to controll devices via assistant)
 - Create Endpoint reachable from Internet 
 - Create Endpoint reachable only from LAN
 - Create config for NodeRead in configMap
