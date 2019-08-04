@@ -17,7 +17,7 @@ spec:
         - name: home-assistant
           image: homeassistant/raspberrypi3-homeassistant
           ports:
-            - containerPort: 8123
+            - containerPort: 80
           volumeMounts:
             - name: persistence
               mountPath: /config/
