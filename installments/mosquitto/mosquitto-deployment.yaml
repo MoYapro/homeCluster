@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: mosquitto
-          image: eclipse-mosquitto:latest
+          image: eclipse-mosquitto:1.6.4
           resources:
             requests:
               memory: 1Mi

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: home-assistant
-          image: homeassistant/raspberrypi3-homeassistant
+          image: homeassistant/raspberrypi3-homeassistant:0.97.0
           ports:
             - containerPort: 8123
           volumeMounts:
