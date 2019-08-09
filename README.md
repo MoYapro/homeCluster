@@ -8,6 +8,14 @@ Disclaimer
 
 This is only for my personal pleasure. Feel free to use at your own risk.
 
+Structure
+---
+This file describes how to set up the cluster and maintains a todo-list of stuff I'd like to realise. 
+In the installments directory are all application configurations each in a separate folder. To deploy one of the applications on your cluster do
+
+`kubectl apply -f ./installments/[application]`
+
+
 
 Install Hypriot on all SD cards
 ---
