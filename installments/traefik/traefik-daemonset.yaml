@@ -22,7 +22,7 @@ spec:
       serviceAccountName: traefik-ingress-controller
       terminationGracePeriodSeconds: 60
       containers:
-      - image: traefik
+      - image: traefik:1.7.13
         name: traefik-ingress-lb
         ports:
         - name: http
@@ -63,6 +63,9 @@ spec:
     - protocol: TCP
       port: 80
       name: web
+    - protocol: TCP
+      port: 443
+      name: https
     - protocol: TCP
       port: 8080
       name: admin
