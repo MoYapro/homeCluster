@@ -1,0 +1,60 @@
+kind: Deployment
+apiVersion: v1
+apiVersion: extensions/v1beta1
+metadata:
+  name: traefik-ingress-controller-https
+  namespace: kube-system
+  labels:
+    k8s-app: traefik-ingress-controller-https
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: traefik-ingress-controller-https
+  template:
+    metadata:
+      labels:
+        k8s-app: traefik-ingress-controller-https
+    spec:
+      serviceAccount: traefik-ingress-controller
+      terminationGracePeriodSeconds: 15
+      hostNetwork: true
+      nodeSelector:
+        kubernetes.io/hostname: pi-worker-1
+      volumes:
+        - name: traefik-cache
+          hostPath:
+            path: /tmp/traefik
+        - name: traefik-config
+          configMap:
+            name: traefik-https-cfg
+      containers:
+        - image: traefik:1.7.14
+          name: traefik-ingress-controller
+          resources:
+            limits:
+              cpu: 1500m
+              memory: 30Mi
+            requests:
+              cpu: 100m
+              memory: 20Mi
+          ports:
+            - name: http
+              containerPort: 80
+              hostPort: 80
+            - name: https
+              containerPort: 443
+              hostPort: 443
+            - name: admin
+              containerPort: 8888
+          volumeMounts:
+            - mountPath: /etc/traefik
+              name: traefik-cache
+            - mountPath: /config-files
+              name: traefik-config
+          args:
+            - --web
+            - --web.address=:8888
+            - --kubernetes
+            - --logLevel=INFO
+            - --configFile=/config-files/traefik.toml
