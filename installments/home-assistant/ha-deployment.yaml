@@ -63,7 +63,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-    - host: home-assistant.cluster
+    - host: moyapro.duckdns.org
       http:
         paths:
           - path: /
