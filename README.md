@@ -101,9 +101,9 @@ IPCLUSTER=192.168.1.100:6443;echo "kubeadm join --token $(kubeadm token list | s
 ✔ Setup memory limits for pods (as derived from values got by docker stats on nodes)
 ✔ Create configMap for PiHole (used to resolv all external cluster routes)
 ✔ Configure mqtt server in home assistant (using pod network and port 1883)
+✔ Generate Let's Entrypt Certificates
 - Setup basic monitoring
 - Use central logging service
-- Generate Let's Entrypt Certificates
 - Create Port forwarding to make home assistant api available for google cloud (to controll devices via assistant)
 - Create Endpoint reachable from Internet 
 - Create Endpoint reachable only from LAN
