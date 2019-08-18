@@ -6,6 +6,9 @@ metadata:
   labels:
     app: pihole
 spec:
+  replicas: 1
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -18,7 +21,7 @@ spec:
           image: pihole/pihole:4.3.1-4
           resources:
             requests:
-              memory: 30Mi
+              memory: 31Mi
             limits:
               memory: 75Mi
           ports:
