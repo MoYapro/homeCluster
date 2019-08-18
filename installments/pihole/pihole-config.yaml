@@ -8,7 +8,6 @@ data:
     address=/pihole.cluster/192.168.1.101
     address=/node-red.cluster/192.168.1.101
     address=/home-assistant.cluster/192.168.1.101
-    address=/traefik.cluster/192.168.1.101
     address=/mosquitto.cluster/192.168.1.101
   whitelist.txt: |
     id.google.com

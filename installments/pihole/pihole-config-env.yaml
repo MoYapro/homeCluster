@@ -4,6 +4,7 @@ metadata:
   name: pihole-config-env
 data:
   ServerIP: 192.168.1.101
+  WEB_PORT: '16349'
   DNS1: 1.1.1.1
   DNS2: 1.0.0.1
   DNS3: 8.8.8.8

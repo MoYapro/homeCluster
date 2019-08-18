@@ -1,7 +1,7 @@
 apiVersion: apps/v1
-kind: DaemonSet
+kind: Deployment
 metadata:
-  name: pihole-daemon
+  name: pihole-deployment
   namespace: home-assistant
   labels:
     app: pihole
@@ -12,6 +12,7 @@ spec:
         app: pihole
         name: pihole
     spec:
+      hostNetwork: true
       containers:
         - name: pihole
           image: pihole/pihole:4.3.1-4
@@ -21,11 +22,11 @@ spec:
             limits:
               memory: 75Mi
           ports:
-            - name: dns-udp
+            - name: dns
               containerPort: 53
               hostPort: 53
             - name: admin
-              containerPort: 80
+              containerPort: 16349
           envFrom:
             - configMapRef:
                 name: pihole-config-env
@@ -41,13 +42,13 @@ spec:
           livenessProbe:
             httpGet:
               path: /admin/index.php
-              port: 80
+              port: 16349
             initialDelaySeconds: 60
             periodSeconds: 5
           readinessProbe:
             httpGet:
               path: /admin/index.php
-              port: 80
+              port: 16349
             initialDelaySeconds: 25
             periodSeconds: 5
       volumes:
@@ -72,7 +73,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: admin
       name: pihole
 ---
 apiVersion: extensions/v1beta1
