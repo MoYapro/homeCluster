@@ -1,9 +1,0 @@
----
-- name: This is a hello-world example
-  hosts: all
-  tasks:
-    - name: Pull required images to build the cluster
-      become: true
-      shell: |
-        kubeadm config images pull
-        
