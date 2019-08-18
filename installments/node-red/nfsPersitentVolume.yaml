@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nas-persistant-volume-node-red
+  namespace: home-assistant
+spec:
+  capacity:
+    storage: 1Gi # This size is used to match a volume to a tenants claim
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce 
+  nfs:
+    server: 192.168.1.6 
+    path: /volume1/persistent_storage/node-red
+    readOnly: false
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nas-persitant-volume-claim-node-red
+  namespace: home-assistant
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: manual
+  resources:
+    requests:
+      storage: 1Gi

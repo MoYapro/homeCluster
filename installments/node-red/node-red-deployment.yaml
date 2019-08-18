@@ -15,6 +15,13 @@ spec:
       labels:
         app: node-red
     spec:
+      initContainers:
+        - name: data-permission-fix
+          image: busybox
+          command: ["/bin/chmod","-R","777", "/data"]
+          volumeMounts:
+            - name: persistence
+              mountPath: /data/
       containers:
         - name: node-red
           image: nodered/node-red-docker:rpi
@@ -25,6 +32,27 @@ spec:
               memory: 75Mi
             limits:
               memory: 150Mi
+          volumeMounts:
+            - name: persistence
+              mountPath: /data/
+            - mountPath: /data/settings.js
+              name: node-red-settings-js
+              subPath: settings.js
+            - mountPath: /data/flows.json
+              name: node-red-flows
+              subPath: flows.json
+      volumes:
+        - name: node-red-settings-js
+          configMap:
+            defaultMode: 420
+            name: node-red-settings-js-map
+        - name: node-red-flows
+          configMap:
+            defaultMode: 420
+            name: node-red-flows-map
+        - name: persistence
+          persistentVolumeClaim:
+            claimName: nas-persitant-volume-claim-node-red
 ---
 kind: Service
 apiVersion: v1

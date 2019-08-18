@@ -1,0 +1,379 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: node-red-flows-map
+  namespace: home-assistant
+data:
+  flows.json: |
+    [
+      {
+        "id": "1fe996d2.26ec49",
+        "type": "tab",
+        "label": "TV",
+        "disabled": false,
+        "info": ""
+      },
+      {
+        "id": "6052f386.ba7e0c",
+        "type": "subflow",
+        "name": "Blink LED",
+        "info": "",
+        "category": "",
+        "in": [
+          {
+            "x": 50,
+            "y": 30,
+            "wires": [
+              {
+                "id": "61f37b44.a5c344"
+              },
+              {
+                "id": "7f30dd01.e7b344"
+              }
+            ]
+          }
+        ],
+        "out": []
+      },
+      {
+        "id": "2b61e807.3ed978",
+        "type": "bravia-tv",
+        "z": "",
+        "name": "Sony Bravia",
+        "host": "192.168.1.111",
+        "port": "80",
+        "psk": "Superteam17"
+      },
+      {
+        "id": "9e0e9c3b.c8747",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "NodeRedMttq",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "node red mqtt incoming",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "welcome to mttq broker test",
+        "birthQos": "0",
+        "birthPayload": "the welcome payload",
+        "closeTopic": "Bye!",
+        "closeQos": "0",
+        "closePayload": "ByeMessage",
+        "willTopic": "Disconnected",
+        "willQos": "0",
+        "willPayload": "disconnected payload"
+      },
+      {
+        "id": "47068ed0.8db12",
+        "type": "http in",
+        "z": "1fe996d2.26ec49",
+        "name": "PC on",
+        "url": "/notify/pc/on",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 320,
+        "wires": [
+          [
+            "9bd88983.385158",
+            "110aa7c0.2cf2f8",
+            "5ae00df7.1c3df4"
+          ]
+        ]
+      },
+      {
+        "id": "74c6d8f.9790c28",
+        "type": "bravia-ircc",
+        "z": "1fe996d2.26ec49",
+        "tv": "2b61e807.3ed978",
+        "ircc": "Hdmi4",
+        "name": "Switch to HDMI 4",
+        "x": 1184.5,
+        "y": 313,
+        "wires": []
+      },
+      {
+        "id": "9bd88983.385158",
+        "type": "http response",
+        "z": "1fe996d2.26ec49",
+        "name": "RespondOK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 330,
+        "y": 440,
+        "wires": []
+      },
+      {
+        "id": "bf3375be.eaeae8",
+        "type": "bravia-ircc",
+        "z": "1fe996d2.26ec49",
+        "tv": "2b61e807.3ed978",
+        "ircc": "Home",
+        "name": "Switch to Home",
+        "x": 340,
+        "y": 80,
+        "wires": []
+      },
+      {
+        "id": "2cf7aebe.8d50a2",
+        "type": "http in",
+        "z": "1fe996d2.26ec49",
+        "name": "PC off",
+        "url": "/notify/pc/off",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 80,
+        "wires": [
+          [
+            "bf3375be.eaeae8",
+            "32af12b6.cc17ce",
+            "64026a33.d99554"
+          ]
+        ]
+      },
+      {
+        "id": "9e70ab8d.c913a8",
+        "type": "bravia-api",
+        "z": "6052f386.ba7e0c",
+        "tv": "2b61e807.3ed978",
+        "method": "system:1.1:setLEDIndicatorStatus",
+        "payload": "{\"mode\":\"Dark\", \"status\":\"true\"}",
+        "name": "LED Dark",
+        "x": 395,
+        "y": 120,
+        "wires": [
+          []
+        ]
+      },
+      {
+        "id": "61f37b44.a5c344",
+        "type": "delay",
+        "z": "6052f386.ba7e0c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 227,
+        "y": 121,
+        "wires": [
+          [
+            "9e70ab8d.c913a8"
+          ]
+        ]
+      },
+      {
+        "id": "7f30dd01.e7b344",
+        "type": "bravia-api",
+        "z": "6052f386.ba7e0c",
+        "tv": "2b61e807.3ed978",
+        "method": "system:1.1:setLEDIndicatorStatus",
+        "payload": "{\"mode\":\"AutoBrightnessAdjust\", \"status\":\"true\"}",
+        "name": "LED auto",
+        "x": 395,
+        "y": 60,
+        "wires": [
+          []
+        ]
+      },
+      {
+        "id": "32af12b6.cc17ce",
+        "type": "subflow:6052f386.ba7e0c",
+        "z": "1fe996d2.26ec49",
+        "name": "",
+        "x": 320,
+        "y": 200,
+        "wires": []
+      },
+      {
+        "id": "64026a33.d99554",
+        "type": "http response",
+        "z": "1fe996d2.26ec49",
+        "name": "RespondOK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 330,
+        "y": 140,
+        "wires": []
+      },
+      {
+        "id": "110aa7c0.2cf2f8",
+        "type": "subflow:6052f386.ba7e0c",
+        "z": "1fe996d2.26ec49",
+        "name": "",
+        "x": 320,
+        "y": 380,
+        "wires": []
+      },
+      {
+        "id": "66e9aa61.195c84",
+        "type": "bravia-api",
+        "z": "1fe996d2.26ec49",
+        "tv": "2b61e807.3ed978",
+        "method": "system:1.0:setPowerStatus",
+        "payload": "{\"status\": true}",
+        "name": "activate TV",
+        "x": 910,
+        "y": 360,
+        "wires": [
+          [
+            "2c0b6f12.18edd"
+          ]
+        ]
+      },
+      {
+        "id": "5ae00df7.1c3df4",
+        "type": "bravia-api",
+        "z": "1fe996d2.26ec49",
+        "tv": "2b61e807.3ed978",
+        "method": "system:1.0:getPowerStatus",
+        "payload": "",
+        "name": "Power status?",
+        "x": 340,
+        "y": 320,
+        "wires": [
+          [
+            "1bd936c8.d51339",
+            "33acf943.975486"
+          ]
+        ]
+      },
+      {
+        "id": "1bd936c8.d51339",
+        "type": "switch",
+        "z": "1fe996d2.26ec49",
+        "name": "Power status active?",
+        "property": "payload.status",
+        "propertyType": "msg",
+        "rules": [
+          {
+            "t": "eq",
+            "v": "active",
+            "vt": "str"
+          },
+          {
+            "t": "neq",
+            "v": "active",
+            "vt": "str"
+          }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 600,
+        "y": 320,
+        "wires": [
+          [
+            "74c6d8f.9790c28",
+            "33acf943.975486"
+          ],
+          [
+            "6e6fb2e2.50e86c",
+            "66e9aa61.195c84",
+            "33acf943.975486"
+          ]
+        ]
+      },
+      {
+        "id": "6e6fb2e2.50e86c",
+        "type": "delay",
+        "z": "1fe996d2.26ec49",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 900,
+        "y": 480,
+        "wires": [
+          [
+            "74c6d8f.9790c28",
+            "33acf943.975486"
+          ]
+        ]
+      },
+      {
+        "id": "2c0b6f12.18edd",
+        "type": "http response",
+        "z": "1fe996d2.26ec49",
+        "name": "RespondOK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 910,
+        "y": 420,
+        "wires": []
+      },
+      {
+        "id": "33acf943.975486",
+        "type": "debug",
+        "z": "1fe996d2.26ec49",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 910,
+        "y": 160,
+        "wires": []
+      },
+      {
+        "id": "d4414c1b.6097e",
+        "type": "inject",
+        "z": "1fe996d2.26ec49",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 100,
+        "y": 240,
+        "wires": [
+          [
+            "5ae00df7.1c3df4"
+          ]
+        ]
+      },
+      {
+        "id": "6ab61066.533a4",
+        "type": "inject",
+        "z": "1fe996d2.26ec49",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 160,
+        "wires": [
+          [
+            "bf3375be.eaeae8"
+          ]
+        ]
+      }
+    ]
+
