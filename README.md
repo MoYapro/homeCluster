@@ -92,7 +92,7 @@ IPCLUSTER=192.168.1.100:6443;echo "kubeadm join --token $(kubeadm token list | s
 
 ✔ Create store for secrets (certificates, api-keys, etc) - using git-secret
 ✔ Dynamic DNS refresher (DuckDNS) - deployed cron job with token as secret - installments/duckdns
-✔ Deploy Ingress Reverse Proxy (Traefik)
+✔ Deploy Ingress Reverse Proxy - installments/traefik
 ✔ Create deployment for HomeAssistant - installments/homeAssistant
 ✔ Create config for HomeAssistant in a configMap - installments/homeAssistant
 ✔ Create deployment for mqtt server - installments/mosquitto
@@ -101,13 +101,12 @@ IPCLUSTER=192.168.1.100:6443;echo "kubeadm join --token $(kubeadm token list | s
 ✔ Setup memory limits for pods (as derived from values got by docker stats on nodes)
 ✔ Create configMap for PiHole (used to resolv all external cluster routes)
 ✔ Configure mqtt server in home assistant (using pod network and port 1883)
-✔ Generate Let's Entrypt Certificates
+✔ Generate Let's Entrypt Certificates (by using traefik's feature to use lets encrypt)
+✔ Find out how to save changes from NodeRed in Backup (settings and flows in configMaps - node_modules in nfs volume)
+✔ Create Endpoint reachable from Internet (created router port forward to traefik) 
+✔ Create Endpoint reachable only from LAN (kube system is not routed only traefik load balancer)
+✔ Create Port forwarding to make home assistant api available for google cloud (to controll devices via assistant) (created ingress for external domain)
 - Setup basic monitoring
 - Use central logging service
-- Create Port forwarding to make home assistant api available for google cloud (to controll devices via assistant)
-- Create Endpoint reachable from Internet 
-- Create Endpoint reachable only from LAN
 - Create config for NodeRead in configMap
-- Find out how to save changes from NodeRed in Backup
-- Find out how to restore backup of NodeRed data
 - Install git server (e.g. https://github.com/stevenaldinger/k8s-gogs/tree/master/k8s)
