@@ -7,6 +7,7 @@ data:
   02-custom.conf: |
     address=/pihole.cluster/192.168.1.101
     address=/node-red.cluster/192.168.1.101
+    address=/node-red-test.cluster/192.168.1.101
     address=/home-assistant.cluster/192.168.1.101
     address=/mosquitto.cluster/192.168.1.101
   whitelist.txt: |
