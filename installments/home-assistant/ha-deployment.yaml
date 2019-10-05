@@ -8,6 +8,8 @@ spec:
     matchLabels:
       app: home-assistant
   replicas: 1
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -15,7 +17,7 @@ spec:
     spec:
       containers:
         - name: home-assistant
-          image: homeassistant/raspberrypi3-homeassistant:0.97.0
+          image: homeassistant/raspberrypi3-homeassistant:0.99.3
           ports:
             - containerPort: 8123
           volumeMounts:

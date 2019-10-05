@@ -102,6 +102,15 @@ data:
         payload_not_available: "Offline"
         retain: false
 
+    switch:
+      - platform: mqtt
+        name: "Aquarium"
+        state_topic: "shellies/shellyplug-s-79D80C/relay/0"
+        command_topic: "shellies/shellyplug-s-79D80C/relay/0/command"
+        payload_on: "on"
+        payload_off: "off"
+        retain: false
+
     google_assistant:
       project_id: hassio-integration-1e887
       api_key: AIzaSyA-6kOMTvYajbaBSQZo1_INVALIDHTwnlU
