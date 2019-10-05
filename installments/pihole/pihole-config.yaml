@@ -10,5 +10,6 @@ data:
     address=/node-red-test.cluster/192.168.1.101
     address=/home-assistant.cluster/192.168.1.101
     address=/mosquitto.cluster/192.168.1.101
+    address=/synology.cluster/192.168.1.6
   whitelist.txt: |
     id.google.com
