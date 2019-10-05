@@ -90,7 +90,7 @@ data:
 
     light:
       - platform: mqtt
-        name: "Schlafzimmerlampe"
+        name: "Schlafzimmerlicht"
         state_topic: "stat/sonoff/RESULT"
         value_template: "{{ value_json.POWER }}"
         command_topic: "cmnd/sonoff/POWER"
