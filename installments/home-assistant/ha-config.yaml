@@ -110,6 +110,13 @@ data:
         payload_on: "on"
         payload_off: "off"
         retain: false
+      - platform: mqtt
+        name: "Computer"
+        state_topic: "wohnzimmer/pc/status"
+        command_topic: "wohnzimmer/pc/command"
+        payload_on: "on"
+        payload_off: "off"
+        retain: false
 
     google_assistant:
       project_id: hassio-integration-1e887

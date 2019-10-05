@@ -375,5 +375,157 @@ data:
           ]
         ]
       }
+    ,
+    {
+        "id": "2b4b06d4.23cfba",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+      },
+      {
+        "id": "75afc520.37091c",
+        "type": "mqtt in",
+        "z": "2b4b06d4.23cfba",
+        "name": "pc switch ",
+        "topic": "wohnzimmer/pc/command",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "5fc14613.225b28",
+        "x": 191,
+        "y": 516,
+        "wires": [
+          [
+            "52eef1c4.e8acb",
+            "1bb17fa8.c9e2b"
+          ]
+        ]
+      },
+      {
+        "id": "c8a411ce.29091",
+        "type": "mqtt out",
+        "z": "2b4b06d4.23cfba",
+        "name": "status out",
+        "topic": "wohnzimmer/pc/status",
+        "qos": "",
+        "retain": "false",
+        "broker": "5fc14613.225b28",
+        "x": 633,
+        "y": 319,
+        "wires": []
+      },
+      {
+        "id": "52eef1c4.e8acb",
+        "type": "function",
+        "z": "2b4b06d4.23cfba",
+        "name": "forward status to status topic",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 320,
+        "wires": [
+          [
+            "c8a411ce.29091"
+          ]
+        ]
+      },
+      {
+        "id": "7cf688d1.4fc408",
+        "type": "wake on lan",
+        "z": "2b4b06d4.23cfba",
+        "mac": "00:19:99:bf:43:c7",
+        "host": "192.168.1.19",
+        "name": "Wake pc",
+        "x": 557,
+        "y": 433,
+        "wires": []
+      },
+      {
+        "id": "1bb17fa8.c9e2b",
+        "type": "switch",
+        "z": "2b4b06d4.23cfba",
+        "name": "on/off",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+          {
+            "t": "eq",
+            "v": "on",
+            "vt": "str"
+          },
+          {
+            "t": "eq",
+            "v": "off",
+            "vt": "str"
+          }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 391,
+        "y": 517,
+        "wires": [
+          [
+            "7cf688d1.4fc408",
+            "eb3b9ec.2ee926"
+          ],
+          [
+            "855ba09d.ef732"
+          ]
+        ]
+      },
+      {
+        "id": "eb3b9ec.2ee926",
+        "type": "debug",
+        "z": "2b4b06d4.23cfba",
+        "name": "wake log",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "'wake up pc'",
+        "targetType": "jsonata",
+        "x": 547,
+        "y": 390,
+        "wires": []
+      },
+      {
+        "id": "855ba09d.ef732",
+        "type": "debug",
+        "z": "2b4b06d4.23cfba",
+        "name": "Shutdown mqtt message is handled on device itself using https://github.com/denschu/mqtt-exec",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "'shut down pc'",
+        "targetType": "jsonata",
+        "x": 550,
+        "y": 582,
+        "wires": []
+      },
+      {
+        "id": "5fc14613.225b28",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "192.168.1.101",
+        "port": "31883",
+        "clientid": "node-red",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+      }
     ]
 
