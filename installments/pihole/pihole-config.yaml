@@ -13,3 +13,5 @@ data:
     address=/synology.cluster/192.168.1.6
   whitelist.txt: |
     id.google.com
+    googleadservices.com
+    www.googleadservices.com
