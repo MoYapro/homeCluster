@@ -90,22 +90,23 @@ IPCLUSTER=192.168.1.100:6443;echo "kubeadm join --token $(kubeadm token list | s
      
 
 
-✔ Create store for secrets (certificates, api-keys, etc) - using git-secret
-✔ Dynamic DNS refresher (DuckDNS) - deployed cron job with token as secret - installments/duckdns
-✔ Deploy Ingress Reverse Proxy - installments/traefik
-✔ Create deployment for HomeAssistant - installments/homeAssistant
-✔ Create config for HomeAssistant in a configMap - installments/homeAssistant
-✔ Create deployment for mqtt server - installments/mosquitto
-✔ Create deployment for NodeRed - installments/node-red
-✔ Create deployment for PiHole - installments/pihole (using daemonset to expose dns port 53)
-✔ Setup memory limits for pods (as derived from values got by docker stats on nodes)
-✔ Create configMap for PiHole (used to resolv all external cluster routes)
-✔ Configure mqtt server in home assistant (using pod network and port 1883)
-✔ Generate Let's Entrypt Certificates (by using traefik's feature to use lets encrypt)
-✔ Find out how to save changes from NodeRed in Backup (settings and flows in configMaps - node_modules in nfs volume)
-✔ Create Endpoint reachable from Internet (created router port forward to traefik) 
-✔ Create Endpoint reachable only from LAN (kube system is not routed only traefik load balancer)
-✔ Create Port forwarding to make home assistant api available for google cloud (to controll devices via assistant) (created ingress for external domain)
+- ✔ Create store for secrets (certificates, api-keys, etc) - using git-secret
+- ✔ Dynamic DNS refresher (DuckDNS) - deployed cron job with token as secret - installments/duckdns
+- ✔ Deploy Ingress Reverse Proxy - installments/traefik
+- ✔ Create deployment for HomeAssistant - installments/homeAssistant
+- ✔ Create config for HomeAssistant in a configMap - installments/homeAssistant
+- ✔ Create deployment for mqtt server - installments/mosquitto
+- ✔ Create deployment for NodeRed - installments/node-red
+- ✔ Create deployment for PiHole - installments/pihole (using daemonset to expose dns port 53)
+- ✔ Setup memory limits for pods (as derived from values got by docker stats on nodes)
+- ✔ Create configMap for PiHole (used to resolv all external cluster routes)
+- ✔ Configure mqtt server in home assistant (using pod network and port 1883)
+- ✔ Generate Let's Entrypt Certificates (by using traefik's feature to use lets encrypt)
+- ✔ Find out how to save changes from NodeRed in Backup (settings and flows in configMaps - node_modules in nfs volume)
+- ✔ Create Endpoint reachable from Internet (created router port forward to traefik) 
+- ✔ Create Endpoint reachable only from LAN (kube system is not routed only traefik load balancer)
+- ✔ Create Port forwarding to make home assistant api available for google cloud (to controll devices via assistant) (created ingress for external domain)
+- use priority and preemption for most important services
 - Update api versions of yaml files to use non beta version and no deprecated api
 - Setup basic monitoring
 - Use central logging service
