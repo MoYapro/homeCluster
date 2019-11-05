@@ -15,6 +15,7 @@ spec:
       labels:
         app: mosquitto
     spec:
+      priorityClassName: high
       containers:
         - name: mosquitto
           image: eclipse-mosquitto:1.6.4

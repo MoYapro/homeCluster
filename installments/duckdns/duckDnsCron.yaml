@@ -10,6 +10,7 @@ spec:
     spec:
       template:
         spec:
+          priorityClassName: high
           containers:
           - name: dns-update
             image: evns/rpi-utilities

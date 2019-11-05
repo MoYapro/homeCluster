@@ -1,0 +1,8 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: ignore-me
+value: -1
+preemptionPolicy: Never
+globalDefault: false
+description: "Use this class for test services and other not required stuff"

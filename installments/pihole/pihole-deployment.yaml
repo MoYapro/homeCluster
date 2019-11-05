@@ -16,6 +16,7 @@ spec:
         name: pihole
     spec:
       hostNetwork: true
+      priorityClassName: essential
       nodeSelector:
         kubernetes.io/hostname: pi-worker-1
       containers:
@@ -48,7 +49,7 @@ spec:
             httpGet:
               path: /admin/index.php
               port: 16349
-            initialDelaySeconds: 60
+            initialDelaySeconds: 90
             periodSeconds: 5
           readinessProbe:
             httpGet:

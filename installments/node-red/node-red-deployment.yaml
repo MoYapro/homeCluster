@@ -15,6 +15,7 @@ spec:
       labels:
         app: node-red
     spec:
+      priorityClassName: high
       initContainers:
         - name: data-permission-fix
           image: busybox

@@ -1,0 +1,8 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: essential
+value: 1000000
+preemptionPolicy: Always
+globalDefault: false
+description: "Pods in this class are required for anything other to work (like DNS)"

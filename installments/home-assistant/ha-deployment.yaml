@@ -15,6 +15,7 @@ spec:
       labels:
         app: home-assistant
     spec:
+      priorityClassName: high
       containers:
         - name: home-assistant
           image: homeassistant/raspberrypi3-homeassistant:0.99.3

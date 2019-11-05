@@ -16,6 +16,7 @@ spec:
       labels:
         k8s-app: traefik-ingress-controller-https
     spec:
+      priorityClassName: high
       serviceAccount: traefik-ingress-controller
       terminationGracePeriodSeconds: 15
       hostNetwork: true

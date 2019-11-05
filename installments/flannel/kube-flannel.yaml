@@ -145,6 +145,7 @@ spec:
         tier: node
         app: flannel
     spec:
+      priorityClassName: essential
       hostNetwork: true
       nodeSelector:
         beta.kubernetes.io/arch: amd64

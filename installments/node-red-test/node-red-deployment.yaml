@@ -15,6 +15,7 @@ spec:
       labels:
         app: node-red-test
     spec:
+      priorityClassName: ignore-me
       initContainers:
         - name: data-permission-fix
           image: busybox
