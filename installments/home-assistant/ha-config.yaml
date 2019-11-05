@@ -123,9 +123,16 @@ data:
 
     switch:
       - platform: mqtt
-        name: "Aquarium"
+        name: "Grosses Aquarium"
         state_topic: "shellies/shellyplug-s-79D80C/relay/0"
         command_topic: "shellies/shellyplug-s-79D80C/relay/0/command"
+        payload_on: "on"
+        payload_off: "off"
+        retain: false
+      - platform: mqtt
+        name: "Kleines Aquarium"
+        state_topic: "shellies/shellyplug-s-7A3532/relay/0"
+        command_topic: "shellies/shellyplug-s-7A3532/relay/0/command"
         payload_on: "on"
         payload_off: "off"
         retain: false
