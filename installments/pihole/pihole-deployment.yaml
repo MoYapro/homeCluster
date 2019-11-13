@@ -37,6 +37,8 @@ spec:
             - configMapRef:
                 name: pihole-config-env
           volumeMounts:
+            - name: persistence
+              mountPath: /etc/pihole
             - mountPath: /etc/pihole
               name: config
             - mountPath: /etc/dnsmasq.d/02-custom.conf
@@ -63,6 +65,9 @@ spec:
             defaultMode: 420
             name: pihole-configmap
           name: pihole-config
+        - name: persistence
+          persistentVolumeClaim:
+            claimName: nas-persitant-volume-claim-pihole
   selector:
     matchLabels:
       app: pihole
