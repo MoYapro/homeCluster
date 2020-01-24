@@ -25,7 +25,7 @@ spec:
       volumes:
         - name: traefik-cache
           hostPath:
-            path: /tmp/traefik
+            path: /opt/traefik
         - name: traefik-config
           configMap:
             name: traefik-https-cfg
