@@ -18,7 +18,7 @@ spec:
       priorityClassName: high
       containers:
         - name: home-assistant
-          image: homeassistant/raspberrypi3-homeassistant:0.99.3
+          image: homeassistant/raspberrypi3-homeassistant:0.104.3
           ports:
             - containerPort: 8123
           volumeMounts:
