@@ -178,7 +178,6 @@ data:
 
     google_assistant:
       project_id: hassio-integration-1e887
-      api_key: AIzaSyA-6kOMTvYajbaBSQZo1_INVALIDHTwnlU
       expose_by_default: true
       exposed_domains:
         - light
