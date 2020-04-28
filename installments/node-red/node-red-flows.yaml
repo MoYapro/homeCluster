@@ -526,6 +526,65 @@ data:
         "willTopic": "",
         "willQos": "0",
         "willPayload": ""
+      },
+      {
+          "id": "56901e89.3e15f",
+          "type": "tab",
+          "label": "Schlafzimmer",
+          "disabled": false,
+          "info": ""
+      },
+      {
+          "id": "446b4e4d.cf46b",
+          "type": "mqtt in",
+          "z": "56901e89.3e15f",
+          "name": "",
+          "topic": "stat/sonoff-schlafzimmer-wand/POWER2",
+          "qos": "2",
+          "datatype": "auto",
+          "broker": "7b794628.f84f38",
+          "x": 240,
+          "y": 120,
+          "wires": [
+              [
+                  "3d89c906.ddb936"
+              ]
+          ]
+      },
+      {
+          "id": "3d89c906.ddb936",
+          "type": "mqtt out",
+          "z": "56901e89.3e15f",
+          "name": "",
+          "topic": "cmnd/sonoff/POWER",
+          "qos": "2",
+          "retain": "true",
+          "broker": "7b794628.f84f38",
+          "x": 580,
+          "y": 120,
+          "wires": []
+      },
+      {
+          "id": "7b794628.f84f38",
+          "type": "mqtt-broker",
+          "z": "",
+          "name": "mqttS",
+          "broker": "192.168.1.101",
+          "port": "31883",
+          "clientid": "node-red-test",
+          "usetls": false,
+          "compatmode": true,
+          "keepalive": "60",
+          "cleansession": true,
+          "birthTopic": "",
+          "birthQos": "0",
+          "birthPayload": "",
+          "closeTopic": "",
+          "closeQos": "0",
+          "closePayload": "",
+          "willTopic": "",
+          "willQos": "0",
+          "willPayload": ""
       }
     ]
 
