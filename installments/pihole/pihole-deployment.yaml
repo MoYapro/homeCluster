@@ -39,8 +39,6 @@ spec:
           volumeMounts:
             - name: persistence
               mountPath: /etc/pihole
-            - mountPath: /etc/pihole
-              name: config
             - mountPath: /etc/dnsmasq.d/02-custom.conf
               name: pihole-config
               subPath: 02-custom.conf
