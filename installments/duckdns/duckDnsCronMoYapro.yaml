@@ -1,0 +1,32 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: dns-update-moyapro
+  namespace: home-assistant
+spec:
+  schedule: "*/15 * * * *"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          priorityClassName: high
+          containers:
+          - name: dns-update
+            image: evns/rpi-utilities
+            resources:
+              requests:
+                memory: 1Mi
+              limits:
+                memory: 5Mi
+            command: [ "/bin/sh"]
+            args: ["-c", "curl https://www.duckdns.org/update?domains=${DNS_UPDATE_DOMAIN}\\&token=${DNS_UPDATE_TOKEN}\\&verbose=true"]
+            env:
+            - name: DNS_UPDATE_DOMAIN
+              value: moyapro
+            - name: DNS_UPDATE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: duckdns
+                  key: token
+          restartPolicy: Never

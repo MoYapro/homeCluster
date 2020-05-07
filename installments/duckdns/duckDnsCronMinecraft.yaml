@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: dns-update
+  name: dns-update-minecraft
   namespace: home-assistant
 spec:
   schedule: "*/15 * * * *"
@@ -23,10 +23,10 @@ spec:
             args: ["-c", "curl https://www.duckdns.org/update?domains=${DNS_UPDATE_DOMAIN}\\&token=${DNS_UPDATE_TOKEN}\\&verbose=true"]
             env:
             - name: DNS_UPDATE_DOMAIN
-              value: moyapro
+              value: jana-minecraft
             - name: DNS_UPDATE_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: duckdns
                   key: token
-          restartPolicy: OnFailure
+          restartPolicy: Never
