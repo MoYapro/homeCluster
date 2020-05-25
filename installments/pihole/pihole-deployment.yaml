@@ -24,9 +24,9 @@ spec:
           image: pihole/pihole:4.3.2-1
           resources:
             requests:
-              memory: 31Mi
-            limits:
               memory: 75Mi
+            limits:
+              memory: 100Mi
           ports:
             - name: dns
               containerPort: 53
@@ -45,18 +45,21 @@ spec:
             - mountPath: /etc/pihole/whitelist.txt
               name: pihole-config
               subPath: whitelist.txt
+            - name: pihole-config
+              subPath: adlists.list
+              mountPath: /etc/pihole/adlists.list
           livenessProbe:
             httpGet:
               path: /admin/index.php
               port: 16349
-            initialDelaySeconds: 90
-            periodSeconds: 5
+            initialDelaySeconds: 300
+            periodSeconds: 15
           readinessProbe:
             httpGet:
               path: /admin/index.php
               port: 16349
-            initialDelaySeconds: 25
-            periodSeconds: 5
+            initialDelaySeconds: 300
+            periodSeconds: 2
       volumes:
         - name: config
         - configMap:
