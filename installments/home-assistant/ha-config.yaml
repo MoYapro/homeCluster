@@ -124,6 +124,13 @@ data:
         payload_off: "off"
         retain: false
       - platform: mqtt
+        name: "Nachtlicht"
+        state_topic: "shellies/shellyplug-s-F8CC85/relay/0"
+        command_topic: "shellies/shellyplug-s-F8CC85/relay/0/command"
+        payload_on: "on"
+        payload_off: "off"
+        retain: false
+      - platform: mqtt
         schema: template
         name: "LED"
         command_topic: "shellies/shellyrgbw2-6CA20C/color/0/set"
