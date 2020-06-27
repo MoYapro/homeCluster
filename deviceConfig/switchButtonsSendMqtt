@@ -1,0 +1,1 @@
+rule on button1#state do publish cmnd/kleine_schlafzimmerlampe/POWER %value% endon on button2#state do publish cmnd/sonoff_fan/FanSpeed %value% endon on button3#state do publish cmnd/sonoff_fan/POWER1 %value% endon
