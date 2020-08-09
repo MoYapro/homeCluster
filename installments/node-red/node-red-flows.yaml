@@ -374,206 +374,74 @@ data:
             "bf3375be.eaeae8"
           ]
         ]
-      }
-    ,
-    {
-        "id": "2b4b06d4.23cfba",
-        "type": "tab",
-        "label": "Switch PC",
-        "disabled": false,
-        "info": ""
       },
       {
-        "id": "75afc520.37091c",
-        "type": "mqtt in",
-        "z": "2b4b06d4.23cfba",
-        "name": "pc switch ",
-        "topic": "wohnzimmer/pc/command",
-        "qos": "2",
-        "datatype": "utf8",
-        "broker": "5fc14613.225b28",
-        "x": 191,
-        "y": 516,
-        "wires": [
-          [
-            "52eef1c4.e8acb",
-            "1bb17fa8.c9e2b"
-          ]
-        ]
-      },
-      {
-        "id": "c8a411ce.29091",
-        "type": "mqtt out",
-        "z": "2b4b06d4.23cfba",
-        "name": "status out",
-        "topic": "wohnzimmer/pc/status",
-        "qos": "",
-        "retain": "false",
-        "broker": "5fc14613.225b28",
-        "x": 633,
-        "y": 319,
-        "wires": []
-      },
-      {
-        "id": "52eef1c4.e8acb",
-        "type": "function",
-        "z": "2b4b06d4.23cfba",
-        "name": "forward status to status topic",
-        "func": "\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 370,
-        "y": 320,
-        "wires": [
-          [
-            "c8a411ce.29091"
-          ]
-        ]
-      },
-      {
-        "id": "7cf688d1.4fc408",
-        "type": "wake on lan",
-        "z": "2b4b06d4.23cfba",
-        "mac": "00:19:99:bf:43:c7",
-        "host": "192.168.1.19",
-        "name": "Wake pc",
-        "x": 557,
-        "y": 433,
-        "wires": []
-      },
-      {
-        "id": "1bb17fa8.c9e2b",
-        "type": "switch",
-        "z": "2b4b06d4.23cfba",
-        "name": "on/off",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-          {
-            "t": "eq",
-            "v": "on",
-            "vt": "str"
-          },
-          {
-            "t": "eq",
-            "v": "off",
-            "vt": "str"
-          }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 391,
-        "y": 517,
-        "wires": [
-          [
-            "7cf688d1.4fc408",
-            "eb3b9ec.2ee926"
-          ],
-          [
-            "855ba09d.ef732"
-          ]
-        ]
-      },
-      {
-        "id": "eb3b9ec.2ee926",
-        "type": "debug",
-        "z": "2b4b06d4.23cfba",
-        "name": "wake log",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "'wake up pc'",
-        "targetType": "jsonata",
-        "x": 547,
-        "y": 390,
-        "wires": []
-      },
-      {
-        "id": "855ba09d.ef732",
-        "type": "debug",
-        "z": "2b4b06d4.23cfba",
-        "name": "Shutdown mqtt message is handled on device itself using https://github.com/denschu/mqtt-exec",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "'shut down pc'",
-        "targetType": "jsonata",
-        "x": 550,
-        "y": 582,
-        "wires": []
-      },
-      {
-        "id": "5fc14613.225b28",
-        "type": "mqtt-broker",
-        "z": "",
-        "name": "",
-        "broker": "192.168.1.101",
-        "port": "31883",
-        "clientid": "node-red",
-        "usetls": false,
-        "compatmode": false,
-        "keepalive": "60",
-        "cleansession": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthPayload": "",
-        "closeTopic": "",
-        "closeQos": "0",
-        "closePayload": "",
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": ""
-      },
-      {
-          "id": "56901e89.3e15f",
-          "type": "tab",
-          "label": "Schlafzimmer",
-          "disabled": false,
-          "info": ""
-      },
-      {
-          "id": "446b4e4d.cf46b",
+          "id": "cd0ba71c.c18e48",
           "type": "mqtt in",
-          "z": "56901e89.3e15f",
+          "z": "52ef7efc.a0813",
           "name": "",
-          "topic": "stat/sonoff-schlafzimmer-wand/POWER2",
+          "topic": "shellies/shelly1-68C700/input/0",
           "qos": "2",
           "datatype": "auto",
-          "broker": "7b794628.f84f38",
-          "x": 240,
-          "y": 120,
+          "broker": "b4ac6d6a.829f3",
+          "x": 270,
+          "y": 100,
           "wires": [
               [
-                  "3d89c906.ddb936"
+                  "2318ec87.606ab4"
               ]
           ]
       },
       {
-          "id": "3d89c906.ddb936",
+          "id": "6379b0cd.8e88d",
           "type": "mqtt out",
-          "z": "56901e89.3e15f",
-          "name": "",
-          "topic": "cmnd/sonoff/POWER",
+          "z": "52ef7efc.a0813",
+          "name": "Wohnzimmerlampe",
+          "topic": "cmnd/sonoff_fan/POWER1",
           "qos": "2",
-          "retain": "true",
-          "broker": "7b794628.f84f38",
-          "x": 580,
-          "y": 120,
+          "retain": "false",
+          "broker": "b4ac6d6a.829f3",
+          "x": 810,
+          "y": 100,
           "wires": []
       },
       {
-          "id": "7b794628.f84f38",
+          "id": "2318ec87.606ab4",
+          "type": "change",
+          "z": "52ef7efc.a0813",
+          "name": "",
+          "rules": [
+              {
+                  "t": "set",
+                  "p": "payload",
+                  "pt": "msg",
+                  "to": "toggle",
+                  "tot": "str"
+              }
+          ],
+          "action": "",
+          "property": "",
+          "from": "",
+          "to": "",
+          "reg": false,
+          "x": 560,
+          "y": 100,
+          "wires": [
+              [
+                  "6379b0cd.8e88d"
+              ]
+          ]
+      },
+      {
+          "id": "b4ac6d6a.829f3",
           "type": "mqtt-broker",
           "z": "",
-          "name": "mqttS",
+          "name": "MQTT",
           "broker": "192.168.1.101",
           "port": "31883",
-          "clientid": "node-red-test",
+          "clientid": "XXX",
           "usetls": false,
-          "compatmode": true,
+          "compatmode": false,
           "keepalive": "60",
           "cleansession": true,
           "birthTopic": "",
