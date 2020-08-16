@@ -375,84 +375,80 @@ data:
           ]
         ]
       },
-      {
-          "id": "cd0ba71c.c18e48",
-          "type": "mqtt in",
-          "z": "52ef7efc.a0813",
-          "name": "",
-          "topic": "shellies/shelly1-68C700/input/0",
-          "qos": "2",
-          "datatype": "auto",
-          "broker": "b4ac6d6a.829f3",
-          "x": 270,
-          "y": 100,
-          "wires": [
-              [
-                  "2318ec87.606ab4"
+          {
+              "id": "2cd58079.e8e5c",
+              "type": "tab",
+              "label": "Wohnzimmerlicht",
+              "disabled": false,
+              "info": ""
+          },
+          {
+              "id": "b5a05c45.d281a",
+              "type": "mqtt out",
+              "z": "2cd58079.e8e5c",
+              "name": "",
+              "topic": "cmnd/sonoff_fan/POWER1",
+              "qos": "",
+              "retain": "",
+              "broker": "b4ac6d6a.829f3",
+              "x": 760,
+              "y": 220,
+              "wires": []
+          },
+          {
+              "id": "499503f2.5ec38c",
+              "type": "mqtt in",
+              "z": "2cd58079.e8e5c",
+              "name": "",
+              "topic": "shellies/shelly1-68C700/input/0",
+              "qos": "2",
+              "datatype": "auto",
+              "broker": "b4ac6d6a.829f3",
+              "x": 210,
+              "y": 220,
+              "wires": [
+                  [
+                      "3d0b7aaa.f4b246"
+                  ]
               ]
-          ]
-      },
-      {
-          "id": "6379b0cd.8e88d",
-          "type": "mqtt out",
-          "z": "52ef7efc.a0813",
-          "name": "Wohnzimmerlampe",
-          "topic": "cmnd/sonoff_fan/POWER1",
-          "qos": "2",
-          "retain": "false",
-          "broker": "b4ac6d6a.829f3",
-          "x": 810,
-          "y": 100,
-          "wires": []
-      },
-      {
-          "id": "2318ec87.606ab4",
-          "type": "change",
-          "z": "52ef7efc.a0813",
-          "name": "",
-          "rules": [
-              {
-                  "t": "set",
-                  "p": "payload",
-                  "pt": "msg",
-                  "to": "toggle",
-                  "tot": "str"
-              }
-          ],
-          "action": "",
-          "property": "",
-          "from": "",
-          "to": "",
-          "reg": false,
-          "x": 560,
-          "y": 100,
-          "wires": [
-              [
-                  "6379b0cd.8e88d"
+          },
+          {
+              "id": "3d0b7aaa.f4b246",
+              "type": "function",
+              "z": "2cd58079.e8e5c",
+              "name": "0 -> off : 1 -> on",
+              "func": "if(\"1\" == msg.payload) msg.payload = \"on\"\nif(\"0\" == msg.payload) msg.payload = \"off\"\nreturn msg;",
+              "outputs": 1,
+              "noerr": 0,
+              "x": 480,
+              "y": 220,
+              "wires": [
+                  [
+                      "b5a05c45.d281a"
+                  ]
               ]
-          ]
-      },
-      {
-          "id": "b4ac6d6a.829f3",
-          "type": "mqtt-broker",
-          "z": "",
-          "name": "MQTT",
-          "broker": "192.168.1.101",
-          "port": "31883",
-          "clientid": "XXX",
-          "usetls": false,
-          "compatmode": false,
-          "keepalive": "60",
-          "cleansession": true,
-          "birthTopic": "",
-          "birthQos": "0",
-          "birthPayload": "",
-          "closeTopic": "",
-          "closeQos": "0",
-          "closePayload": "",
-          "willTopic": "",
-          "willQos": "0",
-          "willPayload": ""
-      }
-    ]
+          },
+          {
+              "id": "b4ac6d6a.829f3",
+              "type": "mqtt-broker",
+              "z": "",
+              "name": "MQTT",
+              "broker": "192.168.1.101",
+              "port": "31883",
+              "clientid": "Node-Red-Wohnzimmer",
+              "usetls": false,
+              "compatmode": false,
+              "keepalive": "60",
+              "cleansession": true,
+              "birthTopic": "",
+              "birthQos": "0",
+              "birthPayload": "",
+              "closeTopic": "",
+              "closeQos": "0",
+              "closePayload": "",
+              "willTopic": "",
+              "willQos": "0",
+              "willPayload": ""
+          }
+      ]
 
