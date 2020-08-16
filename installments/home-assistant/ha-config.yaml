@@ -118,11 +118,10 @@ data:
         retain: false
       - platform: mqtt
         name: "Wohnzimmerlampe"
-        state_topic: "shellies/shelly1-68C700/relay/0"
-        command_topic: "shellies/shelly1-68C700/relay/0/command"
-        payload_on: "on"
-        payload_off: "off"
-        retain: false
+        state_topic: "stat/sonoff_fan2/RESULT"
+        value_template: "{{ value_json.POWER1 }}"
+        command_topic: "cmnd/sonoff_fan2/POWER1"
+        availability_topic: "tele/sonoff_fan/LWT"
       - platform: mqtt
         name: "Nachtlicht"
         state_topic: "shellies/shellyplug-s-F8CC85/relay/0"
