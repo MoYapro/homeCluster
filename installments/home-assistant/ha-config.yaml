@@ -118,10 +118,16 @@ data:
         retain: false
       - platform: mqtt
         name: "Wohnzimmerlampe"
-        state_topic: "stat/sonoff_fan2/RESULT"
+        state_topic: "stat/wohnzimmer_fan/RESULT"
         value_template: "{{ value_json.POWER1 }}"
-        command_topic: "cmnd/sonoff_fan2/POWER1"
-        availability_topic: "tele/sonoff_fan/LWT"
+        command_topic: "cmnd/wohnzimmer_fan/POWER1"
+        availability_topic: "tele/wohnzimmer_fan/LWT"
+        qos: 1
+        payload_on: "ON"
+        payload_off: "OFF"
+        payload_available: "Online"
+        payload_not_available: "Offline"
+        retain: false
       - platform: mqtt
         name: "Nachtlicht"
         state_topic: "shellies/shellyplug-s-F8CC85/relay/0"
@@ -193,8 +199,8 @@ data:
         name: "Schlafzimmer Ventilator"
         command_topic: "cmnd/sonoff_fan/FanSpeed"
         speed_command_topic: "cmnd/sonoff_fan/FanSpeed"
-        state_topic: "stat/sonoff_fan/status"
-        speed_state_topic: "stat/sonoff_fan/status"
+        state_topic: "stat/sonoff_fan/RESULT"
+        speed_state_topic: "stat/sonoff_fan/RESULT"
         state_value_template: >
           {% if value_json.FanSpeed is defined %}
             {% if value_json.FanSpeed == 0 -%}0{%- elif value_json.FanSpeed > 0 -%}4{%- endif %}
@@ -204,7 +210,33 @@ data:
         speed_value_template: "{{ value_json.FanSpeed }}"
         availability_topic: tele/sonoff_fan/LWT
         payload_off: "0"
-        payload_on: "1"
+        payload_on: "4"
+        payload_low_speed: "1"
+        payload_medium_speed: "2"
+        payload_high_speed: "2"
+        payload_available: Online
+        payload_not_available: Offline
+        speeds:
+          - off
+          - low
+          - medium
+          - high
+      - platform: mqtt
+        name: "Wohnzimmer Ventilator"
+        command_topic: "cmnd/wohnzimmer_fan/FanSpeed"
+        speed_command_topic: "cmnd/wohnzimmer_fan/FanSpeed"
+        state_topic: "stat/wohnzimmer_fan/RESULT"
+        speed_state_topic: "stat/wohnzimmer_fan/RESULT"
+        state_value_template: >
+          {% if value_json.FanSpeed is defined %}
+            {% if value_json.FanSpeed == 0 -%}0{%- elif value_json.FanSpeed > 0 -%}4{%- endif %}
+          {% else %}
+            {% if states.fan.conservatoryfan.state == 'off' -%}0{%- elif states.fan.conservatoryfan.state == 'on' -%}4{%- endif %}
+          {% endif %}
+        speed_value_template: "{{ value_json.FanSpeed }}"
+        availability_topic: tele/wohnzimmer_fan/LWT
+        payload_off: "0"
+        payload_on: "4"
         payload_low_speed: "1"
         payload_medium_speed: "2"
         payload_high_speed: "2"
