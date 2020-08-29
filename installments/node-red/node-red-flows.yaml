@@ -378,7 +378,7 @@ data:
           {
               "id": "2cd58079.e8e5c",
               "type": "tab",
-              "label": "Wohnzimmerlicht",
+              "label": "Schalter",
               "disabled": false,
               "info": ""
           },
@@ -387,7 +387,7 @@ data:
               "type": "mqtt out",
               "z": "2cd58079.e8e5c",
               "name": "",
-              "topic": "cmnd/sonoff_fan/POWER1",
+              "topic": "cmnd/wohnzimmer_fan/POWER1",
               "qos": "",
               "retain": "",
               "broker": "b4ac6d6a.829f3",
