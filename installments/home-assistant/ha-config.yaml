@@ -129,6 +129,25 @@ data:
         payload_not_available: "Offline"
         retain: false
       - platform: mqtt
+        schema: template
+        name: "Andere Lampe"
+        state_topic: shellies/ShellyBulbDuo-66471E/light/0/status
+        command_topic: shellies/ShellyBulbDuo-66471E/light/0/set
+        command_on_template: >
+          {"turn": "on"
+          {%- if brightness is defined -%}
+          , "brightness": {{brightness | float | multiply(0.3922) | round(0)}}
+          {%- endif -%}
+          {%- if color_temp is defined -%}
+          , "temp": {{(1000000/(color_temp|int)) | round(0,floor)}}
+          {%- endif- %}}
+          }
+        command_off_template: {"turn" : "off"}
+        state_template: "{% if value_json.ison %}on{% else %}off{% endif %}"
+        brightness_template: "{{ value_json.brightness | float | multiply(2.55) | round(0) }}"
+        temperature_template: "{{((1000000/(value_json.temp|int))|round(0,floor))}}"
+        retain: false
+      - platform: mqtt
         name: "Nachtlicht"
         state_topic: "shellies/shellyplug-s-F8CC85/relay/0"
         command_topic: "shellies/shellyplug-s-F8CC85/relay/0/command"
