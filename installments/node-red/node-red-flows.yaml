@@ -459,6 +459,109 @@ data:
               ]
           },
           {
+        "id": "3a104965.d5d496",
+        "type": "inject",
+        "z": "2cd58079.e8e5c",
+        "name": "22:00 -> off",
+        "topic": "",
+        "payload": "off",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "00 22 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 350,
+        "y": 420,
+        "wires": [
+            [
+                "1d901b50.4d08a5"
+            ]
+        ]
+    },
+    {
+        "id": "7b5ecff5.099ee",
+        "type": "mqtt out",
+        "z": "2cd58079.e8e5c",
+        "name": "Grosses Aquarium",
+        "topic": "shellies/shellyplug-s-79D80C/relay/0/command",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 890,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "48af4cd.e69a4b4",
+        "type": "mqtt out",
+        "z": "2cd58079.e8e5c",
+        "name": "Kleines Aquarium",
+        "topic": "shellies/shellyplug-s-7A3532/relay/0/command",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 890,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "16241ab1.bbe1c5",
+        "type": "inject",
+        "z": "2cd58079.e8e5c",
+        "name": "Wochentags 07:00 -> on",
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "00 22 * * 1,2,3,4,5",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 310,
+        "y": 460,
+        "wires": [
+            [
+                "1d901b50.4d08a5"
+            ]
+        ]
+    },
+    {
+        "id": "d51a42c6.8213e",
+        "type": "inject",
+        "z": "2cd58079.e8e5c",
+        "name": "Wochenends 08:15 -> on",
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "15 08 * * 6,0",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 300,
+        "y": 500,
+        "wires": [
+            [
+                "1d901b50.4d08a5"
+            ]
+        ]
+    },
+    {
+        "id": "1d901b50.4d08a5",
+        "type": "function",
+        "z": "2cd58079.e8e5c",
+        "name": "Aquarien",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 460,
+        "wires": [
+            [
+                "7b5ecff5.099ee",
+                "48af4cd.e69a4b4"
+            ]
+        ]
+    },
+    {
               "id": "b4ac6d6a.829f3",
               "type": "mqtt-broker",
               "z": "",
