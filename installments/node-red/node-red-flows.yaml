@@ -408,7 +408,8 @@ data:
               "y": 220,
               "wires": [
                   [
-                      "3d0b7aaa.f4b246"
+                      "3d0b7aaa.f4b246",
+                      "a9644d53.e9f5b"
                   ]
               ]
           },
@@ -425,6 +426,35 @@ data:
               "wires": [
                   [
                       "b5a05c45.d281a"
+                  ]
+              ]
+          },
+          {
+              "id": "340c4ac2.2eba66",
+              "type": "mqtt out",
+              "z": "2cd58079.e8e5c",
+              "name": "",
+              "topic": "shellies/ShellyBulbDuo-66471E/light/0/set",
+              "qos": "",
+              "retain": "",
+              "broker": "b4ac6d6a.829f3",
+              "x": 780,
+              "y": 300,
+              "wires": []
+          },
+          {
+              "id": "a9644d53.e9f5b",
+              "type": "function",
+              "z": "2cd58079.e8e5c",
+              "name": "0 -> off : 1 -> on",
+              "func": "if(\"1\" == msg.payload) {\n    msg.payload = {\n        \"turn\": \"on\",\n        \"brightness\": 50,\n        \"temp\": 3200\n        \n    }\n} else if(\"0\" == msg.payload) msg.payload = {\"turn\":\"off\"}\nreturn msg;",
+              "outputs": 1,
+              "noerr": 0,
+              "x": 480,
+              "y": 300,
+              "wires": [
+                  [
+                      "340c4ac2.2eba66"
                   ]
               ]
           },
