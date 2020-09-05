@@ -39,6 +39,8 @@ spec:
             - mountPath: /data/settings.js
               name: node-red-settings-js
               subPath: settings.js
+            - mountPath: /etc/localtime
+              name: tz-europe
       volumes:
         - name: node-red-settings-js
           configMap:
@@ -47,6 +49,9 @@ spec:
         - name: local-tmp
           hostPath:
             path: /tmp/node-red-test
+        - name: tz-europe
+          hostPath:
+            path: /usr/share/zoneinfo/Europe/Berlin
 ---
 kind: Service
 apiVersion: v1

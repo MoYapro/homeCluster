@@ -42,6 +42,8 @@ spec:
             - mountPath: /data/flows.json
               name: node-red-flows
               subPath: flows.json
+            - mountPath: /etc/localtime
+              name: tz-europe
       volumes:
         - name: node-red-settings-js
           configMap:
@@ -54,6 +56,9 @@ spec:
         - name: persistence
           persistentVolumeClaim:
             claimName: nas-persitant-volume-claim-node-red
+        - name: tz-europe
+          hostPath:
+            path: /usr/share/zoneinfo/Europe/Berlin
 ---
 kind: Service
 apiVersion: v1
