@@ -129,20 +129,6 @@ data:
         payload_not_available: "Offline"
         retain: false
       - platform: mqtt
-        name: "Nachtlicht"
-        state_topic: "shellies/shellyplug-s-F8CC85/relay/0"
-        command_topic: "shellies/shellyplug-s-F8CC85/relay/0/command"
-        payload_on: "on"
-        payload_off: "off"
-        retain: false
-      - platform: mqtt
-        name: "Nachtlicht Küche"
-        state_topic: "shellies/shellyplug-s-F8CC85/relay/0"
-        command_topic: "shellies/shellyplug-s-F8CC85/relay/0/command"
-        payload_on: "on"
-        payload_off: "off"
-        retain: false
-      - platform: mqtt
         schema: template
         name: "LED"
         command_topic: "shellies/shellyrgbw2-6CA20C/color/0/set"
@@ -184,6 +170,27 @@ data:
         name: "Andere Lampe"
         command_topic: "shellies/ShellyBulbDuo-66471E/light/0/set"
         state_topic: "shellies/ShellyBulbDuo-66471E/light/0/status"
+        command_on_template: >
+          {"turn": "on"
+          {%- if brightness is defined -%}
+          , "brightness": {{brightness | float | multiply(0.3922) | round(0)}}
+          {%- endif -%}
+          {%- if white_value is defined and white_value > 0 -%}
+          , "temp": {{(1000000/(white_value | int)) | round(0,floor)}}
+          {%- endif -%}
+          {%- if white_value == 0 -%}
+          , "temp": 2800
+          {%- endif -%}
+          }
+        command_off_template: '{"turn":"off"}'
+        state_template: "{% if value_json.ison %}on{% else %}off{% endif %}"
+        brightness_template: "{{ value_json.brightness | float | multiply(2.55) | round(0) }}"
+        retain: false
+      - platform: mqtt
+        schema: template
+        name: "Nachtlicht"
+        command_topic: "shellies/ShellyBulbDuo-D15C2D/light/0/set"
+        state_topic: "shellies/ShellyBulbDuo-D15C2D/light/0/status"
         command_on_template: >
           {"turn": "on"
           {%- if brightness is defined -%}
