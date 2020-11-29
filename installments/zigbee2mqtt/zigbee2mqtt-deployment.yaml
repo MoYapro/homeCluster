@@ -16,18 +16,38 @@ spec:
         app: zigbee2mqtt
     spec:
       priorityClassName: high
+      nodeSelector:
+        kubernetes.io/hostname: pi-worker-1
       containers:
         - name: zigbee2mqtt
           image: koenkk/zigbee2mqtt:1.16.1
           resources:
             requests:
-              memory: 1Mi
+              memory: 100Mi
             limits:
-              memory: 10Mi
+              memory: 200Mi
           volumeMounts:
             - name: config-volume
+              mountPath: /app/data/configuration.yaml
+              subPath: configuration.yaml
+            - name: semi-persistant-config
               mountPath: /app/data
+            - name: log-volume
+              mountPath: /app/data/log
+            - name: devzigbeestick0
+              mountPath: /dev/ttyACM0
+          securityContext:
+            privileged: true
       volumes:
         - name: config-volume
           configMap:
             name: zigbee2mqtt-config
+        - name: semi-persistant-config
+          hostPath:
+            path: /tmp/zigbee2mqtt/data
+        - name: log-volume
+          hostPath:
+            path: /tmp/zigbee2mqtt/log
+        - name: devzigbeestick0
+          hostPath:
+            path: /dev/ttyACM0
