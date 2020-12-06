@@ -20,7 +20,7 @@ spec:
         kubernetes.io/hostname: pi-worker-1
       containers:
         - name: zigbee2mqtt
-          image: koenkk/zigbee2mqtt:1.16.1
+          image: koenkk/zigbee2mqtt:latest-dev
           resources:
             requests:
               memory: 100Mi
@@ -30,6 +30,9 @@ spec:
             - name: config-volume
               mountPath: /app/data/configuration.yaml
               subPath: configuration.yaml
+            - name: config-volume
+              mountPath: /app/data/preconfigured_devices.yaml
+              subPath: preconfigured_devices.yaml
             - name: semi-persistant-config
               mountPath: /app/data
             - name: log-volume
