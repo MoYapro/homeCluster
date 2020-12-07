@@ -21,9 +21,6 @@ data:
       unit_system: metric
       time_zone: Europe/Berlin
 
-    # Show links to resources in log and frontend
-    introduction:
-
     # Enables the frontend
     frontend:
 
@@ -37,7 +34,7 @@ data:
     http:
       server_port: 8123
       use_x_forwarded_for: true
-      trusted_proxies: 127.0.0.1
+      trusted_proxies: 10.244.0.0/24
 
     # Checks for available updates
     # Note: This component will send some information about your system to
@@ -303,6 +300,7 @@ data:
         - switch
         - script
         - fan
+        - binary_sensor
 
     automation: !include automations.yaml
 
