@@ -301,6 +301,7 @@ data:
         - script
         - fan
         - binary_sensor
+        - climate
 
     automation: !include automations.yaml
 
