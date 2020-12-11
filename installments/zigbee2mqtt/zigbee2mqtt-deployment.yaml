@@ -20,7 +20,7 @@ spec:
         kubernetes.io/hostname: pi-worker-1
       containers:
         - name: zigbee2mqtt
-          image: koenkk/zigbee2mqtt:latest-dev
+          image: koenkk/zigbee2mqtt:1.16.2
           resources:
             requests:
               memory: 100Mi
