@@ -32,7 +32,7 @@ spec:
             requests:
               memory: 75Mi
             limits:
-              memory: 150Mi
+              memory: 150Mi #increase to allow installation of additional nodes (out of memory otherwise)
           volumeMounts:
             - name: local-tmp
               mountPath: /data/
