@@ -69,5 +69,7 @@ data:
       friendly_name: 'Wohnzimmer Thermostat'
     '0x00124b002228ec04':
       friendly_name: 'Balkontür'
+    '0x00158d000577bc9c':
+      friendly_name: 'Waschmaschine Vibration'
 
 
