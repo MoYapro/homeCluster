@@ -28,6 +28,18 @@ spec:
           image: nodered/node-red:1.1.3
           ports:
             - containerPort: 1880
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 1880
+            initialDelaySeconds: 60
+            periodSeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 1880
+            initialDelaySeconds: 20
+            periodSeconds: 2
           resources:
             requests:
               memory: 75Mi
