@@ -562,6 +562,123 @@ data:
         ]
     },
     {
+        "id": "d3aed8cc.ffe2a8",
+        "type": "switch",
+        "z": "2cd58079.e8e5c",
+        "name": "Open?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "\"contact\":true",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "\"contact\":false",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 310,
+        "y": 60,
+        "wires": [
+            [
+                "3babb9a7.f9af76"
+            ],
+            [
+                "4f99242f.84702c"
+            ]
+        ]
+    },
+    {
+        "id": "3babb9a7.f9af76",
+        "type": "change",
+        "z": "2cd58079.e8e5c",
+        "name": "23",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "23",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 40,
+        "wires": [
+            [
+                "65791207.fb2cfc"
+            ]
+        ]
+    },
+    {
+        "id": "4f99242f.84702c",
+        "type": "change",
+        "z": "2cd58079.e8e5c",
+        "name": "5",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "5",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 80,
+        "wires": [
+            [
+                "65791207.fb2cfc"
+            ]
+        ]
+    },
+    {
+        "id": "abe2e0be.98da5",
+        "type": "mqtt in",
+        "z": "2cd58079.e8e5c",
+        "name": "",
+        "topic": "zigbee2mqtt/Balkontür",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b4ac6d6a.829f3",
+        "x": 140,
+        "y": 60,
+        "wires": [
+            [
+                "d3aed8cc.ffe2a8"
+            ]
+        ]
+    },
+    {
+        "id": "65791207.fb2cfc",
+        "type": "mqtt out",
+        "z": "2cd58079.e8e5c",
+        "name": "Wohnzimmer Temperatur",
+        "topic": "zigbee2mqtt/Wohnzimmer Thermostat/set/occupied_heating_setpoint",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 690,
+        "y": 60,
+        "wires": []
+    },
+    {
               "id": "b4ac6d6a.829f3",
               "type": "mqtt-broker",
               "z": "",
