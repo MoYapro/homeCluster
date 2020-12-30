@@ -562,42 +562,42 @@ data:
         ]
     },
     {
-        "id": "d3aed8cc.ffe2a8",
+        "id": "8be59cb5.b341",
         "type": "switch",
-        "z": "2cd58079.e8e5c",
-        "name": "Open?",
+        "z": "1fe996d2.26ec49",
+        "name": "Open? yes -> 1 no -> 2",
         "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "cont",
-                "v": "\"contact\":true",
+                "v": "\"contact\":false",
                 "vt": "str"
             },
             {
                 "t": "cont",
-                "v": "\"contact\":false",
+                "v": "\"contact\":true",
                 "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 310,
-        "y": 60,
+        "x": 370,
+        "y": 80,
         "wires": [
             [
-                "3babb9a7.f9af76"
+                "4fa8015a.a79c9"
             ],
             [
-                "4f99242f.84702c"
+                "4c73750d.9ed4dc"
             ]
         ]
     },
     {
-        "id": "3babb9a7.f9af76",
+        "id": "4c73750d.9ed4dc",
         "type": "change",
-        "z": "2cd58079.e8e5c",
+        "z": "1fe996d2.26ec49",
         "name": "23",
         "rules": [
             {
@@ -613,25 +613,80 @@ data:
         "from": "",
         "to": "",
         "reg": false,
-        "x": 470,
-        "y": 40,
+        "x": 570,
+        "y": 140,
         "wires": [
             [
-                "65791207.fb2cfc"
+                "23d4cd0e.1415d2",
+                "eb415ed3.01f24"
             ]
         ]
     },
     {
-        "id": "4f99242f.84702c",
+        "id": "e93c1fc9.6f4d1",
+        "type": "mqtt in",
+        "z": "1fe996d2.26ec49",
+        "name": "",
+        "topic": "zigbee2mqtt/Balkontür",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b4ac6d6a.829f3",
+        "x": 140,
+        "y": 80,
+        "wires": [
+            [
+                "8be59cb5.b341"
+            ]
+        ]
+    },
+    {
+        "id": "23d4cd0e.1415d2",
+        "type": "mqtt out",
+        "z": "1fe996d2.26ec49",
+        "name": "Wohnzimmer Temperatur",
+        "topic": "zigbee2mqtt/Wohnzimmer Thermostat/set/occupied_heating_setpoint",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 1070,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "4fa8015a.a79c9",
+        "type": "trigger",
+        "z": "1fe996d2.26ec49",
+        "name": "send 5 after 5s",
+        "op1": "",
+        "op2": "5",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "15",
+        "extend": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 840,
+        "y": 20,
+        "wires": [
+            [
+                "23d4cd0e.1415d2"
+            ]
+        ]
+    },
+    {
+        "id": "eb415ed3.01f24",
         "type": "change",
-        "z": "2cd58079.e8e5c",
-        "name": "5",
+        "z": "1fe996d2.26ec49",
+        "name": "reset",
         "rules": [
             {
                 "t": "set",
-                "p": "payload",
+                "p": "reset",
                 "pt": "msg",
-                "to": "5",
+                "to": "reset",
                 "tot": "num"
             }
         ],
@@ -640,43 +695,13 @@ data:
         "from": "",
         "to": "",
         "reg": false,
-        "x": 470,
+        "x": 690,
         "y": 80,
         "wires": [
             [
-                "65791207.fb2cfc"
+                "4fa8015a.a79c9"
             ]
         ]
-    },
-    {
-        "id": "abe2e0be.98da5",
-        "type": "mqtt in",
-        "z": "2cd58079.e8e5c",
-        "name": "",
-        "topic": "zigbee2mqtt/Balkontür",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "b4ac6d6a.829f3",
-        "x": 140,
-        "y": 60,
-        "wires": [
-            [
-                "d3aed8cc.ffe2a8"
-            ]
-        ]
-    },
-    {
-        "id": "65791207.fb2cfc",
-        "type": "mqtt out",
-        "z": "2cd58079.e8e5c",
-        "name": "Wohnzimmer Temperatur",
-        "topic": "zigbee2mqtt/Wohnzimmer Thermostat/set/occupied_heating_setpoint",
-        "qos": "",
-        "retain": "",
-        "broker": "b4ac6d6a.829f3",
-        "x": 690,
-        "y": 60,
-        "wires": []
     },
     {
               "id": "b4ac6d6a.829f3",
