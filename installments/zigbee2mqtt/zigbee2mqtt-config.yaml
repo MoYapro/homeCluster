@@ -71,5 +71,7 @@ data:
       friendly_name: 'Balkontür'
     '0x00158d000577bc9c':
       friendly_name: 'Waschmaschine Vibration'
+    '0x00158d0002b7a1ee':
+      friendly_name: 'Klingel'
 
 
