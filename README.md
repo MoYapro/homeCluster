@@ -106,9 +106,9 @@ IPCLUSTER=192.168.1.100:6443;echo "kubeadm join --token $(kubeadm token list | s
 - ✔ Create Endpoint reachable from Internet (created router port forward to traefik) 
 - ✔ Create Endpoint reachable only from LAN (kube system is not routed only traefik load balancer)
 - ✔ Create Port forwarding to make home assistant api available for google cloud (to controll devices via assistant) (created ingress for external domain)
-- use priority and preemption for most important services
+- ✔ Use priority and preemption for most important services
 - Update api versions of yaml files to use non beta version and no deprecated api
 - Setup basic monitoring
 - Use central logging service
-- Create config for NodeRead in configMap
+- ✔ Create config for NodeRead in configMap
 - Install git server (e.g. https://github.com/stevenaldinger/k8s-gogs/tree/master/k8s)
