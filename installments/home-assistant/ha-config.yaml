@@ -30,11 +30,26 @@ data:
     #Enable support for mobile client
     mobile_app:
 
+    lovelace:
+      mode: storage
+      # Add yaml dashboards
+      dashboards:
+        lovelace-yaml:
+          mode: yaml
+          title: YAML
+          icon: mdi:script
+          show_in_sidebar: true
+          filename: ui-lovelace.yaml
+
+    resources:
+      - type: module
+        url: /www/lovelace-floorplan/floorplan-card.js
+
     # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
     http:
       server_port: 8123
       use_x_forwarded_for: true
-      trusted_proxies: 10.244.0.0/24
+      trusted_proxies: 10.244.5.0/24
 
     # Checks for available updates
     # Note: This component will send some information about your system to
@@ -305,3 +320,76 @@ data:
 
     automation: !include automations.yaml
 
+  ui-lovelace.yaml: |
+    views:
+      - badges: []
+        cards:
+          - type: entities
+            entities:
+              - entity: light.grosse_schlafzimmerlampe
+              - entity: light.kleine_schlafzimmerlampe
+              - entity: fan.schlafzimmer_ventilator
+            title: Schlafzimmer
+            state_color: true
+          - type: entities
+            entities:
+              - entity: light.wohnzimmerlampe
+              - entity: light.andere_lampe
+              - entity: fan.wohnzimmer_ventilator
+              - entity: switch.kleines_aquarium
+              - entity: switch.grosses_aquarium
+              - entity: binary_sensor.0x00124b002228ec04_contact
+            title: Wohnzimmer
+            state_color: true
+          - entities:
+              - entity: light.kleine_buerolampe
+            show_header_toggle: false
+            title: Büro
+            type: entities
+          - type: entities
+            entities:
+              - entity: light.janas_schreibtischlampe
+            title: Janas Zimmer
+            state_color: true
+          - entities:
+              - entity: light.led
+            show_header_toggle: false
+            title: Badezimmer
+            type: entities
+          - type: entities
+            entities:
+              - entity: light.nachtlicht
+          - type: thermostat
+            entity: climate.wohnzimmer_thermostat
+        panel: false
+        title: base
+      - title: TV
+        path: ''
+        panel: false
+        badges: []
+        cards:
+          - type: entity
+            entity: media_player.android_tv_1
+          - type: media-control
+            entity: media_player.android_tv_1
+      - title: Extra
+        path: extra
+        badges: []
+        cards:
+          - type: entities
+            entities:
+              - sensor.waschmaschine_vibration_action
+              - sensor.waschmaschine_vibration_linkquality
+              - sensor.waschmaschine_vibration_sensitivity
+              - sensor.waschmaschine_vibration_strength
+          - type: entities
+            entities:
+              - sensor.klingel_action
+              - sensor.klingel_linkquality
+              - sensor.klingel_sensitivity
+              - sensor.klingel_strength
+      - title: Test
+        path: test
+        panel: true
+        badges: []
+        cards: []
