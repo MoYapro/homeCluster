@@ -45,15 +45,6 @@ spec:
             - name: config-volume
               mountPath: /config/automations.yaml
               subPath: automations.yaml
-            - name: config-floorplan
-              mountPath: /www/lovelace-floorplan/floorplan-card.js
-              subPath: floorplan-card.js
-            - name: config-floorplan
-              mountPath: /www/lovelace-floorplan/simple.svg
-              subPath: simple.svg
-            - name: config-floorplan
-              mountPath: /www/lovelace-floorplan/simple.css
-              subPath: simple.css
           resources:
             requests:
               memory: 75Mi
@@ -63,9 +54,6 @@ spec:
         - name: config-volume
           configMap:
             name: home-assistant-config
-        - name: config-floorplan
-          configMap:
-            name: floorplan-config
         - name: persistence
           persistentVolumeClaim:
             claimName: nas-persitant-volume-claim-ha

@@ -41,10 +41,6 @@ data:
           show_in_sidebar: true
           filename: ui-lovelace.yaml
 
-    resources:
-      - type: module
-        url: /www/lovelace-floorplan/floorplan-card.js
-
     # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
     http:
       server_port: 8123
@@ -80,11 +76,6 @@ data:
 
     # Allow diagnosing system problems
     system_health:
-
-    # Sensors
-    sensor:
-      # Weather prediction
-      - platform: yr
 
     # Text to speech
     tts:
