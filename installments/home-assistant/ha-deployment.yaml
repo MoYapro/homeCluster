@@ -32,7 +32,8 @@ spec:
               path: /
               port: 8123
             initialDelaySeconds: 60
-            periodSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 15
           volumeMounts:
             - name: persistence
               mountPath: /config/
