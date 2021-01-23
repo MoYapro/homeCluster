@@ -15,17 +15,17 @@ spec:
       labels:
         app: zigbee2mqtt
     spec:
-      priorityClassName: high
+      priorityClassName: default
       nodeSelector:
         kubernetes.io/hostname: pi-worker-1
       containers:
         - name: zigbee2mqtt
-          image: koenkk/zigbee2mqtt:1.16.2
+          image: koenkk/zigbee2mqtt:1.17.0
           resources:
             requests:
-              memory: 100Mi
+              memory: 50Mi
             limits:
-              memory: 200Mi
+              memory: 100Mi
           volumeMounts:
             - name: config-volume
               mountPath: /app/data/configuration.yaml
