@@ -17,8 +17,8 @@ spec:
     spec:
       hostNetwork: true
       priorityClassName: essential
-      nodeSelector:
-        kubernetes.io/hostname: pi-worker-1
+#      nodeSelector:
+#        kubernetes.io/hostname: pi-worker-1
       containers:
         - name: pihole
           image: pihole/pihole:4.3.2-1
