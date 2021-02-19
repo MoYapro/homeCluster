@@ -14,6 +14,13 @@ data:
         "info": ""
       },
       {
+        "id": "32f4c477.60926c",
+        "type": "tab",
+        "label": "AllOff",
+        "disabled": false,
+        "info": ""
+      },
+      {
         "id": "6052f386.ba7e0c",
         "type": "subflow",
         "name": "Blink LED",
@@ -700,6 +707,216 @@ data:
         "wires": [
             [
                 "4fa8015a.a79c9"
+            ]
+        ]
+    },
+    {
+        "id": "5acff389.e5698c",
+        "type": "mqtt in",
+        "z": "32f4c477.60926c",
+        "name": "Button1",
+        "topic": "shellies/shellybutton1-84CCA8AC073B/input_event/0",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b4ac6d6a.829f3",
+        "x": 50,
+        "y": 220,
+        "wires": [
+            [
+                "bd1b3bf7.f22d18",
+                "80e8687d.54f928"
+            ]
+        ]
+    },
+    {
+        "id": "880c10a9.067e1",
+        "type": "mqtt out",
+        "z": "32f4c477.60926c",
+        "name": "Wohnzimmerlampe",
+        "topic": "cmnd/wohnzimmer_fan/POWER1",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 470,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "191e22a0.28595d",
+        "type": "mqtt out",
+        "z": "32f4c477.60926c",
+        "name": "Andere Lampe",
+        "topic": "shellies/ShellyBulbDuo-66471E/light/0/set",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 460,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "7008f792.8bbff8",
+        "type": "mqtt out",
+        "z": "32f4c477.60926c",
+        "name": "Grosse Schlafzimmerlampe",
+        "topic": "cmnd/sonoff_fan/POWER1",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 500,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "10e5adb6.e25692",
+        "type": "mqtt out",
+        "z": "32f4c477.60926c",
+        "name": "Kleine Schlafzimmerlampe",
+        "topic": "cmnd/kleine_schlafzimmerlampe/POWER",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 500,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c236cae9.509e48",
+        "type": "mqtt out",
+        "z": "32f4c477.60926c",
+        "name": "Kleine Buerolampe",
+        "topic": "shellies/shellyplug-s-F8CC85/relay/0/command",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 470,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "994368dc.99d4f8",
+        "type": "mqtt out",
+        "z": "32f4c477.60926c",
+        "name": "Jana's Schreibtischlampe",
+        "topic": "shellies/shellyplug-s-169A3F/relay/0/command",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 490,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "84ecd44c.804d18",
+        "type": "mqtt out",
+        "z": "32f4c477.60926c",
+        "name": "Jana's Kugellampe",
+        "topic": "shellies/ShellyBulbDuo-8CAAB55F6363/light/0",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 470,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "bd1b3bf7.f22d18",
+        "type": "change",
+        "z": "32f4c477.60926c",
+        "name": " -> off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "off",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 170,
+        "y": 220,
+        "wires": [
+            [
+                "535fd69f.a8bbd8",
+                "880c10a9.067e1",
+                "6ea415e8.e674cc",
+                "10e5adb6.e25692",
+                "7008f792.8bbff8",
+                "994368dc.99d4f8",
+                "84ecd44c.804d18",
+                "c236cae9.509e48"
+            ]
+        ]
+    },
+    {
+        "id": "535fd69f.a8bbd8",
+        "type": "mqtt out",
+        "z": "32f4c477.60926c",
+        "name": "Wohnzimmerventilator",
+        "topic": "cmnd/wohnzimmer_fan/FanSpeed",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 480,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "6ea415e8.e674cc",
+        "type": "mqtt out",
+        "z": "32f4c477.60926c",
+        "name": "Schlafzimmerventilator",
+        "topic": "cmnd/sonoff_fan/POWER1",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 480,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "990bcc5a.b6fb8",
+        "type": "mqtt out",
+        "z": "32f4c477.60926c",
+        "name": "Badezimmer LED",
+        "topic": "shellies/shellyrgbw2-6CA20C/color/0/set",
+        "qos": "",
+        "retain": "true",
+        "broker": "b4ac6d6a.829f3",
+        "x": 470,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "80e8687d.54f928",
+        "type": "change",
+        "z": "32f4c477.60926c",
+        "name": "{turn: off}",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"turn\":\"off\"}",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 180,
+        "y": 180,
+        "wires": [
+            [
+                "191e22a0.28595d",
+                "990bcc5a.b6fb8"
             ]
         ]
     },
