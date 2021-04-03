@@ -921,6 +921,199 @@ data:
         ]
     },
     {
+        "id": "ab33ac9c.c52a5",
+        "type": "tab",
+        "label": "Bad Motion",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a75728e1.b52b08",
+        "type": "mqtt in",
+        "z": "ab33ac9c.c52a5",
+        "name": "",
+        "topic": "shellies/shellymotionsensor-60A423936D76/#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b4ac6d6a.829f3",
+        "x": 170,
+        "y": 240,
+        "wires": [
+            [
+                "a1bf33fc.accf5",
+                "34013b7f.ab6824"
+            ]
+        ]
+    },
+    {
+        "id": "52365380.f77dfc",
+        "type": "mqtt out",
+        "z": "ab33ac9c.c52a5",
+        "name": "",
+        "topic": "shellies/shellyrgbw2-6CA20C/color/0/set",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 780,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "1eb88827.5d0bc8",
+        "type": "change",
+        "z": "ab33ac9c.c52a5",
+        "name": "35%",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"turn\":\"on\",\"gain\":35,\"red\":255,\"green\":12,\"blue\":180,\"white\":0}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 320,
+        "wires": [
+            [
+                "52365380.f77dfc"
+            ]
+        ]
+    },
+    {
+        "id": "afd28469.465258",
+        "type": "change",
+        "z": "ab33ac9c.c52a5",
+        "name": "off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"turn\": \"off\", \"gain\": 0}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 400,
+        "wires": [
+            [
+                "52365380.f77dfc"
+            ]
+        ]
+    },
+    {
+        "id": "c33a1a9.4c190e8",
+        "type": "switch",
+        "z": "ab33ac9c.c52a5",
+        "name": "Has Motion?",
+        "property": "payload.motion",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "true",
+                "vt": "jsonata"
+            },
+            {
+                "t": "eq",
+                "v": "false",
+                "vt": "jsonata"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 150,
+        "y": 360,
+        "wires": [
+            [
+                "3a296770.b169b8"
+            ],
+            [
+                "afd28469.465258"
+            ]
+        ]
+    },
+    {
+        "id": "a1bf33fc.accf5",
+        "type": "json",
+        "z": "ab33ac9c.c52a5",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 410,
+        "y": 240,
+        "wires": [
+            [
+                "c33a1a9.4c190e8"
+            ]
+        ]
+    },
+    {
+        "id": "34013b7f.ab6824",
+        "type": "debug",
+        "z": "ab33ac9c.c52a5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c7bc407c.9ad07",
+        "type": "mqtt in",
+        "z": "ab33ac9c.c52a5",
+        "name": "",
+        "topic": "shellies/shellyrgbw2-6CA20C/#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b4ac6d6a.829f3",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "34013b7f.ab6824"
+            ]
+        ]
+    },
+    {
+        "id": "3a296770.b169b8",
+        "type": "function",
+        "z": "ab33ac9c.c52a5",
+        "name": "",
+        "func": "let now = new Date();\nlet hour = now.getHours();\nif(hour < 8 || hour >= 18 ) {\n    return [null,msg]\n}\nreturn [msg, null];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 360,
+        "y": 340,
+        "wires": [
+            [
+                "1eb88827.5d0bc8"
+            ],
+            []
+        ]
+    },
+    {
               "id": "b4ac6d6a.829f3",
               "type": "mqtt-broker",
               "z": "",
