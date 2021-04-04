@@ -1114,6 +1114,247 @@ data:
         ]
     },
     {
+        "id": "3c2b2817.f24288",
+        "type": "tab",
+        "label": "Schlafzimmer Ventilator",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "4178a52.22e115c",
+        "type": "mqtt in",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "topic": "node/schlafzimmer/ventilatorbutton",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b4ac6d6a.829f3a",
+        "x": 140,
+        "y": 80,
+        "wires": [
+            [
+                "6e8834a0.e63f9c"
+            ]
+        ]
+    },
+    {
+        "id": "f5d3fffd.75bcc",
+        "type": "change",
+        "z": "3c2b2817.f24288",
+        "name": "SET buttonState1",
+        "rules": [
+            {
+                "t": "set",
+                "p": "buttonState1",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 200,
+        "wires": [
+            [
+                "10e24d96.0015a2"
+            ]
+        ]
+    },
+    {
+        "id": "87493141.61227",
+        "type": "function",
+        "z": "3c2b2817.f24288",
+        "name": "Determin new state",
+        "func": "let state = msg.state;\nif(!state || (state != 'OFF' && state !=  'ON' && state != 'FAST')) {\n    state = 'OFF'\n}\n\n\nif(11 == msg.payload) {\n    msg.payload = 'FAST';\n} else if('FAST' == state) {\n    msg.payload = 'ON';\n} else if('ON' == state) {\n    msg.payload = 'OFF';\n} else if ('OFF' == state) {\n    msg.payload = 'ON';\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 410,
+        "y": 120,
+        "wires": [
+            [
+                "f5d3fffd.75bcc"
+            ]
+        ]
+    },
+    {
+        "id": "e8a880c2.fba63",
+        "type": "mqtt out",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "topic": "cmnd/sonoff_fan/FanSpeed",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 980,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "97a0d790.8bc9e8",
+        "type": "inject",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "99",
+        "payloadType": "str",
+        "x": 90,
+        "y": 180,
+        "wires": [
+            [
+                "6e8834a0.e63f9c"
+            ]
+        ]
+    },
+    {
+        "id": "8b35164b.eb2758",
+        "type": "inject",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "11",
+        "payloadType": "str",
+        "x": 130,
+        "y": 400,
+        "wires": [
+            [
+                "210d20be.7febc"
+            ]
+        ]
+    },
+    {
+        "id": "6e8834a0.e63f9c",
+        "type": "change",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "state",
+                "pt": "msg",
+                "to": "buttonState1",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 250,
+        "y": 180,
+        "wires": [
+            [
+                "87493141.61227"
+            ]
+        ]
+    },
+    {
+        "id": "10e24d96.0015a2",
+        "type": "function",
+        "z": "3c2b2817.f24288",
+        "name": "map state to speed",
+        "func": "if('OFF' == msg.payload) {\n    msg.payload = 0\n} else if('ON' == msg.payload) {\n    msg.payload = 1\n} else if('FAST' == msg.payload) {\n    msg.payload = 2\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 690,
+        "y": 200,
+        "wires": [
+            [
+                "f958c52a.d6e0d8",
+                "e8a880c2.fba63"
+            ]
+        ]
+    },
+    {
+        "id": "f5da3fa3.d7583",
+        "type": "inject",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "2",
+        "payload": "2",
+        "payloadType": "str",
+        "x": 140,
+        "y": 360,
+        "wires": [
+            [
+                "210d20be.7febc"
+            ]
+        ]
+    },
+    {
+        "id": "210d20be.7febc",
+        "type": "mqtt out",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "topic": "node/schlafzimmer/ventilatorbutton",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 450,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "f958c52a.d6e0d8",
+        "type": "debug",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 240,
+        "wires": []
+    },
+    {
               "id": "b4ac6d6a.829f3",
               "type": "mqtt-broker",
               "z": "",
