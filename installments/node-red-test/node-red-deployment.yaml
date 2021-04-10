@@ -26,6 +26,9 @@ spec:
       containers:
         - name: node-red-test
           image: nodered/node-red:1.2.9
+          env:
+            - name: TZ
+              value: Europe/Berlin
           ports:
             - containerPort: 1880
           livenessProbe:
