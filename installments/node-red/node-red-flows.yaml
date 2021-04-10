@@ -382,46 +382,47 @@ data:
           ]
         ]
       },
-          {
-              "id": "2cd58079.e8e5c",
-              "type": "tab",
-              "label": "Schalter",
-              "disabled": false,
-              "info": ""
-          },
-          {
-              "id": "b5a05c45.d281a",
+      {
+          "id": "2cd58079.e8e5c",
+          "type": "tab",
+          "label": "Schalter",
+          "disabled": false,
+          "info": ""
+      },
+      {
+              "id": "283f0aa8.8947b6",
               "type": "mqtt out",
               "z": "2cd58079.e8e5c",
-        "name": "Wohnzimmerlampe",
+              "name": "Wohnzimmerlampe",
               "topic": "cmnd/wohnzimmer_fan/POWER1",
               "qos": "",
               "retain": "",
               "broker": "b4ac6d6a.829f3",
-        "x": 710,
-              "y": 220,
+              "x": 710,
+              "y": 400,
               "wires": []
           },
           {
-              "id": "499503f2.5ec38c",
+              "id": "f2ad040d.7bca08",
               "type": "mqtt in",
               "z": "2cd58079.e8e5c",
-        "name": "Wohnzimmerlichtschalter",
+              "name": "Wohnzimmerlichtschalter",
               "topic": "shellies/shelly1-68C700/input/0",
               "qos": "2",
               "datatype": "auto",
               "broker": "b4ac6d6a.829f3",
-        "x": 190,
-              "y": 220,
+              "x": 190,
+              "y": 400,
               "wires": [
                   [
-                      "3d0b7aaa.f4b246",
-                      "a9644d53.e9f5b"
+                      "e92c0c67.93b36",
+                      "d85bfc4c.881a",
+                      "5556195.8d478e8"
                   ]
               ]
           },
           {
-              "id": "3d0b7aaa.f4b246",
+              "id": "e92c0c67.93b36",
               "type": "function",
               "z": "2cd58079.e8e5c",
               "name": "0 -> off : 1 -> on",
@@ -429,41 +430,74 @@ data:
               "outputs": 1,
               "noerr": 0,
               "x": 480,
-              "y": 220,
+              "y": 400,
               "wires": [
                   [
-                      "b5a05c45.d281a"
+                      "283f0aa8.8947b6"
                   ]
               ]
           },
           {
-              "id": "340c4ac2.2eba66",
+              "id": "1747b41a.761b5c",
               "type": "mqtt out",
               "z": "2cd58079.e8e5c",
-        "name": "Andere Wohnzimmerlampe",
+              "name": "Andere Wohnzimmerlampe",
               "topic": "shellies/ShellyBulbDuo-66471E/light/0/set",
               "qos": "",
               "retain": "",
               "broker": "b4ac6d6a.829f3",
-        "x": 740,
-              "y": 300,
+              "x": 740,
+              "y": 480,
               "wires": []
           },
           {
-              "id": "a9644d53.e9f5b",
+              "id": "d85bfc4c.881a",
               "type": "function",
               "z": "2cd58079.e8e5c",
               "name": "0 -> off : 1 -> on",
               "func": "if(\"1\" == msg.payload) {\n    msg.payload = {\n        \"turn\": \"on\",\n        \"brightness\": 50,\n        \"temp\": 3200\n        \n    }\n} else if(\"0\" == msg.payload) msg.payload = {\"turn\":\"off\"}\nreturn msg;",
               "outputs": 1,
               "noerr": 0,
+              "initialize": "",
+              "finalize": "",
               "x": 480,
-              "y": 300,
+              "y": 480,
               "wires": [
                   [
-                      "340c4ac2.2eba66"
+                      "1747b41a.761b5c"
                   ]
               ]
+          },
+          {
+              "id": "5556195.8d478e8",
+              "type": "function",
+              "z": "2cd58079.e8e5c",
+              "name": "0 -> off : 1 -> on",
+              "func": "if(\"1\" == msg.payload) {\n    msg.payload = {\n        \"turn\": \"on\",\n        \"mode\":\"white\",\n        \"white\":128,\n        \"gain\":1,\n        \"temp\":3200,\n        \"brightness\":39,\n        \"effect\":0\n        \n    }\n} else if(\"0\" == msg.payload) msg.payload = {\"turn\":\"off\",\"mode\": \"color\",\"effect\": 0}\nreturn msg;",
+              "outputs": 1,
+              "noerr": 0,
+              "initialize": "",
+              "finalize": "",
+              "x": 480,
+              "y": 320,
+              "wires": [
+                  [
+                      "d05fda1.0917f28"
+                  ]
+              ]
+          },
+          {
+              "id": "d05fda1.0917f28",
+              "type": "mqtt out",
+              "z": "2cd58079.e8e5c",
+              "name": "Sofalicht",
+              "topic": "shellies/shellycolorbulb-8CAAB555E04D/color/0/set",
+              "qos": "",
+              "retain": "",
+              "broker": "b4ac6d6a.829f3",
+              "x": 820,
+              "y": 320,
+              "wires": []
           },
           {
         "id": "3a104965.d5d496",
@@ -984,9 +1018,6 @@ data:
        "wires": [
            [
                "3a296770.b169b8"
-           ],
-           [
-               "1bd8c35f.690fed"
            ]
        ]
     },
