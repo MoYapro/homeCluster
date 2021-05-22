@@ -1045,7 +1045,7 @@ data:
         "type": "function",
         "z": "ab33ac9c.c52a5",
         "name": "In Time 18 - 8",
-        "func": "let now = new Date();\nlet hour = now.getHours();\nif(hour < 8 || hour >= 18 ) {\n    msg.payload = 'ON';\n    return [msg, null]\n}\nmsg.payload = 'OFF';\nreturn [null, msg];",
+        "func": "let now = new Date();\nlet hour = now.getHours();\nmsg.hour = hour;\nif(hour < 8 || hour >= 18 ) {\n    msg.payload = '{\"turn\":\"on\"}';\n    return [msg, null]\n}\nmsg.payload = '{\"turn\":\"off\"}';\nreturn [null, msg];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -1054,12 +1054,31 @@ data:
         "y": 240,
         "wires": [
             [
+                "358ec46e.c6622c",
                 "52365380.f77dfc"
             ],
             [
+                "358ec46e.c6622c",
                 "52365380.f77dfc"
             ]
         ]
+    },
+    {
+        "id": "358ec46e.c6622c",
+        "type": "debug",
+        "z": "ab33ac9c.c52a5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 140,
+        "wires": []
     },
     {
         "id": "20eef3be.213c3c",
