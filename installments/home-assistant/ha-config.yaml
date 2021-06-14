@@ -349,13 +349,13 @@ data:
         payload_low_speed: "1"
         payload_medium_speed: "2"
         payload_high_speed: "2"
-        payload_available: Online
-        payload_not_available: Offline
+        payload_available: "Online"
+        payload_not_available: "Offline"
         speeds:
-          - off
-          - low
-          - medium
-          - high
+          - "off"
+          - "low"
+          - "medium"
+          - "high"
       - platform: mqtt
         name: "Wohnzimmer Ventilator"
         command_topic: "cmnd/wohnzimmer_fan/FanSpeed"
@@ -375,13 +375,13 @@ data:
         payload_low_speed: "1"
         payload_medium_speed: "2"
         payload_high_speed: "2"
-        payload_available: Online
-        payload_not_available: Offline
+        payload_available: "Online"
+        payload_not_available: "Offline"
         speeds:
-          - off
-          - low
-          - medium
-          - high
+          - "off"
+          - "low"
+          - "medium"
+          - "high"
 
     google_assistant:
       project_id: hassio-integration-1e887
