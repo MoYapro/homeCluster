@@ -1240,6 +1240,130 @@ data:
         "info": ""
     },
     {
+        "id": "20f2b3bc.2c291c",
+        "type": "mqtt in",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "topic": "cmnd/kleine_schlafzimmerlampe/#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b4ac6d6a.829f3",
+        "nl": false,
+        "rap": false,
+        "x": 160,
+        "y": 40,
+        "wires": [
+            [
+                "4beeb3b7.3e601c"
+            ]
+        ]
+    },
+    {
+        "id": "6b0a38c0.bb08f8",
+        "type": "mqtt out",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "topic": "shellies/ShellyBulbDuo-8CAAB55F6363/light/0/set",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 810,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "8178b4e7.2ac338",
+        "type": "change",
+        "z": "3c2b2817.f24288",
+        "name": "ON 35%",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"turn\": \"toggle\", \"brightness\": 35}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 20,
+        "wires": [
+            [
+                "6b0a38c0.bb08f8"
+            ]
+        ]
+    },
+    {
+        "id": "4ce76828.dd3768",
+        "type": "change",
+        "z": "3c2b2817.f24288",
+        "name": "ON 100%",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"turn\": \"on\", \"brightness\": 100}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 60,
+        "wires": [
+            [
+                "6b0a38c0.bb08f8"
+            ]
+        ]
+    },
+    {
+        "id": "4beeb3b7.3e601c",
+        "type": "switch",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "11",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 370,
+        "y": 40,
+        "wires": [
+            [
+                "8178b4e7.2ac338"
+            ],
+            [
+                "4ce76828.dd3768"
+            ]
+        ]
+    },
+    {
         "id": "4178a52.22e115c",
         "type": "mqtt in",
         "z": "3c2b2817.f24288",
