@@ -18,7 +18,7 @@ spec:
       priorityClassName: high
       containers:
         - name: home-assistant
-          image: homeassistant/raspberrypi3-homeassistant:2021.6.4
+          image: homeassistant/raspberrypi3-homeassistant:2021.7.3
           ports:
             - containerPort: 8123
           livenessProbe:
