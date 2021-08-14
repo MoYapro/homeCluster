@@ -63,6 +63,11 @@ apt install -y kubelet kubeadm kubectl
 ###### hold - kubeadm is used to upgrade
 apt-mark hold kubelet kubeadm kubectl
 
+
+# install nsf driver to mount nsf-shares
+To enable the pods to mount nfs shares the nfs driver needs to be installed:
+`apt install nsf-common`
+
 # Install a kubernetes master node
 
 kubeadm config images pull 
