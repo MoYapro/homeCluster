@@ -45,7 +45,7 @@ data:
     http:
       server_port: 8123
       use_x_forwarded_for: true
-      trusted_proxies: 10.244.5.0/24
+      trusted_proxies: 10.244.1.1
 
     # Checks for available updates
     # Note: This component will send some information about your system to

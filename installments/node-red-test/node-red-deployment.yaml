@@ -82,7 +82,7 @@ spec:
       targetPort: 1880
       name: node-red-test
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: node-red-ingress-test
@@ -94,6 +94,9 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: node-red-service-test
-              servicePort: 1880
+              service:
+                name: node-red-service-test
+                port:
+                  number: 1880

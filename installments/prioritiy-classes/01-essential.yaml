@@ -3,6 +3,6 @@ kind: PriorityClass
 metadata:
   name: essential
 value: 1000000
-preemptionPolicy: Always
+preemptionPolicy: PreemptLowerPriority
 globalDefault: false
 description: "Pods in this class are required for anything other to work (like DNS)"

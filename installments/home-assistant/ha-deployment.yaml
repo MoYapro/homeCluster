@@ -18,7 +18,7 @@ spec:
       priorityClassName: high
       containers:
         - name: home-assistant
-          image: homeassistant/raspberrypi3-homeassistant:2021.7.3
+          image: homeassistant/raspberrypi3-homeassistant:2021.8.0
           ports:
             - containerPort: 8123
           livenessProbe:
@@ -74,7 +74,7 @@ spec:
       targetPort: 8123
       name: web
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: home-assistant-ingress
@@ -86,6 +86,9 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: home-assistant-service
-              servicePort: 80
+              service:
+                name: home-assistant-service
+                port:
+                  number: 80
