@@ -45,7 +45,9 @@ data:
     http:
       server_port: 8123
       use_x_forwarded_for: true
-      trusted_proxies: 10.244.1.1
+      trusted_proxies:
+        - 10.244.1.1
+        - 10.244.1.0
 
     # Checks for available updates
     # Note: This component will send some information about your system to
@@ -382,6 +384,25 @@ data:
           - "low"
           - "medium"
           - "high"
+    sensor:
+    - platform: mqtt
+      name: “IsShellyMotionDetected”
+      state_topic: "shellies/shellymotionsensor-60A423936D76/status"
+      value_template: "{{ value_json.motion }}"
+    - platform: mqtt
+      name: “IsShellyMotionVibrationDetected"
+      state_topic: "shellies/shellymotionsensor-60A423936D76/status"
+      value_template: "{{ value_json.vibration }}"
+    - platform: mqtt
+      name: “ShellyMotionLux”
+      state_topic: "shellies/shellymotionsensor-60A423936D76/status"
+      value_template: "{{ value_json.lux }}"
+      unit_of_measurement: ‘lx’
+    - platform: mqtt
+      name: “ShellyMotionBattery”
+      state_topic: "shellies/shellymotionsensor-60A423936D76/status"
+      value_template: "{{ value_json.bat }}"
+      unit_of_measurement: '%'
 
     google_assistant:
       project_id: hassio-integration-1e887
