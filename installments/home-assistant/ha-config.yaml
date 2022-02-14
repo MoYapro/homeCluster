@@ -142,7 +142,7 @@ data:
         retain: false
       - platform: mqtt
         schema: template
-        name: "LED"
+        name: "Grosses Aquarium"
         command_topic: "shellies/shellyrgbw2-6CA20C/color/0/set"
         state_topic: "shellies/shellyrgbw2-6CA20C/color/0/status"
         retain: false
@@ -254,6 +254,7 @@ data:
           {"turn": "on"
           {%- if brightness is defined -%}
           , "gain": {{brightness | float | multiply(0.3922) | round(0)}}
+          , "brightness": {{brightness | float | multiply(0.3922) | round(0)}}
           {%- endif -%}
           {%- if red is defined and green is defined and blue is defined -%}
           , "red": {{ red }}, "green": {{ green }}, "blue": {{ blue }}
@@ -267,11 +268,7 @@ data:
             {%- if effect == 'Weiß' -%}
             , "mode": "white"
             {%- endif -%}
-            {%- if effect == 'Bund' -%}
             , "mode": "color"
-            {%- endif -%}
-          {%- else -%}
-          , "mode": "white"
           {%- endif -%}
           }
         command_off_template: '{"turn":"off","mode": "color","effect": 0}'
@@ -306,7 +303,7 @@ data:
         retain: false
     switch:
       - platform: mqtt
-        name: "Grosses Aquarium"
+        name: "Shelly plug s "
         state_topic: "shellies/shellyplug-s-79D80C/relay/0"
         command_topic: "shellies/shellyplug-s-79D80C/relay/0/command"
         payload_on: "on"
