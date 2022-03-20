@@ -222,6 +222,27 @@ data:
         retain: false
       - platform: mqtt
         schema: template
+        name: "Sofa Lampe"
+        command_topic: "shellies/ShellyBulbDuo-E8DB84A9F016/light/0/set"
+        state_topic: "shellies/ShellyBulbDuo-E8DB84A9F016/light/0/status"
+        command_on_template: >
+          {"turn": "on"
+          {%- if brightness is defined -%}
+          , "brightness": {{brightness | float | multiply(0.3922) | round(0)}}
+          {%- endif -%}
+          {%- if white_value is defined and white_value > 0 -%}
+          , "temp": {{(1000000/(white_value | int)) | round(0,floor)}}
+          {%- endif -%}
+          {%- if white_value == 0 -%}
+          , "temp": 2800
+          {%- endif -%}
+          }
+        command_off_template: '{"turn":"off"}'
+        state_template: "{% if value_json.ison %}on{% else %}off{% endif %}"
+        brightness_template: "{{ value_json.brightness | float | multiply(2.55) | round(0) }}"
+        retain: false
+      - platform: mqtt
+        schema: template
         name: "Kleine Schlafzimmerlampe"
         command_topic: "shellies/ShellyBulbDuo-8CAAB55F6363/light/0/set"
         state_topic: "shellies/ShellyBulbDuo-8CAAB55F6363/light/0/status"

@@ -178,7 +178,7 @@ data:
           "type": "mqtt out",
           "z": "2cd58079.e8e5c",
           "name": "Grosses Aquarium",
-          "topic": "shellies/shellyplug-s-79D80C/relay/0/command",
+          "topic": "shellies/shellyrgbw2-6CA20C/color/0/set",
           "qos": "",
           "retain": "",
           "respTopic": "",
