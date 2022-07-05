@@ -4,6 +4,8 @@ metadata:
   name: dns-update-moyapro
   namespace: home-assistant
 spec:
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
   schedule: "*/10 * * * *"
   concurrencyPolicy: Forbid
   jobTemplate:
