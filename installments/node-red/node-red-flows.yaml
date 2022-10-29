@@ -102,7 +102,7 @@ data:
           "outputs": 1,
           "noerr": 0,
           "x": 480,
-          "y": 120,
+          "y": 240,
           "wires": [
             [
                 "283f0aa8.8947b6"
@@ -115,6 +115,19 @@ data:
           "z": "2cd58079.e8e5c",
           "name": "Andere Wohnzimmerlampe",
           "topic": "shellies/ShellyBulbDuo-66471E/light/0/set",
+          "qos": "",
+          "retain": "",
+          "broker": "b4ac6d6a.829f3",
+          "x": 760,
+          "y": 180,
+          "wires": []
+        },
+        {
+          "id": "1747b41a.333b5c",
+          "type": "mqtt out",
+          "z": "2cd58079.e8e5c",
+          "name": "Deckenlampe kombiniert",
+          "topic": "shellies/deckenlampe_kombiniert/light/0/set",
           "qos": "",
           "retain": "",
           "broker": "b4ac6d6a.829f3",
@@ -136,7 +149,8 @@ data:
           "y": 180,
           "wires": [
             [
-                "1747b41a.761b5c"
+                "1747b41a.761b5c",
+                "1747b41a.333b5c"
             ]
           ]
         },
@@ -1057,5 +1071,141 @@ data:
                 "7b5ecff5.099ee"
             ]
           ]
+        },
+        {
+        "id": "11def028.c9c14",
+        "type": "mqtt in",
+        "z": "25a9f433.5e96ac",
+        "name": "Deckenlampe Kombiniert",
+        "topic": "shellies/deckenlampe_kombiniert/light/0/set",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "ed2b3163.ea42a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 190,
+        "y": 200,
+        "wires": [
+        [
+        "fcbfcd78.9086b",
+        "6615b517.83e7cc",
+        "c63116b9.701618"
+        ]
+        ]
+        },
+        {
+        "id": "fcbfcd78.9086b",
+        "type": "mqtt out",
+        "z": "25a9f433.5e96ac",
+        "name": "Deckenlampe 1",
+        "topic": "shellies/ShellyVintage-E8DB84A9C8A1/light/0/set",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "ed2b3163.ea42a",
+        "x": 480,
+        "y": 140,
+        "wires": []
+        },
+        {
+        "id": "6615b517.83e7cc",
+        "type": "mqtt out",
+        "z": "25a9f433.5e96ac",
+        "name": "Deckenlampe 2",
+        "topic": "shellies/ShellyVintage-3494546E705F/light/0/set",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "ed2b3163.ea42a",
+        "x": 480,
+        "y": 200,
+        "wires": []
+        },
+        {
+        "id": "c63116b9.701618",
+        "type": "mqtt out",
+        "z": "25a9f433.5e96ac",
+        "name": "Deckenlampe 3",
+        "topic": "shellies/ShellyVintage-3494546EF4AC/light/0/set",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "ed2b3163.ea42a",
+        "x": 480,
+        "y": 260,
+        "wires": []
+        },
+        {
+        "id": "18c1c586.cd921a",
+        "type": "mqtt in",
+        "z": "25a9f433.5e96ac",
+        "name": "Deckenlampe 1 status",
+        "topic": "shellies/ShellyVintage-E8DB84A9C8A1/light/0/status",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "ed2b3163.ea42a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 180,
+        "y": 380,
+        "wires": [
+        [
+        "b2b7aa6f.ff6068"
+        ]
+        ]
+        },
+        {
+        "id": "b2b7aa6f.ff6068",
+        "type": "mqtt out",
+        "z": "25a9f433.5e96ac",
+        "name": "Deckenlampe kombiniert status",
+        "topic": "shellies/deckenlampe_kombiniert/light/0/status",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "ed2b3163.ea42a",
+        "x": 550,
+        "y": 380,
+        "wires": []
+        },
+        {
+        "id": "ed2b3163.ea42a",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.101",
+        "port": "31883",
+        "clientid": "NodeRedTest",
+        "usetls": false,
+        "compatmode": false,
+        "protocolVersion": 4,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
         }
       ]
