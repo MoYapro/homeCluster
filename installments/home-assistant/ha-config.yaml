@@ -226,31 +226,13 @@ data:
         command_topic: "shellies/shellycolorbulb-3494546B7035/color/0/set"
         state_topic: "shellies/shellycolorbulb-3494546B7035/color/0/status"
         retain: false
-        effect_list:
-          - Weiß
-          - Bund
         command_on_template: >
-          {"turn": "on"
+          {"turn": "on" , "mode": "color"
           {%- if brightness is defined -%}
           , "gain": {{brightness | float | multiply(0.3922) | round(0)}}
           {%- endif -%}
           {%- if red is defined and green is defined and blue is defined -%}
           , "red": {{ red }}, "green": {{ green }}, "blue": {{ blue }}
-          {%- endif -%}
-          {%- if white_value is defined -%}
-          , "white": {{ white_value }}
-          {%- endif -%}
-          {%- if red is defined and green is defined and blue is defined -%}
-          , "mode": "color"
-          {%- elif effect is defined -%}
-            {%- if effect == 'Weiß' -%}
-            , "mode": "white"
-            {%- endif -%}
-            {%- if effect == 'Bund' -%}
-            , "mode": "color"
-            {%- endif -%}
-          {%- else -%}
-          , "mode": "white"
           {%- endif -%}
           }
         command_off_template: '{"turn":"off","mode": "color","effect": 0}'
