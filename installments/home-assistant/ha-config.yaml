@@ -235,14 +235,13 @@ data:
           , "red": {{ red }}, "green": {{ green }}, "blue": {{ blue }}
           {%- endif -%}
           }
-        command_off_template: '{"turn":"off","mode": "color","effect": 0}'
+        command_off_template: '{"turn":"off","mode": "color"}'
         state_template: "{% if value_json.ison %}on{% else %}off{% endif %}"
         brightness_template: "{{ value_json.gain | float | multiply(2.55) | round(0) }}"
         red_template: '{{ value_json.red }}'
         green_template: '{{ value_json.green }}'
         blue_template: '{{ value_json.blue }}'
         white_value_template: '{{ value_json.white }}'
-        effect_template: '{{ value_json.effect }}'
         qos: 2
       - platform: mqtt
         schema: template
