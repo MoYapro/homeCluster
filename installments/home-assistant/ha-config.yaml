@@ -335,6 +335,21 @@ data:
         retain: false
       - platform: mqtt
         schema: template
+        name: "Tom Schreibtisch Lampe"
+        command_topic: "shellies/ShellyVintage-E8DB84A9CEAD/light/0/set"
+        state_topic: "shellies/ShellyVintage-E8DB84A9CEAD/light/0/status"
+        command_on_template: >
+          {"turn": "on"
+          {%- if brightness is defined -%}
+          , "brightness": {{brightness | float | multiply(0.3922) | round(0)}}
+          {%- endif -%}
+          }
+        command_off_template: '{"turn":"off"}'
+        state_template: "{% if value_json.ison %}on{% else %}off{% endif %}"
+        brightness_template: "{{ value_json.brightness | float | multiply(2.55) | round(0) }}"
+        retain: false
+      - platform: mqtt
+        schema: template
         name: "Deckenlampe1"
         command_topic: "shellies/ShellyVintage-E8DB84A9C8A1/light/0/set"
         state_topic: "shellies/ShellyVintage-E8DB84A9C8A1/light/0/status"
