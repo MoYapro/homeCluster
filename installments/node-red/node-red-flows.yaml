@@ -1185,5 +1185,119 @@ data:
         "x": 550,
         "y": 380,
         "wires": []
+        },
+        {
+        "id": "fe481d98.7bb69",
+        "type": "mqtt in",
+        "z": "25a9f433.5e96ac",
+        "name": "Command kombiniert",
+        "topic": "shellies/stehlampe_kombiniert/color/0/set",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b4ac6d6a.829f3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 150,
+        "y": 580,
+        "wires": [
+        [
+        "1befa13f.246d3f",
+        "7757ffb6.e2488",
+        "d45a5b71.f00d18"
+        ]
+        ]
+        },
+        {
+        "id": "335b15f8.c6476a",
+        "type": "mqtt out",
+        "z": "25a9f433.5e96ac",
+        "name": "Status kombiniert",
+        "topic": "shellies/stehlampe_kombiniert/color/0/status",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 490,
+        "y": 760,
+        "wires": []
+        },
+        {
+        "id": "b794d8f5.57d758",
+        "type": "mqtt in",
+        "z": "25a9f433.5e96ac",
+        "name": "Bunte Stehlampe 1 status",
+        "topic": "shellies/shellycolorbulb-3494546B54F0/color/0/status",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b4ac6d6a.829f3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 160,
+        "y": 760,
+        "wires": [
+        [
+        "335b15f8.c6476a"
+        ]
+        ]
+        },
+        {
+        "id": "1befa13f.246d3f",
+        "type": "mqtt out",
+        "z": "25a9f433.5e96ac",
+        "name": "Set Bunte Stehlampe 1",
+        "topic": "shellies/shellycolorbulb-3494546B54F0/color/0/set",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 550,
+        "y": 500,
+        "wires": []
+        },
+        {
+        "id": "7757ffb6.e2488",
+        "type": "mqtt out",
+        "z": "25a9f433.5e96ac",
+        "name": "Set Bunte Stehlampe 2",
+        "topic": "shellies/shellycolorbulb-3494546B5F4F/color/0/set",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 550,
+        "y": 560,
+        "wires": []
+        },
+        {
+        "id": "d45a5b71.f00d18",
+        "type": "mqtt out",
+        "z": "25a9f433.5e96ac",
+        "name": "Set Bunte Stehlampe 3",
+        "topic": "shellies/shellycolorbulb-3494546B7035/color/0/set",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 550,
+        "y": 620,
+        "wires": []
         }
       ]
