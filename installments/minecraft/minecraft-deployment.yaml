@@ -1,0 +1,107 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft-server
+  namespace: home-assistant
+spec:
+  selector:
+    matchLabels:
+      app: minecraft-server
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: minecraft-server
+    spec:
+      priorityClassName: high
+      containers:
+        - name: home-assistant
+          image: itzg/minecraft-server
+          ports:
+            - containerPort: 25565
+          env:
+            - name: EULA
+              value: "true"
+            - name: RCON_PASSWORD
+              value: aq029wughq23wa908iu
+            - name: OPS
+              value: katze2011
+            - name: TYPE
+              value: PAPER
+            - name: VIEW_DISTANCE
+              value: "10"
+            - name: INIT_MEMORY
+              value: 1G
+            - name: MAX_MEMORY
+              value: 2G
+          livenessProbe:
+            exec:
+              command: [ "/usr/local/bin/mc-monitor", "status", "--host", "localhost" ]
+            initialDelaySeconds: 120
+            periodSeconds: 60
+          readinessProbe:
+            exec:
+              command: [ "/usr/local/bin/mc-monitor", "status", "--host", "localhost" ]
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            failureThreshold: 12
+          volumeMounts:
+            - name: persistence
+              mountPath: /data
+          resources:
+            requests:
+              memory: 2Gi
+            limits:
+              memory: 3Gi
+      volumes:
+        - name: persistence
+          persistentVolumeClaim:
+            claimName: nas-persitant-volume-claim-minecraft
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: minecraft-service
+  namespace: home-assistant
+spec:
+  selector:
+    app: minecraft-server
+  ports:
+    - protocol: TCP
+      port: 25565
+      targetPort: 25565
+      nodePort: 30565
+      name: minecraft-port
+    - protocol: UDP
+      port: 25565
+      targetPort: 25565
+      nodePort: 30565
+      name: minecraft-port
+  type: NodePort
+---
+
+
+#version: "3.8"
+#
+#services:
+#  mc:
+#    image: itzg/minecraft-server
+
+#    stdin_open: true
+#    tty: true
+#    restart: unless-stopped
+#    volumes:
+#      - type: volume
+#        source: persistent-minecraft
+#        target: /data
+#        volume:
+#          nocopy: true
+#volumes:
+#  persistent-minecraft:
+#    driver_opts:
+#      type: "nfs"
+#      o: "addr=192.168.1.6,nolock,soft,rw"
+#      device: ":/volume1/persistent_storage/minecraft-data"
