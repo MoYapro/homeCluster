@@ -27,7 +27,11 @@ spec:
             - name: RCON_PASSWORD
               value: aq029wughq23wa908iu
             - name: OPS
-              value: katze2011
+              value: Katze2011
+            - name: WHITELIST
+              value: "lululara,MoYapro,Katze2011"
+            - name: OVERRIDE_WHITELIST
+              value: "true"
             - name: TYPE
               value: PAPER
             - name: VIEW_DISTANCE
