@@ -22,6 +22,12 @@ spec:
           ports:
             - containerPort: 25565
           env:
+            - name: TYPE
+              value: PAPER
+            - name: VERSION
+              value: 1.19.4
+#            - name: FORGE_VERSION
+#              value: 43.1.3
             - name: EULA
               value: "true"
             - name: RCON_PASSWORD
@@ -29,11 +35,9 @@ spec:
             - name: OPS
               value: Katze2011
             - name: WHITELIST
-              value: "lululara,MoYapro,Katze2011"
+              value: "lululara,MoYapro,Katze2011,Benny"
             - name: OVERRIDE_WHITELIST
               value: "true"
-            - name: TYPE
-              value: PAPER
             - name: VIEW_DISTANCE
               value: "10"
             - name: INIT_MEMORY
