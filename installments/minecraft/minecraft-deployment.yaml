@@ -82,12 +82,12 @@ spec:
       port: 25565
       targetPort: 25565
       nodePort: 30565
-      name: minecraft-port
+      name: minecraft-tcp-port
     - protocol: UDP
       port: 25565
       targetPort: 25565
       nodePort: 30565
-      name: minecraft-port
+      name: minecraft-udp-port
   type: NodePort
 ---
 
