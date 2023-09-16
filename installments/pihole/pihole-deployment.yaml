@@ -21,7 +21,7 @@ spec:
 #        kubernetes.io/hostname: pi-worker-1
       containers:
         - name: pihole
-          image: pihole/pihole:4.3.2-1
+          image: pihole/pihole:v5.8.1
           resources:
             requests:
               memory: 75Mi

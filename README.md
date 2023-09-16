@@ -84,15 +84,11 @@ kubectl apply -f installment/kube-flannel.yaml
 
 use kubeadm token list to display the join token
 
-
 - Install at least one kubernetes worker node
 You can join any number of worker nodes by running the following on each as root:
 
-kubeadm join 192.168.1.100:6443 --token ltn2dr.o4tav7d4isjb1t36 \
-    --discovery-token-ca-cert-hash sha256:aa9d3d164ea11094f20cc9ac757818d870ebd56b9e4ca022e0c288975c92fbbf
-    
 ###### to print the join command do to following on the master node
-IPCLUSTER=192.168.1.100:6443;echo "kubeadm join --token $(kubeadm token list | sed '1d' | head -1| awk '{print $1}') $IPCLUSTER --discovery-token-ca-cert-hash sha256:$(openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | awk '{print $2}')"; unset IPCLUSTER
+IPCLUSTER=192.168.1.10:6443;echo "kubeadm join --token $(kubeadm token list | sed '1d' | head -1| awk '{print $1}') $IPCLUSTER --discovery-token-ca-cert-hash sha256:$(openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | awk '{print $2}')"; unset IPCLUSTER
      
 
 
