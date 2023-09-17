@@ -5,1074 +5,1079 @@ metadata:
   namespace: home-assistant
 data:
   flows.json: |
-      [
-        {
-          "id": "1fe996d2.26ec49",
-          "type": "tab",
-          "label": "Balkontuer",
-          "disabled": false,
-          "info": ""
-        },
-        {
-          "id": "2cd58079.e8e5c",
-          "type": "tab",
-          "label": "Schalter",
-          "disabled": false,
-          "info": ""
-        },
-        {
-          "id": "4f730fbf.123e4",
-          "type": "tab",
-          "label": "Flow 1",
-          "disabled": false,
-          "info": ""
-        },
-        {
-          "id": "ab33ac9c.c52a5",
-          "type": "tab",
-          "label": "Bad Motion",
-          "disabled": false,
-          "info": ""
-        },
-        {
-          "id": "3c2b2817.f24288",
-          "type": "tab",
-          "label": "Schlafzimmer",
-          "disabled": false,
-          "info": ""
-        },
-        {
-          "id": "b4ac6d6a.829f3",
-          "type": "mqtt-broker",
-          "name": "MQTT",
-          "broker": "192.168.1.101",
-          "port": "31883",
-          "clientid": "Node-Red-Wohnzimmer",
-          "usetls": false,
-          "compatmode": false,
-          "keepalive": "60",
-          "cleansession": true,
-          "birthTopic": "",
-          "birthQos": "0",
-          "birthPayload": "",
-          "closeTopic": "",
-          "closeQos": "0",
-          "closePayload": "",
-          "willTopic": "",
-          "willQos": "0",
-          "willPayload": ""
-        },
-        {
-          "id": "283f0aa8.8947b6",
-          "type": "mqtt out",
-          "z": "2cd58079.e8e5c",
-          "name": "Wohnzimmerlampe",
-          "topic": "cmnd/wohnzimmer_fan/POWER1",
-          "qos": "",
-          "retain": "",
-          "broker": "b4ac6d6a.829f3",
-          "x": 730,
-          "y": 120,
-          "wires": []
-        },
-        {
-          "id": "f2ad040d.7bca08",
-          "type": "mqtt in",
-          "z": "2cd58079.e8e5c",
-          "name": "Wohnzimmerlichtschalter",
-          "topic": "shellies/shelly1-68C700/input/0",
-          "qos": "2",
-          "datatype": "auto",
-          "broker": "b4ac6d6a.829f3",
-          "x": 210,
-          "y": 120,
-          "wires": [
-            [
-                "e92c0c67.93b36",
-                "d85bfc4c.881a"
-            ]
+    [
+      {
+        "id": "1fe996d2.26ec49",
+        "type": "tab",
+        "label": "Balkontuer",
+        "disabled": false,
+        "info": ""
+      },
+      {
+        "id": "2cd58079.e8e5c",
+        "type": "tab",
+        "label": "Schalter",
+        "disabled": false,
+        "info": ""
+      },
+      {
+        "id": "4f730fbf.123e4",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+      },
+      {
+        "id": "ab33ac9c.c52a5",
+        "type": "tab",
+        "label": "Bad Motion",
+        "disabled": false,
+        "info": ""
+      },
+      {
+        "id": "3c2b2817.f24288",
+        "type": "tab",
+        "label": "Schlafzimmer",
+        "disabled": false,
+        "info": ""
+      },
+      {
+        "id": "b4ac6d6a.829f3",
+        "type": "mqtt-broker",
+        "name": "MQTT",
+        "broker": "192.168.1.10",
+        "z": "",
+        "port": "31883",
+        "clientid": "Node-Red-Wohnzimmer",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "credentials": {
+          "user": "homeassistant",
+          "password": "password"
+        }
+      },
+      {
+        "id": "283f0aa8.8947b6",
+        "type": "mqtt out",
+        "z": "2cd58079.e8e5c",
+        "name": "Wohnzimmerlampe",
+        "topic": "cmnd/wohnzimmer_fan/POWER1",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 730,
+        "y": 120,
+        "wires": []
+      },
+      {
+        "id": "f2ad040d.7bca08",
+        "type": "mqtt in",
+        "z": "2cd58079.e8e5c",
+        "name": "Wohnzimmerlichtschalter",
+        "topic": "shellies/shelly1-68C700/input/0",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b4ac6d6a.829f3",
+        "x": 210,
+        "y": 120,
+        "wires": [
+          [
+            "e92c0c67.93b36",
+            "d85bfc4c.881a"
           ]
-        },
-        {
-          "id": "e92c0c67.93b36",
-          "type": "function",
-          "z": "2cd58079.e8e5c",
-          "name": "0 -> off : 1 -> on",
-          "func": "if(\"1\" == msg.payload) msg.payload = \"on\"\nif(\"0\" == msg.payload) msg.payload = \"off\"\nreturn msg;",
-          "outputs": 1,
-          "noerr": 0,
-          "x": 480,
-          "y": 240,
-          "wires": [
-            [
-                "283f0aa8.8947b6"
-            ]
+        ]
+      },
+      {
+        "id": "e92c0c67.93b36",
+        "type": "function",
+        "z": "2cd58079.e8e5c",
+        "name": "0 -> off : 1 -> on",
+        "func": "if(\"1\" == msg.payload) msg.payload = \"on\"\nif(\"0\" == msg.payload) msg.payload = \"off\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 480,
+        "y": 240,
+        "wires": [
+          [
+            "283f0aa8.8947b6"
           ]
-        },
-        {
-          "id": "1747b41a.761b5c",
-          "type": "mqtt out",
-          "z": "2cd58079.e8e5c",
-          "name": "Andere Wohnzimmerlampe",
-          "topic": "shellies/ShellyBulbDuo-66471E/light/0/set",
-          "qos": "",
-          "retain": "",
-          "broker": "b4ac6d6a.829f3",
-          "x": 760,
-          "y": 180,
-          "wires": []
-        },
-        {
-          "id": "1747b41a.333b5c",
-          "type": "mqtt out",
-          "z": "2cd58079.e8e5c",
-          "name": "Deckenlampe kombiniert",
-          "topic": "shellies/deckenlampe_kombiniert/light/0/set",
-          "qos": "",
-          "retain": "",
-          "broker": "b4ac6d6a.829f3",
-          "x": 760,
-          "y": 180,
-          "wires": []
-        },
-        {
-          "id": "d85bfc4c.881a",
-          "type": "function",
-          "z": "2cd58079.e8e5c",
-          "name": "0 -> off : 1 -> on",
-          "func": "if(\"1\" == msg.payload) {\n    msg.payload = {\n        \"turn\": \"on\",\n        \"brightness\": 50,\n        \"temp\": 3200\n        \n    }\n} else if(\"0\" == msg.payload) msg.payload = {\"turn\":\"off\"}\nreturn msg;",
-          "outputs": 1,
-          "noerr": 0,
-          "initialize": "",
-          "finalize": "",
-          "x": 480,
-          "y": 180,
-          "wires": [
-            [
-                "1747b41a.761b5c",
-                "1747b41a.333b5c"
-            ]
+        ]
+      },
+      {
+        "id": "1747b41a.761b5c",
+        "type": "mqtt out",
+        "z": "2cd58079.e8e5c",
+        "name": "Andere Wohnzimmerlampe",
+        "topic": "shellies/ShellyBulbDuo-66471E/light/0/set",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 760,
+        "y": 180,
+        "wires": []
+      },
+      {
+        "id": "1747b41a.333b5c",
+        "type": "mqtt out",
+        "z": "2cd58079.e8e5c",
+        "name": "Deckenlampe kombiniert",
+        "topic": "shellies/deckenlampe_kombiniert/light/0/set",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 760,
+        "y": 180,
+        "wires": []
+      },
+      {
+        "id": "d85bfc4c.881a",
+        "type": "function",
+        "z": "2cd58079.e8e5c",
+        "name": "0 -> off : 1 -> on",
+        "func": "if(\"1\" == msg.payload) {\n    msg.payload = {\n        \"turn\": \"on\",\n        \"brightness\": 50,\n        \"temp\": 3200\n        \n    }\n} else if(\"0\" == msg.payload) msg.payload = {\"turn\":\"off\"}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 480,
+        "y": 180,
+        "wires": [
+          [
+            "1747b41a.761b5c",
+            "1747b41a.333b5c"
           ]
-        },
-        {
-          "id": "3a104965.d5d496",
-          "type": "inject",
-          "z": "2cd58079.e8e5c",
-          "name": "22:00 -> off",
-          "props": [
-            {
-              "p": "payload",
-              "v": "off",
-              "vt": "str"
-            },
-            {
-              "p": "topic",
-              "v": "",
-              "vt": "string"
-            }
+        ]
+      },
+      {
+        "id": "3a104965.d5d496",
+        "type": "inject",
+        "z": "2cd58079.e8e5c",
+        "name": "22:00 -> off",
+        "props": [
+          {
+            "p": "payload",
+            "v": "off",
+            "vt": "str"
+          },
+          {
+            "p": "topic",
+            "v": "",
+            "vt": "string"
+          }
+        ],
+        "repeat": "",
+        "crontab": "00 22 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "off",
+        "payloadType": "str",
+        "x": 230,
+        "y": 260,
+        "wires": [
+          [
+            "f4dde9e4.d09c48",
+            "a8e22cb0.a690e"
+          ]
+        ]
+      },
+      {
+        "id": "7b5ecff5.099ee",
+        "type": "mqtt out",
+        "z": "2cd58079.e8e5c",
+        "name": "Grosses Aquarium",
+        "topic": "shellies/shellyrgbw2-6CA20C/color/0/set",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 750,
+        "y": 400,
+        "wires": []
+      },
+      {
+        "id": "48af4cd.e69a4b4",
+        "type": "mqtt out",
+        "z": "2cd58079.e8e5c",
+        "name": "Kleines Aquarium",
+        "topic": "shellies/shellyplug-s-7A3532/relay/0/command",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 750,
+        "y": 460,
+        "wires": []
+      },
+      {
+        "id": "16241ab1.bbe1c5",
+        "type": "inject",
+        "z": "2cd58079.e8e5c",
+        "name": "Wochentags 07:00 -> on",
+        "repeat": "",
+        "crontab": "00 07 * * 1,2,3,4,5",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "x": 190,
+        "y": 300,
+        "wires": [
+          [
+            "49ddc60b.b0d128",
+            "667b0d8c.9814e4"
+          ]
+        ]
+      },
+      {
+        "id": "d51a42c6.8213e",
+        "type": "inject",
+        "z": "2cd58079.e8e5c",
+        "name": "Wochenends 08:15 -> on",
+        "repeat": "",
+        "crontab": "15 08 * * 6,0",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "x": 180,
+        "y": 340,
+        "wires": [
+          [
+            "49ddc60b.b0d128",
+            "667b0d8c.9814e4"
+          ]
+        ]
+      },
+      {
+        "id": "8be59cb5.b341",
+        "type": "switch",
+        "z": "1fe996d2.26ec49",
+        "name": "Open? yes -> 1 no -> 2",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+          {
+            "t": "cont",
+            "v": "\"contact\":false",
+            "vt": "str"
+          },
+          {
+            "t": "cont",
+            "v": "\"contact\":true",
+            "vt": "str"
+          }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 410,
+        "y": 140,
+        "wires": [
+          [
+            "4fa8015a.a79c9"
           ],
-          "repeat": "",
-          "crontab": "00 22 * * *",
-          "once": false,
-          "onceDelay": 0.1,
-          "topic": "",
-          "payload": "off",
-          "payloadType": "str",
-          "x": 230,
-          "y": 260,
-          "wires": [
-            [
-                "f4dde9e4.d09c48",
-                "a8e22cb0.a690e"
-            ]
+          [
+            "4c73750d.9ed4dc"
           ]
-        },
-        {
-          "id": "7b5ecff5.099ee",
-          "type": "mqtt out",
-          "z": "2cd58079.e8e5c",
-          "name": "Grosses Aquarium",
-          "topic": "shellies/shellyrgbw2-6CA20C/color/0/set",
-          "qos": "",
-          "retain": "",
-          "respTopic": "",
-          "contentType": "",
-          "userProps": "",
-          "correl": "",
-          "expiry": "",
-          "broker": "b4ac6d6a.829f3",
-          "x": 750,
-          "y": 400,
-          "wires": []
-        },
-        {
-          "id": "48af4cd.e69a4b4",
-          "type": "mqtt out",
-          "z": "2cd58079.e8e5c",
-          "name": "Kleines Aquarium",
-          "topic": "shellies/shellyplug-s-7A3532/relay/0/command",
-          "qos": "",
-          "retain": "",
-          "broker": "b4ac6d6a.829f3",
-          "x": 750,
-          "y": 460,
-          "wires": []
-        },
-        {
-          "id": "16241ab1.bbe1c5",
-          "type": "inject",
-          "z": "2cd58079.e8e5c",
-          "name": "Wochentags 07:00 -> on",
-          "repeat": "",
-          "crontab": "00 07 * * 1,2,3,4,5",
-          "once": false,
-          "onceDelay": 0.1,
-          "topic": "",
-          "payload": "on",
-          "payloadType": "str",
-          "x": 190,
-          "y": 300,
-          "wires": [
-            [
-                "49ddc60b.b0d128",
-                "667b0d8c.9814e4"
-            ]
+        ]
+      },
+      {
+        "id": "4c73750d.9ed4dc",
+        "type": "change",
+        "z": "1fe996d2.26ec49",
+        "name": "23",
+        "rules": [
+          {
+            "t": "set",
+            "p": "payload",
+            "pt": "msg",
+            "to": "23",
+            "tot": "num"
+          }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 200,
+        "wires": [
+          [
+            "23d4cd0e.1415d2",
+            "eb415ed3.01f24"
           ]
-        },
-        {
-          "id": "d51a42c6.8213e",
-          "type": "inject",
-          "z": "2cd58079.e8e5c",
-          "name": "Wochenends 08:15 -> on",
-          "repeat": "",
-          "crontab": "15 08 * * 6,0",
-          "once": false,
-          "onceDelay": 0.1,
-          "topic": "",
-          "payload": "on",
-          "payloadType": "str",
-          "x": 180,
-          "y": 340,
-          "wires": [
-            [
-                "49ddc60b.b0d128",
-                "667b0d8c.9814e4"
-            ]
+        ]
+      },
+      {
+        "id": "e93c1fc9.6f4d1",
+        "type": "mqtt in",
+        "z": "1fe996d2.26ec49",
+        "name": "",
+        "topic": "zigbee2mqtt/Balkontür",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b4ac6d6a.829f3",
+        "x": 160,
+        "y": 140,
+        "wires": [
+          [
+            "8be59cb5.b341"
           ]
-        },
-        {
-          "id": "8be59cb5.b341",
-          "type": "switch",
-          "z": "1fe996d2.26ec49",
-          "name": "Open? yes -> 1 no -> 2",
-          "property": "payload",
-          "propertyType": "msg",
-          "rules": [
-            {
-              "t": "cont",
-              "v": "\"contact\":false",
-              "vt": "str"
-            },
-            {
-              "t": "cont",
-              "v": "\"contact\":true",
-              "vt": "str"
-            }
+        ]
+      },
+      {
+        "id": "23d4cd0e.1415d2",
+        "type": "mqtt out",
+        "z": "1fe996d2.26ec49",
+        "name": "Wohnzimmer Temperatur",
+        "topic": "zigbee2mqtt/Wohnzimmer Thermostat/set/occupied_heating_setpoint",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 1110,
+        "y": 200,
+        "wires": []
+      },
+      {
+        "id": "4fa8015a.a79c9",
+        "type": "trigger",
+        "z": "1fe996d2.26ec49",
+        "name": "send 5 after 5s",
+        "op1": "",
+        "op2": "5",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "15",
+        "extend": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 880,
+        "y": 80,
+        "wires": [
+          [
+            "23d4cd0e.1415d2"
+          ]
+        ]
+      },
+      {
+        "id": "eb415ed3.01f24",
+        "type": "change",
+        "z": "1fe996d2.26ec49",
+        "name": "reset",
+        "rules": [
+          {
+            "t": "set",
+            "p": "reset",
+            "pt": "msg",
+            "to": "reset",
+            "tot": "num"
+          }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 140,
+        "wires": [
+          [
+            "4fa8015a.a79c9"
+          ]
+        ]
+      },
+      {
+        "id": "a75728e1.b52b08",
+        "type": "mqtt in",
+        "z": "ab33ac9c.c52a5",
+        "name": "",
+        "topic": "shellies/shellymotionsensor-60A423936D76/#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b4ac6d6a.829f3",
+        "x": 210,
+        "y": 140,
+        "wires": [
+          [
+            "a1bf33fc.accf5"
+          ]
+        ]
+      },
+      {
+        "id": "52365380.f77dfc",
+        "type": "mqtt out",
+        "z": "ab33ac9c.c52a5",
+        "name": "",
+        "topic": "shellies/shellyrgbw2-INSERT_NEW_ID_HERE/color/0/set",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 980,
+        "y": 200,
+        "wires": []
+      },
+      {
+        "id": "c33a1a9.4c190e8",
+        "type": "switch",
+        "z": "ab33ac9c.c52a5",
+        "name": "Has Motion?",
+        "property": "payload.motion",
+        "propertyType": "msg",
+        "rules": [
+          {
+            "t": "eq",
+            "v": "true",
+            "vt": "jsonata"
+          },
+          {
+            "t": "eq",
+            "v": "false",
+            "vt": "jsonata"
+          }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 150,
+        "y": 220,
+        "wires": [
+          [
+            "6b086175.fac09"
           ],
-          "checkall": "true",
-          "repair": false,
-          "outputs": 2,
-          "x": 410,
-          "y": 140,
-          "wires": [
-            [
-                "4fa8015a.a79c9"
-            ],
-            [
-                "4c73750d.9ed4dc"
-            ]
+          []
+        ]
+      },
+      {
+        "id": "a1bf33fc.accf5",
+        "type": "json",
+        "z": "ab33ac9c.c52a5",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 450,
+        "y": 140,
+        "wires": [
+          [
+            "c33a1a9.4c190e8"
           ]
-        },
-        {
-          "id": "4c73750d.9ed4dc",
-          "type": "change",
-          "z": "1fe996d2.26ec49",
-          "name": "23",
-          "rules": [
-            {
-              "t": "set",
-              "p": "payload",
-              "pt": "msg",
-              "to": "23",
-              "tot": "num"
-            }
+        ]
+      },
+      {
+        "id": "3a296770.b169b8",
+        "type": "function",
+        "z": "ab33ac9c.c52a5",
+        "name": "In Time 18 - 8",
+        "func": "let now = new Date();\nlet hour = now.getHours();\nmsg.hour = hour;\nif(hour < 8 || hour >= 18 ) {\n    msg.payload = '{\"turn\":\"on\"}';\n    return [msg, null]\n}\nmsg.payload = '{\"turn\":\"off\"}';\nreturn [null, msg];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 680,
+        "y": 140,
+        "wires": [
+          [
+            "358ec46e.c6622c",
+            "52365380.f77dfc"
           ],
-          "action": "",
-          "property": "",
-          "from": "",
-          "to": "",
-          "reg": false,
-          "x": 610,
-          "y": 200,
-          "wires": [
-            [
-                "23d4cd0e.1415d2",
-                "eb415ed3.01f24"
-            ]
+          [
+            "358ec46e.c6622c",
+            "52365380.f77dfc"
           ]
-        },
-        {
-          "id": "e93c1fc9.6f4d1",
-          "type": "mqtt in",
-          "z": "1fe996d2.26ec49",
-          "name": "",
-          "topic": "zigbee2mqtt/Balkontür",
-          "qos": "2",
-          "datatype": "auto",
-          "broker": "b4ac6d6a.829f3",
-          "x": 160,
-          "y": 140,
-          "wires": [
-            [
-                "8be59cb5.b341"
-            ]
+        ]
+      },
+      {
+        "id": "358ec46e.c6622c",
+        "type": "debug",
+        "z": "ab33ac9c.c52a5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 40,
+        "wires": []
+      },
+      {
+        "id": "20eef3be.213c3c",
+        "type": "inject",
+        "z": "ab33ac9c.c52a5",
+        "name": "motion",
+        "props": [
+          {
+            "p": "payload"
+          },
+          {
+            "p": "topic",
+            "vt": "str"
+          }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"motion\":true,\"timestamp\":1617516224,\"active\":true,\"vibration\":false,\"lux\":38,\"bat\":91}",
+        "payloadType": "str",
+        "x": 180,
+        "y": 100,
+        "wires": [
+          [
+            "a1bf33fc.accf5"
           ]
-        },
-        {
-          "id": "23d4cd0e.1415d2",
-          "type": "mqtt out",
-          "z": "1fe996d2.26ec49",
-          "name": "Wohnzimmer Temperatur",
-          "topic": "zigbee2mqtt/Wohnzimmer Thermostat/set/occupied_heating_setpoint",
-          "qos": "",
-          "retain": "",
-          "broker": "b4ac6d6a.829f3",
-          "x": 1110,
-          "y": 200,
-          "wires": []
-        },
-        {
-          "id": "4fa8015a.a79c9",
-          "type": "trigger",
-          "z": "1fe996d2.26ec49",
-          "name": "send 5 after 5s",
-          "op1": "",
-          "op2": "5",
-          "op1type": "nul",
-          "op2type": "str",
-          "duration": "15",
-          "extend": false,
-          "units": "s",
-          "reset": "",
-          "bytopic": "all",
-          "topic": "topic",
-          "outputs": 1,
-          "x": 880,
-          "y": 80,
-          "wires": [
-            [
-                "23d4cd0e.1415d2"
-            ]
-          ]
-        },
-        {
-          "id": "eb415ed3.01f24",
-          "type": "change",
-          "z": "1fe996d2.26ec49",
-          "name": "reset",
-          "rules": [
-            {
-              "t": "set",
-              "p": "reset",
-              "pt": "msg",
-              "to": "reset",
-              "tot": "num"
-            }
+        ]
+      },
+      {
+        "id": "6b086175.fac09",
+        "type": "trigger",
+        "z": "ab33ac9c.c52a5",
+        "name": "Trigger ON -> 5min OFF",
+        "op1": "{\"turn\":\"on\",\"gain\":35,\"red\":255,\"green\":12,\"blue\":180,\"white\":0}",
+        "op2": "{\"turn\": \"off\", \"mode\": \"white\"}",
+        "op1type": "json",
+        "op2type": "json",
+        "duration": "5",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 2,
+        "x": 430,
+        "y": 200,
+        "wires": [
+          [
+            "3a296770.b169b8"
           ],
-          "action": "",
-          "property": "",
-          "from": "",
-          "to": "",
-          "reg": false,
-          "x": 730,
-          "y": 140,
-          "wires": [
-            [
-                "4fa8015a.a79c9"
-            ]
+          [
+            "3a296770.b169b8",
+            "52365380.f77dfc"
           ]
-        },
-        {
-          "id": "a75728e1.b52b08",
-          "type": "mqtt in",
-          "z": "ab33ac9c.c52a5",
-          "name": "",
-          "topic": "shellies/shellymotionsensor-60A423936D76/#",
-          "qos": "2",
-          "datatype": "auto",
-          "broker": "b4ac6d6a.829f3",
-          "x": 210,
-          "y": 140,
-          "wires": [
-            [
-                "a1bf33fc.accf5"
-            ]
+        ]
+      },
+      {
+        "id": "47b6015a.e13ae",
+        "type": "inject",
+        "z": "ab33ac9c.c52a5",
+        "name": "no motion",
+        "props": [
+          {
+            "p": "payload"
+          },
+          {
+            "p": "topic",
+            "vt": "str"
+          }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"motion\":false,\"timestamp\":1617516224,\"active\":true,\"vibration\":false,\"lux\":38,\"bat\":91}",
+        "payloadType": "str",
+        "x": 180,
+        "y": 60,
+        "wires": [
+          [
+            "a1bf33fc.accf5"
           ]
-        },
-        {
-          "id": "52365380.f77dfc",
-          "type": "mqtt out",
-          "z": "ab33ac9c.c52a5",
-          "name": "",
-          "topic": "shellies/shellyrgbw2-INSERT_NEW_ID_HERE/color/0/set",
-          "qos": "",
-          "retain": "",
-          "broker": "b4ac6d6a.829f3",
-          "x": 980,
-          "y": 200,
-          "wires": []
-        },
-        {
-          "id": "c33a1a9.4c190e8",
-          "type": "switch",
-          "z": "ab33ac9c.c52a5",
-          "name": "Has Motion?",
-          "property": "payload.motion",
-          "propertyType": "msg",
-          "rules": [
-            {
-              "t": "eq",
-              "v": "true",
-              "vt": "jsonata"
-            },
-            {
-              "t": "eq",
-              "v": "false",
-              "vt": "jsonata"
-            }
+        ]
+      },
+      {
+        "id": "20f2b3bc.2c291c",
+        "type": "mqtt in",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "topic": "cmnd/kleine_schlafzimmerlampe/#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b4ac6d6a.829f3",
+        "nl": false,
+        "rap": false,
+        "x": 160,
+        "y": 40,
+        "wires": [
+          [
+            "4beeb3b7.3e601c"
+          ]
+        ]
+      },
+      {
+        "id": "6b0a38c0.bb08f8",
+        "type": "mqtt out",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "topic": "shellies/ShellyBulbDuo-8CAAB55F6363/light/0/set",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 810,
+        "y": 40,
+        "wires": []
+      },
+      {
+        "id": "8178b4e7.2ac338",
+        "type": "change",
+        "z": "3c2b2817.f24288",
+        "name": "ON 35%",
+        "rules": [
+          {
+            "t": "set",
+            "p": "payload",
+            "pt": "msg",
+            "to": "{\"turn\": \"toggle\", \"brightness\": 35}",
+            "tot": "json"
+          }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 20,
+        "wires": [
+          [
+            "6b0a38c0.bb08f8"
+          ]
+        ]
+      },
+      {
+        "id": "4ce76828.dd3768",
+        "type": "change",
+        "z": "3c2b2817.f24288",
+        "name": "ON 100%",
+        "rules": [
+          {
+            "t": "set",
+            "p": "payload",
+            "pt": "msg",
+            "to": "{\"turn\": \"on\", \"brightness\": 100}",
+            "tot": "json"
+          }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 60,
+        "wires": [
+          [
+            "6b0a38c0.bb08f8"
+          ]
+        ]
+      },
+      {
+        "id": "4beeb3b7.3e601c",
+        "type": "switch",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+          {
+            "t": "eq",
+            "v": "2",
+            "vt": "str"
+          },
+          {
+            "t": "eq",
+            "v": "11",
+            "vt": "str"
+          }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 370,
+        "y": 40,
+        "wires": [
+          [
+            "8178b4e7.2ac338"
           ],
-          "checkall": "true",
-          "repair": false,
-          "outputs": 2,
-          "x": 150,
-          "y": 220,
-          "wires": [
-            [
-                "6b086175.fac09"
-            ],
-            []
+          [
+            "4ce76828.dd3768"
           ]
-        },
-        {
-          "id": "a1bf33fc.accf5",
-          "type": "json",
-          "z": "ab33ac9c.c52a5",
-          "name": "",
-          "property": "payload",
-          "action": "",
-          "pretty": false,
-          "x": 450,
-          "y": 140,
-          "wires": [
-            [
-                "c33a1a9.4c190e8"
-            ]
+        ]
+      },
+      {
+        "id": "4178a52.22e115c",
+        "type": "mqtt in",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "topic": "node/schlafzimmer/ventilatorbutton",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b4ac6d6a.829f3",
+        "x": 140,
+        "y": 80,
+        "wires": [
+          [
+            "6e8834a0.e63f9c"
           ]
-        },
-        {
-          "id": "3a296770.b169b8",
-          "type": "function",
-          "z": "ab33ac9c.c52a5",
-          "name": "In Time 18 - 8",
-          "func": "let now = new Date();\nlet hour = now.getHours();\nmsg.hour = hour;\nif(hour < 8 || hour >= 18 ) {\n    msg.payload = '{\"turn\":\"on\"}';\n    return [msg, null]\n}\nmsg.payload = '{\"turn\":\"off\"}';\nreturn [null, msg];",
-          "outputs": 2,
-          "noerr": 0,
-          "initialize": "",
-          "finalize": "",
-          "x": 680,
-          "y": 140,
-          "wires": [
-            [
-                "358ec46e.c6622c",
-                "52365380.f77dfc"
-            ],
-            [
-                "358ec46e.c6622c",
-                "52365380.f77dfc"
-            ]
+        ]
+      },
+      {
+        "id": "f5d3fffd.75bcc",
+        "type": "change",
+        "z": "3c2b2817.f24288",
+        "name": "SET buttonState1",
+        "rules": [
+          {
+            "t": "set",
+            "p": "buttonState1",
+            "pt": "flow",
+            "to": "payload",
+            "tot": "msg"
+          }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 200,
+        "wires": [
+          [
+            "10e24d96.0015a2"
           ]
-        },
-        {
-          "id": "358ec46e.c6622c",
-          "type": "debug",
-          "z": "ab33ac9c.c52a5",
-          "name": "",
-          "active": true,
-          "tosidebar": true,
-          "console": false,
-          "tostatus": false,
-          "complete": "true",
-          "targetType": "full",
-          "statusVal": "",
-          "statusType": "auto",
-          "x": 940,
-          "y": 40,
-          "wires": []
-        },
-        {
-          "id": "20eef3be.213c3c",
-          "type": "inject",
-          "z": "ab33ac9c.c52a5",
-          "name": "motion",
-          "props": [
-            {
-              "p": "payload"
-            },
-            {
-              "p": "topic",
-              "vt": "str"
-            }
-          ],
-          "repeat": "",
-          "crontab": "",
-          "once": false,
-          "onceDelay": 0.1,
-          "topic": "",
-          "payload": "{\"motion\":true,\"timestamp\":1617516224,\"active\":true,\"vibration\":false,\"lux\":38,\"bat\":91}",
-          "payloadType": "str",
-          "x": 180,
-          "y": 100,
-          "wires": [
-            [
-                "a1bf33fc.accf5"
-            ]
+        ]
+      },
+      {
+        "id": "87493141.61227",
+        "type": "function",
+        "z": "3c2b2817.f24288",
+        "name": "Determin new state",
+        "func": "let state = msg.state;\nif(!state || (state != 'OFF' && state !=  'ON' && state != 'FAST')) {\n    state = 'OFF'\n}\n\n\nif(11 == msg.payload) {\n    msg.payload = 'FAST';\n} else if('FAST' == state) {\n    msg.payload = 'ON';\n} else if('ON' == state) {\n    msg.payload = 'OFF';\n} else if ('OFF' == state) {\n    msg.payload = 'ON';\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 410,
+        "y": 120,
+        "wires": [
+          [
+            "f5d3fffd.75bcc"
           ]
-        },
-        {
-          "id": "6b086175.fac09",
-          "type": "trigger",
-          "z": "ab33ac9c.c52a5",
-          "name": "Trigger ON -> 5min OFF",
-          "op1": "{\"turn\":\"on\",\"gain\":35,\"red\":255,\"green\":12,\"blue\":180,\"white\":0}",
-          "op2": "{\"turn\": \"off\", \"mode\": \"white\"}",
-          "op1type": "json",
-          "op2type": "json",
-          "duration": "5",
-          "extend": true,
-          "overrideDelay": false,
-          "units": "s",
-          "reset": "",
-          "bytopic": "all",
-          "topic": "topic",
-          "outputs": 2,
-          "x": 430,
-          "y": 200,
-          "wires": [
-            [
-                "3a296770.b169b8"
-            ],
-            [
-                "3a296770.b169b8",
-                "52365380.f77dfc"
-            ]
+        ]
+      },
+      {
+        "id": "e8a880c2.fba63",
+        "type": "mqtt out",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "topic": "cmnd/sonoff_fan/FanSpeed",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 980,
+        "y": 160,
+        "wires": []
+      },
+      {
+        "id": "97a0d790.8bc9e8",
+        "type": "inject",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "props": [
+          {
+            "p": "payload"
+          }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "99",
+        "payloadType": "str",
+        "x": 90,
+        "y": 180,
+        "wires": [
+          [
+            "6e8834a0.e63f9c"
           ]
-        },
-        {
-          "id": "47b6015a.e13ae",
-          "type": "inject",
-          "z": "ab33ac9c.c52a5",
-          "name": "no motion",
-          "props": [
-            {
-              "p": "payload"
-            },
-            {
-              "p": "topic",
-              "vt": "str"
-            }
-          ],
-          "repeat": "",
-          "crontab": "",
-          "once": false,
-          "onceDelay": 0.1,
-          "topic": "",
-          "payload": "{\"motion\":false,\"timestamp\":1617516224,\"active\":true,\"vibration\":false,\"lux\":38,\"bat\":91}",
-          "payloadType": "str",
-          "x": 180,
-          "y": 60,
-          "wires": [
-            [
-                "a1bf33fc.accf5"
-            ]
+        ]
+      },
+      {
+        "id": "8b35164b.eb2758",
+        "type": "inject",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "props": [
+          {
+            "p": "payload"
+          },
+          {
+            "p": "topic",
+            "vt": "str"
+          }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "11",
+        "payloadType": "str",
+        "x": 130,
+        "y": 400,
+        "wires": [
+          [
+            "210d20be.7febc"
           ]
-        },
-        {
-          "id": "20f2b3bc.2c291c",
-          "type": "mqtt in",
-          "z": "3c2b2817.f24288",
-          "name": "",
-          "topic": "cmnd/kleine_schlafzimmerlampe/#",
-          "qos": "2",
-          "datatype": "auto",
-          "broker": "b4ac6d6a.829f3",
-          "nl": false,
-          "rap": false,
-          "x": 160,
-          "y": 40,
-          "wires": [
-            [
-                "4beeb3b7.3e601c"
-            ]
+        ]
+      },
+      {
+        "id": "6e8834a0.e63f9c",
+        "type": "change",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "rules": [
+          {
+            "t": "set",
+            "p": "state",
+            "pt": "msg",
+            "to": "buttonState1",
+            "tot": "flow"
+          }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 250,
+        "y": 180,
+        "wires": [
+          [
+            "87493141.61227"
           ]
-        },
-        {
-          "id": "6b0a38c0.bb08f8",
-          "type": "mqtt out",
-          "z": "3c2b2817.f24288",
-          "name": "",
-          "topic": "shellies/ShellyBulbDuo-8CAAB55F6363/light/0/set",
-          "qos": "",
-          "retain": "",
-          "respTopic": "",
-          "contentType": "",
-          "userProps": "",
-          "correl": "",
-          "expiry": "",
-          "broker": "b4ac6d6a.829f3",
-          "x": 810,
-          "y": 40,
-          "wires": []
-        },
-        {
-          "id": "8178b4e7.2ac338",
-          "type": "change",
-          "z": "3c2b2817.f24288",
-          "name": "ON 35%",
-          "rules": [
-            {
-              "t": "set",
-              "p": "payload",
-              "pt": "msg",
-              "to": "{\"turn\": \"toggle\", \"brightness\": 35}",
-              "tot": "json"
-            }
-          ],
-          "action": "",
-          "property": "",
-          "from": "",
-          "to": "",
-          "reg": false,
-          "x": 520,
-          "y": 20,
-          "wires": [
-            [
-                "6b0a38c0.bb08f8"
-            ]
+        ]
+      },
+      {
+        "id": "10e24d96.0015a2",
+        "type": "function",
+        "z": "3c2b2817.f24288",
+        "name": "map state to speed",
+        "func": "if('OFF' == msg.payload) {\n    msg.payload = 0\n} else if('ON' == msg.payload) {\n    msg.payload = 1\n} else if('FAST' == msg.payload) {\n    msg.payload = 2\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 690,
+        "y": 200,
+        "wires": [
+          [
+            "f958c52a.d6e0d8",
+            "e8a880c2.fba63"
           ]
-        },
-        {
-          "id": "4ce76828.dd3768",
-          "type": "change",
-          "z": "3c2b2817.f24288",
-          "name": "ON 100%",
-          "rules": [
-            {
-              "t": "set",
-              "p": "payload",
-              "pt": "msg",
-              "to": "{\"turn\": \"on\", \"brightness\": 100}",
-              "tot": "json"
-            }
-          ],
-          "action": "",
-          "property": "",
-          "from": "",
-          "to": "",
-          "reg": false,
-          "x": 520,
-          "y": 60,
-          "wires": [
-            [
-                "6b0a38c0.bb08f8"
-            ]
+        ]
+      },
+      {
+        "id": "f5da3fa3.d7583",
+        "type": "inject",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "props": [
+          {
+            "p": "payload"
+          },
+          {
+            "p": "topic",
+            "vt": "str"
+          }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "2",
+        "payload": "2",
+        "payloadType": "str",
+        "x": 140,
+        "y": 360,
+        "wires": [
+          [
+            "210d20be.7febc"
           ]
-        },
-        {
-          "id": "4beeb3b7.3e601c",
-          "type": "switch",
-          "z": "3c2b2817.f24288",
-          "name": "",
-          "property": "payload",
-          "propertyType": "msg",
-          "rules": [
-            {
-              "t": "eq",
-              "v": "2",
-              "vt": "str"
-            },
-            {
-              "t": "eq",
-              "v": "11",
-              "vt": "str"
-            }
-          ],
-          "checkall": "true",
-          "repair": false,
-          "outputs": 2,
-          "x": 370,
-          "y": 40,
-          "wires": [
-            [
-                "8178b4e7.2ac338"
-            ],
-            [
-                "4ce76828.dd3768"
-            ]
+        ]
+      },
+      {
+        "id": "210d20be.7febc",
+        "type": "mqtt out",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "topic": "node/schlafzimmer/ventilatorbutton",
+        "qos": "",
+        "retain": "",
+        "broker": "b4ac6d6a.829f3",
+        "x": 450,
+        "y": 380,
+        "wires": []
+      },
+      {
+        "id": "f958c52a.d6e0d8",
+        "type": "debug",
+        "z": "3c2b2817.f24288",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 240,
+        "wires": []
+      },
+      {
+        "id": "a8e22cb0.a690e",
+        "type": "change",
+        "z": "2cd58079.e8e5c",
+        "name": " -> off",
+        "rules": [
+          {
+            "t": "set",
+            "p": "payload",
+            "pt": "msg",
+            "to": "off",
+            "tot": "str"
+          }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 300,
+        "wires": [
+          [
+            "48af4cd.e69a4b4"
           ]
-        },
-        {
-          "id": "4178a52.22e115c",
-          "type": "mqtt in",
-          "z": "3c2b2817.f24288",
-          "name": "",
-          "topic": "node/schlafzimmer/ventilatorbutton",
-          "qos": "2",
-          "datatype": "auto",
-          "broker": "b4ac6d6a.829f3",
-          "x": 140,
-          "y": 80,
-          "wires": [
-            [
-                "6e8834a0.e63f9c"
-            ]
+        ]
+      },
+      {
+        "id": "f4dde9e4.d09c48",
+        "type": "change",
+        "z": "2cd58079.e8e5c",
+        "name": "{turn: off}",
+        "rules": [
+          {
+            "t": "set",
+            "p": "payload",
+            "pt": "msg",
+            "to": "{\"turn\":\"off\"}",
+            "tot": "str"
+          }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 260,
+        "wires": [
+          [
+            "7b5ecff5.099ee"
           ]
-        },
-        {
-          "id": "f5d3fffd.75bcc",
-          "type": "change",
-          "z": "3c2b2817.f24288",
-          "name": "SET buttonState1",
-          "rules": [
-            {
-              "t": "set",
-              "p": "buttonState1",
-              "pt": "flow",
-              "to": "payload",
-              "tot": "msg"
-            }
-          ],
-          "action": "",
-          "property": "",
-          "from": "",
-          "to": "",
-          "reg": false,
-          "x": 470,
-          "y": 200,
-          "wires": [
-            [
-                "10e24d96.0015a2"
-            ]
+        ]
+      },
+      {
+        "id": "667b0d8c.9814e4",
+        "type": "change",
+        "z": "2cd58079.e8e5c",
+        "name": " -> on",
+        "rules": [
+          {
+            "t": "set",
+            "p": "payload",
+            "pt": "msg",
+            "to": "on",
+            "tot": "str"
+          }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 420,
+        "wires": [
+          [
+            "48af4cd.e69a4b4"
           ]
-        },
-        {
-          "id": "87493141.61227",
-          "type": "function",
-          "z": "3c2b2817.f24288",
-          "name": "Determin new state",
-          "func": "let state = msg.state;\nif(!state || (state != 'OFF' && state !=  'ON' && state != 'FAST')) {\n    state = 'OFF'\n}\n\n\nif(11 == msg.payload) {\n    msg.payload = 'FAST';\n} else if('FAST' == state) {\n    msg.payload = 'ON';\n} else if('ON' == state) {\n    msg.payload = 'OFF';\n} else if ('OFF' == state) {\n    msg.payload = 'ON';\n}\nreturn msg;",
-          "outputs": 1,
-          "noerr": 0,
-          "initialize": "",
-          "finalize": "",
-          "x": 410,
-          "y": 120,
-          "wires": [
-            [
-                "f5d3fffd.75bcc"
-            ]
+        ]
+      },
+      {
+        "id": "49ddc60b.b0d128",
+        "type": "change",
+        "z": "2cd58079.e8e5c",
+        "name": "{turn: on}",
+        "rules": [
+          {
+            "t": "set",
+            "p": "payload",
+            "pt": "msg",
+            "to": "{\"turn\":\"on\"}",
+            "tot": "str"
+          }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 380,
+        "wires": [
+          [
+            "7b5ecff5.099ee"
           ]
-        },
-        {
-          "id": "e8a880c2.fba63",
-          "type": "mqtt out",
-          "z": "3c2b2817.f24288",
-          "name": "",
-          "topic": "cmnd/sonoff_fan/FanSpeed",
-          "qos": "",
-          "retain": "",
-          "broker": "b4ac6d6a.829f3",
-          "x": 980,
-          "y": 160,
-          "wires": []
-        },
-        {
-          "id": "97a0d790.8bc9e8",
-          "type": "inject",
-          "z": "3c2b2817.f24288",
-          "name": "",
-          "props": [
-            {
-              "p": "payload"
-            }
-          ],
-          "repeat": "",
-          "crontab": "",
-          "once": false,
-          "onceDelay": 0.1,
-          "topic": "",
-          "payload": "99",
-          "payloadType": "str",
-          "x": 90,
-          "y": 180,
-          "wires": [
-            [
-                "6e8834a0.e63f9c"
-            ]
-          ]
-        },
-        {
-          "id": "8b35164b.eb2758",
-          "type": "inject",
-          "z": "3c2b2817.f24288",
-          "name": "",
-          "props": [
-            {
-              "p": "payload"
-            },
-            {
-              "p": "topic",
-              "vt": "str"
-            }
-          ],
-          "repeat": "",
-          "crontab": "",
-          "once": false,
-          "onceDelay": 0.1,
-          "topic": "",
-          "payload": "11",
-          "payloadType": "str",
-          "x": 130,
-          "y": 400,
-          "wires": [
-            [
-                "210d20be.7febc"
-            ]
-          ]
-        },
-        {
-          "id": "6e8834a0.e63f9c",
-          "type": "change",
-          "z": "3c2b2817.f24288",
-          "name": "",
-          "rules": [
-            {
-              "t": "set",
-              "p": "state",
-              "pt": "msg",
-              "to": "buttonState1",
-              "tot": "flow"
-            }
-          ],
-          "action": "",
-          "property": "",
-          "from": "",
-          "to": "",
-          "reg": false,
-          "x": 250,
-          "y": 180,
-          "wires": [
-            [
-                "87493141.61227"
-            ]
-          ]
-        },
-        {
-          "id": "10e24d96.0015a2",
-          "type": "function",
-          "z": "3c2b2817.f24288",
-          "name": "map state to speed",
-          "func": "if('OFF' == msg.payload) {\n    msg.payload = 0\n} else if('ON' == msg.payload) {\n    msg.payload = 1\n} else if('FAST' == msg.payload) {\n    msg.payload = 2\n}\n\nreturn msg;",
-          "outputs": 1,
-          "noerr": 0,
-          "initialize": "",
-          "finalize": "",
-          "x": 690,
-          "y": 200,
-          "wires": [
-            [
-                "f958c52a.d6e0d8",
-                "e8a880c2.fba63"
-            ]
-          ]
-        },
-        {
-          "id": "f5da3fa3.d7583",
-          "type": "inject",
-          "z": "3c2b2817.f24288",
-          "name": "",
-          "props": [
-            {
-              "p": "payload"
-            },
-            {
-              "p": "topic",
-              "vt": "str"
-            }
-          ],
-          "repeat": "",
-          "crontab": "",
-          "once": false,
-          "onceDelay": 0.1,
-          "topic": "2",
-          "payload": "2",
-          "payloadType": "str",
-          "x": 140,
-          "y": 360,
-          "wires": [
-            [
-                "210d20be.7febc"
-            ]
-          ]
-        },
-        {
-          "id": "210d20be.7febc",
-          "type": "mqtt out",
-          "z": "3c2b2817.f24288",
-          "name": "",
-          "topic": "node/schlafzimmer/ventilatorbutton",
-          "qos": "",
-          "retain": "",
-          "broker": "b4ac6d6a.829f3",
-          "x": 450,
-          "y": 380,
-          "wires": []
-        },
-        {
-          "id": "f958c52a.d6e0d8",
-          "type": "debug",
-          "z": "3c2b2817.f24288",
-          "name": "",
-          "active": true,
-          "tosidebar": true,
-          "console": false,
-          "tostatus": false,
-          "complete": "true",
-          "targetType": "full",
-          "statusVal": "",
-          "statusType": "auto",
-          "x": 960,
-          "y": 240,
-          "wires": []
-        },
-        {
-          "id": "a8e22cb0.a690e",
-          "type": "change",
-          "z": "2cd58079.e8e5c",
-          "name": " -> off",
-          "rules": [
-            {
-              "t": "set",
-              "p": "payload",
-              "pt": "msg",
-              "to": "off",
-              "tot": "str"
-            }
-          ],
-          "action": "",
-          "property": "",
-          "from": "",
-          "to": "",
-          "reg": false,
-          "x": 490,
-          "y": 300,
-          "wires": [
-            [
-                "48af4cd.e69a4b4"
-            ]
-          ]
-        },
-        {
-          "id": "f4dde9e4.d09c48",
-          "type": "change",
-          "z": "2cd58079.e8e5c",
-          "name": "{turn: off}",
-          "rules": [
-            {
-              "t": "set",
-              "p": "payload",
-              "pt": "msg",
-              "to": "{\"turn\":\"off\"}",
-              "tot": "str"
-            }
-          ],
-          "action": "",
-          "property": "",
-          "from": "",
-          "to": "",
-          "reg": false,
-          "x": 480,
-          "y": 260,
-          "wires": [
-            [
-                "7b5ecff5.099ee"
-            ]
-          ]
-        },
-        {
-          "id": "667b0d8c.9814e4",
-          "type": "change",
-          "z": "2cd58079.e8e5c",
-          "name": " -> on",
-          "rules": [
-            {
-              "t": "set",
-              "p": "payload",
-              "pt": "msg",
-              "to": "on",
-              "tot": "str"
-            }
-          ],
-          "action": "",
-          "property": "",
-          "from": "",
-          "to": "",
-          "reg": false,
-          "x": 490,
-          "y": 420,
-          "wires": [
-            [
-                "48af4cd.e69a4b4"
-            ]
-          ]
-        },
-        {
-          "id": "49ddc60b.b0d128",
-          "type": "change",
-          "z": "2cd58079.e8e5c",
-          "name": "{turn: on}",
-          "rules": [
-            {
-              "t": "set",
-              "p": "payload",
-              "pt": "msg",
-              "to": "{\"turn\":\"on\"}",
-              "tot": "str"
-            }
-          ],
-          "action": "",
-          "property": "",
-          "from": "",
-          "to": "",
-          "reg": false,
-          "x": 480,
-          "y": 380,
-          "wires": [
-            [
-                "7b5ecff5.099ee"
-            ]
-          ]
-        },
-        {
+        ]
+      },
+      {
         "id": "11def028.c9c14",
         "type": "mqtt in",
         "z": "25a9f433.5e96ac",
@@ -1087,14 +1092,14 @@ data:
         "x": 190,
         "y": 200,
         "wires": [
-        [
-        "fcbfcd78.9086b",
-        "6615b517.83e7cc",
-        "c63116b9.701618"
+          [
+            "fcbfcd78.9086b",
+            "6615b517.83e7cc",
+            "c63116b9.701618"
+          ]
         ]
-        ]
-        },
-        {
+      },
+      {
         "id": "fcbfcd78.9086b",
         "type": "mqtt out",
         "z": "25a9f433.5e96ac",
@@ -1111,8 +1116,8 @@ data:
         "x": 480,
         "y": 140,
         "wires": []
-        },
-        {
+      },
+      {
         "id": "6615b517.83e7cc",
         "type": "mqtt out",
         "z": "25a9f433.5e96ac",
@@ -1129,8 +1134,8 @@ data:
         "x": 480,
         "y": 200,
         "wires": []
-        },
-        {
+      },
+      {
         "id": "c63116b9.701618",
         "type": "mqtt out",
         "z": "25a9f433.5e96ac",
@@ -1147,8 +1152,8 @@ data:
         "x": 480,
         "y": 260,
         "wires": []
-        },
-        {
+      },
+      {
         "id": "18c1c586.cd921a",
         "type": "mqtt in",
         "z": "25a9f433.5e96ac",
@@ -1163,12 +1168,12 @@ data:
         "x": 180,
         "y": 380,
         "wires": [
-        [
-        "b2b7aa6f.ff6068"
+          [
+            "b2b7aa6f.ff6068"
+          ]
         ]
-        ]
-        },
-        {
+      },
+      {
         "id": "b2b7aa6f.ff6068",
         "type": "mqtt out",
         "z": "25a9f433.5e96ac",
@@ -1185,8 +1190,8 @@ data:
         "x": 550,
         "y": 380,
         "wires": []
-        },
-        {
+      },
+      {
         "id": "fe481d98.7bb69",
         "type": "mqtt in",
         "z": "25a9f433.5e96ac",
@@ -1201,14 +1206,14 @@ data:
         "x": 150,
         "y": 580,
         "wires": [
-        [
-        "1befa13f.246d3f",
-        "7757ffb6.e2488",
-        "d45a5b71.f00d18"
+          [
+            "1befa13f.246d3f",
+            "7757ffb6.e2488",
+            "d45a5b71.f00d18"
+          ]
         ]
-        ]
-        },
-        {
+      },
+      {
         "id": "335b15f8.c6476a",
         "type": "mqtt out",
         "z": "25a9f433.5e96ac",
@@ -1225,8 +1230,8 @@ data:
         "x": 490,
         "y": 760,
         "wires": []
-        },
-        {
+      },
+      {
         "id": "b794d8f5.57d758",
         "type": "mqtt in",
         "z": "25a9f433.5e96ac",
@@ -1241,12 +1246,12 @@ data:
         "x": 160,
         "y": 760,
         "wires": [
-        [
-        "335b15f8.c6476a"
+          [
+            "335b15f8.c6476a"
+          ]
         ]
-        ]
-        },
-        {
+      },
+      {
         "id": "1befa13f.246d3f",
         "type": "mqtt out",
         "z": "25a9f433.5e96ac",
@@ -1263,8 +1268,8 @@ data:
         "x": 550,
         "y": 500,
         "wires": []
-        },
-        {
+      },
+      {
         "id": "7757ffb6.e2488",
         "type": "mqtt out",
         "z": "25a9f433.5e96ac",
@@ -1281,8 +1286,8 @@ data:
         "x": 550,
         "y": 560,
         "wires": []
-        },
-        {
+      },
+      {
         "id": "d45a5b71.f00d18",
         "type": "mqtt out",
         "z": "25a9f433.5e96ac",
@@ -1299,5 +1304,5 @@ data:
         "x": 550,
         "y": 620,
         "wires": []
-        }
-      ]
+      }
+    ]
