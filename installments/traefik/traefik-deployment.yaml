@@ -20,7 +20,7 @@ spec:
       terminationGracePeriodSeconds: 15
       hostNetwork: true
       nodeSelector:
-        kubernetes.io/hostname: pi-worker-1
+        kubernetes.io/hostname: kube-worker-2
       volumes:
         - name: traefik-cache
           hostPath:
@@ -29,7 +29,7 @@ spec:
           configMap:
             name: traefik-https-cfg
       containers:
-        - image: traefik:1.7.18
+        - image: traefik:v2.10.4
           name: traefik-ingress-controller
           resources:
             limits:
@@ -53,6 +53,8 @@ spec:
             - mountPath: /config-files
               name: traefik-config
           args:
+            - --api.insecure
+            - --providers.kubernetesingress
             - --web
             - --web.address=:8888
             - --kubernetes
