@@ -25,7 +25,7 @@ spec:
             args: ["-c", "curl --verbose https://www.duckdns.org/update?domains=${DNS_UPDATE_DOMAIN}\\&token=${DNS_UPDATE_TOKEN}\\&verbose=true"]
             env:
             - name: DNS_UPDATE_DOMAIN
-              value: moyapro,jana-minecraft
+              value: moyapro,jana-minecraft,super-rainbow-cat
             - name: DNS_UPDATE_TOKEN
               valueFrom:
                 secretKeyRef:
