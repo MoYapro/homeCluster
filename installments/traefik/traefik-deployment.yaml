@@ -2,7 +2,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: traefik-ingress-controller-https
-  namespace: kube-system
+  namespace: home-assistant
   labels:
     k8s-app: traefik-ingress-controller-https
 spec:
@@ -29,7 +29,7 @@ spec:
           configMap:
             name: traefik-https-cfg
       containers:
-        - image: traefik:v2.10.4
+        - image: traefik:v1.7.34-alpine
           name: traefik-ingress-controller
           resources:
             limits:
@@ -53,8 +53,6 @@ spec:
             - mountPath: /config-files
               name: traefik-config
           args:
-            - --api.insecure
-            - --providers.kubernetesingress
             - --web
             - --web.address=:8888
             - --kubernetes

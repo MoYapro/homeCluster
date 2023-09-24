@@ -8,8 +8,6 @@ data:
   passwd: |
     homeassistant:$7$101$fJdeSe1p7BYHpCzq$BVkFJ8vZ3KNbLpsJ0Z8jJvP13lKQk/r/D0YuYpgqrMRfEkhNNdpW97nUC3CG2w3vyMWDNXcidgrIOQFIWkCYnw==
   mosquitto.conf: |
-    per_listener_settings true
-    allow_anonymous false
+    allow_anonymous true
     listener 1883
-    password_file /mosquitto/config/passwd
 
