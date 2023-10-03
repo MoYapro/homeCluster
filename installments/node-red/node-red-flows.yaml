@@ -61,11 +61,7 @@ data:
         "closePayload": "",
         "willTopic": "",
         "willQos": "0",
-        "willPayload": "",
-        "credentials": {
-          "user": "homeassistant",
-          "password": "password"
-        }
+        "willPayload": ""
       },
       {
         "id": "283f0aa8.8947b6",
