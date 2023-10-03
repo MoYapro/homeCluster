@@ -24,14 +24,7 @@ spec:
             - --providers.kubernetesingress=true
             - --api.dashboard=true
             - --api.insecure=true
-            - --log=true
-            - --log.level=INFO
-            - --accesslog=true
-            - --entrypoints.web.address=:80
-            - --entrypoints.websecure.address=:443
-            - --certificatesresolvers.leresolver.acme.tlschallenge=true # <== Enable TLS-ALPN-01 to generate and renew ACME certs
-            - --certificatesresolvers.leresolver.acme.email=<email> # <== Setting email for certs
-            - --certificatesresolvers.leresolver.acme.storage=/data/acme.json # <== Defining acme file to store cert information
+            - --configFile=/config-files/traefik.toml
           ports:
             - name: web
               containerPort: 80
