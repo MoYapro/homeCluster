@@ -13,4 +13,4 @@ spec:
               service:
                 name: pihole-service
                 port:
-                  number: 1880
+                  number: 80

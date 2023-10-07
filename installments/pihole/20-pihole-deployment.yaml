@@ -47,18 +47,20 @@ spec:
             - name: pihole-config
               subPath: adlists.list
               mountPath: /etc/pihole/adlists.list
-          livenessProbe:
-            httpGet:
-              path: /admin/index.php
-              port: 16349
-            initialDelaySeconds: 300
-            periodSeconds: 15
-          readinessProbe:
-            httpGet:
-              path: /admin/index.php
-              port: 16349
-            initialDelaySeconds: 30
-            periodSeconds: 2
+#          livenessProbe:
+#            httpGet:
+#              path: /admin/index.php
+#              port: 16349
+#              host: pihole.cluster
+#            initialDelaySeconds: 300
+#            periodSeconds: 15
+#          readinessProbe:
+#            httpGet:
+#              path: /admin/index.php
+#              port: 16349
+#              host: pihole.cluster
+#            initialDelaySeconds: 10
+#            periodSeconds: 2
       volumes:
         - name: config
         - configMap:
