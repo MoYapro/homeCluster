@@ -1,29 +1,29 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nas-persistant-volume-pihole
+  name: nas-persistant-volume-ha
   namespace: home-assistant
 spec:
   capacity:
     storage: 1Gi # This size is used to match a volume to a tenants claim
-  storageClassName: manual
+  storageClassName: nfs
   accessModes:
     - ReadWriteOnce 
   nfs:
     server: 192.168.1.6 
-    path: /volume1/persistent_storage/pihole
+    path: /volume1/persistent_storage/home-assistant
     readOnly: false
 
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: nas-persitant-volume-claim-pihole
+  name: nas-persitant-volume-claim-ha
   namespace: home-assistant
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: manual
+  storageClassName: nfs
   resources:
     requests:
       storage: 1Gi

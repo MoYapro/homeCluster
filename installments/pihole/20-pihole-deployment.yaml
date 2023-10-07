@@ -17,8 +17,7 @@ spec:
     spec:
       hostNetwork: true
       priorityClassName: essential
-#      nodeSelector:
-#        kubernetes.io/hostname: pi-worker-1
+      nodeName: kube-worker-2
       containers:
         - name: pihole
           image: pihole/pihole:v5.8.1
@@ -48,18 +47,18 @@ spec:
             - name: pihole-config
               subPath: adlists.list
               mountPath: /etc/pihole/adlists.list
-#          livenessProbe:
-#            httpGet:
-#              path: /admin/index.php
-#              port: 16349
-#            initialDelaySeconds: 300
-#            periodSeconds: 15
-#          readinessProbe:
-#            httpGet:
-#              path: /admin/index.php
-#              port: 16349
-#            initialDelaySeconds: 30
-#            periodSeconds: 2
+          livenessProbe:
+            httpGet:
+              path: /admin/index.php
+              port: 16349
+            initialDelaySeconds: 300
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /admin/index.php
+              port: 16349
+            initialDelaySeconds: 30
+            periodSeconds: 2
       volumes:
         - name: config
         - configMap:
@@ -73,36 +72,3 @@ spec:
     matchLabels:
       app: pihole
       name: pihole
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: pihole-service
-  namespace: home-assistant
-spec:
-  selector:
-    app: pihole
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 16349
-      name: pihole
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: pihole-ingress
-  annotations:
-    kubernetes.io/ingress.class: traefik
-spec:
-  rules:
-    - host: pihole.cluster
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: pihole-service
-                port:
-                  number: 1880

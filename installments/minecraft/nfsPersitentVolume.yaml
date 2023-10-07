@@ -6,7 +6,7 @@ metadata:
 spec:
   capacity:
     storage: 1Gi # This size is used to match a volume to a tenants claim
-  storageClassName: manual
+  storageClassName: nfs
   accessModes:
     - ReadWriteOnce 
   nfs:
@@ -23,7 +23,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: manual
+  storageClassName: nfs
   resources:
     requests:
       storage: 1Gi

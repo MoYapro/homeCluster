@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-assistant
+  namespace: home-assistant
+spec:
+  selector:
+    matchLabels:
+      app: home-assistant
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: home-assistant
+    spec:
+      priorityClassName: high
+      containers:
+        - name: home-assistant
+          image: homeassistant/raspberrypi4-64-homeassistant:2023.6.1
+          ports:
+            - containerPort: 8123
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8123
+            initialDelaySeconds: 120
+            periodSeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8123
+            initialDelaySeconds: 60
+            periodSeconds: 5
+            failureThreshold: 15
+          volumeMounts:
+            - name: persistence
+              mountPath: /config/
+            - name: config-volume
+              mountPath: /config/configuration.yaml
+              subPath: configuration.yaml
+            - name: config-volume
+              mountPath: /config/ui-lovelace.yaml
+              subPath: ui-lovelace.yaml
+            - name: config-volume
+              mountPath: /config/automations.yaml
+              subPath: automations.yaml
+          resources:
+            requests:
+              memory: 75Mi
+            limits:
+              memory: 250Mi
+      volumes:
+        - name: config-volume
+          configMap:
+            name: home-assistant-config
+        - name: persistence
+          persistentVolumeClaim:
+            claimName: nas-persitant-volume-claim-ha

@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: pihole-config-env
 data:
-  ServerIP: 192.168.1.10
+  ServerIP: 192.168.1.11
   WEB_PORT: '16349'
   DNS1: 1.1.1.1
   DNS2: 1.0.0.1
