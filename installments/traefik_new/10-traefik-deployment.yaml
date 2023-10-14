@@ -16,18 +16,40 @@ spec:
         app: traefik
     spec:
       serviceAccountName: traefik-account
+      volumes:
+        - name: traefik-cache
+          hostPath:
+            path: /opt/traefik
+        - name: traefik-config
+          configMap:
+            name: traefik-https-cfg
       containers:
         - name: traefik
           image: traefik:v2.10.3
           args:
-            - --api.insecure
-            - --providers.kubernetesingress=true
-            - --api.dashboard=true
-            - --api.insecure=true
             - --configFile=/config-files/traefik.toml
           ports:
             - name: web
               containerPort: 80
-              hostPort: 80
+            - name: https
+              containerPort: 443
             - name: dashboard
               containerPort: 8080
+          resources:
+            requests:
+              memory: 50Mi
+              cpu: 100m
+            limits:
+              memory: 400Mi
+              cpu: 1000m
+          securityContext:
+            capabilities:
+              add:
+                - NET_BIND_SERVICE
+              drop:
+                - ALL
+          volumeMounts:
+            - mountPath: /etc/traefik
+              name: traefik-cache
+            - mountPath: /config-files
+              name: traefik-config
