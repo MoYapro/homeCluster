@@ -2,7 +2,14 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: home-assistant-ingress
+  namespace: home-assistant
+  annotations:
+    cert-manager.io/issuer: "letsencrypt-issuer"
 spec:
+  tls:
+    - hosts:
+        - moyapro.duckdns.org
+      secretName: letsencrypt-issuer-account-key
   rules:
     - host: moyapro.duckdns.org
       http:
@@ -21,6 +28,10 @@ kind: Ingress
 metadata:
   name: intern-home-assistant-ingress
 spec:
+  tls:
+    - hosts:
+        - moyaprointern.duckdns.org
+      secretName: letsencrypt-issuer-account-key
   rules:
     - host: moyaprointern.duckdns.org
       http:
