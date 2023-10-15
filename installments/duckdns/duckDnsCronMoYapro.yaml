@@ -29,6 +29,6 @@ spec:
             - name: DNS_UPDATE_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: duckdns
+                  name: duckdns-api-key
                   key: token
           restartPolicy: Never
