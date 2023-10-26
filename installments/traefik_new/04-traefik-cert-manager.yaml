@@ -5,13 +5,14 @@ metadata:
   namespace: home-assistant
 spec:
   acme:
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
+#    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    server: https://acme-v02.api.letsencrypt.org/directory
     email: tom.ritmeier@gmail.com
     privateKeySecretRef:
       name: letsencrypt-issuer-account-key
     solvers:
-      - dns01:
-          duckdns:
-            apiTokenSecretRef:
-              name: duckdns-api-key
-              key: data
+      # An empty 'selector' means that this solver matches all domains
+      - selector: { }
+        http01:
+          ingress:
+            class: traefik

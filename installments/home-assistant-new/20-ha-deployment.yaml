@@ -37,9 +37,9 @@ spec:
           volumeMounts:
             - name: persistence
               mountPath: /config/
-#            - name: config-volume
-#              mountPath: /config/configuration.yaml
-#              subPath: configuration.yaml
+            - name: config-volume
+              mountPath: /config/configuration.yaml
+              subPath: configuration.yaml
             - name: config-volume
               mountPath: /config/ui-lovelace.yaml
               subPath: ui-lovelace.yaml

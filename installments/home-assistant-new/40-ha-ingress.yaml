@@ -9,7 +9,7 @@ spec:
   tls:
     - hosts:
         - moyapro.duckdns.org
-      secretName: letsencrypt-issuer-account-key
+      secretName: home-assistant-ingress-tls-secret
   rules:
     - host: moyapro.duckdns.org
       http:
@@ -20,26 +20,30 @@ spec:
               service:
                 name: home-assistant-service
                 port:
-                  number: 80
+                  number: 8123
 
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: intern-home-assistant-ingress
-spec:
-  tls:
-    - hosts:
-        - moyaprointern.duckdns.org
-      secretName: letsencrypt-issuer-account-key
-  rules:
-    - host: moyaprointern.duckdns.org
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: home-assistant-service
-                port:
-                  number: 80
+#Using internal certificates is not possible without configuring dns challange :/
+#---
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: home-assistant-intern-ingress
+#  namespace: home-assistant
+#  annotations:
+#    cert-manager.io/issuer: "letsencrypt-issuer"
+#spec:
+#  tls:
+#    - hosts:
+#        - moyaprointern.duckdns.org
+#      secretName: home-assistant-intern-ingress-tls-secret
+#  rules:
+#    - host: moyaprointern.duckdns.org
+#      http:
+#        paths:
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: home-assistant-service
+#                port:
+#                  number: 80
