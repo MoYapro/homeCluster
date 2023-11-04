@@ -22,3 +22,11 @@ data:
         availability_topic: "tele/wohnzimmer_fan/LWT"
         payload_available: "Online"
         state_value_template: "{{ value_json.POWER1 }}"
+      - name: "Kleine Buerolampe"
+        state_topic: "shellies/shellyplug-s-F8CC85/relay/0"
+        command_topic: "shellies/shellyplug-s-F8CC85/relay/0/command"
+        payload_on: "on"
+        payload_off: "off"
+        availability_topic: "shellies/shellyplug-s-F8CC85/online"
+        payload_available: "true"
+        optimistic: false
