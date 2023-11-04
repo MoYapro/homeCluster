@@ -24,6 +24,7 @@ spec:
     - port: 80
       name: unsecure-web
       targetPort: 80
+      nodePort: 30080
     - port: 443
       name: secure-web
       targetPort: 443
