@@ -22,6 +22,25 @@ spec:
                 port:
                   number: 8123
 
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: home-assistant-intern-ingress
+  namespace: home-assistant
+spec:
+  rules:
+    - host: moyaprointern.duckdns.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: home-assistant-service
+                port:
+                  number: 8123
+
 #Using internal certificates is not possible without configuring dns challange :/
 #---
 #apiVersion: networking.k8s.io/v1

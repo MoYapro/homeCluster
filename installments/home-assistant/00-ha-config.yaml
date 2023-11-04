@@ -35,24 +35,11 @@ data:
     lovelace:
       mode: storage
 
-    # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
     http:
       server_port: 8123
       use_x_forwarded_for: true
       trusted_proxies:
-        - 10.244.1.0/24
+        - 10.244.0.0/16
       login_attempts_threshold: 5
         
-    light:
-      - platform: mqtt
-        name: "Große Schlafzimmerlampe"
-        state_topic: "stat/sonoff_fan/RESULT"
-        value_template: "{{ value_json.POWER1 }}"
-        command_topic: "cmnd/sonoff_fan/POWER1"
-        availability_topic: "tele/sonoff_fan/LWT"
-        qos: 1
-        payload_on: "ON"
-        payload_off: "OFF"
-        payload_available: "Online"
-        payload_not_available: "Offline"
-        retain: false
+    
