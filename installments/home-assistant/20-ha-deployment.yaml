@@ -31,9 +31,9 @@ spec:
             httpGet:
               path: /
               port: 8123
-            initialDelaySeconds: 20
-            periodSeconds: 5
-            failureThreshold: 15
+            initialDelaySeconds: 10
+            periodSeconds: 1
+            failureThreshold: 50
           volumeMounts:
             - name: persistence
               mountPath: /config/
