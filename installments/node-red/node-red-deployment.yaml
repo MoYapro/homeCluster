@@ -95,6 +95,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: node-red-ingress
+  namespace: home-assistant
 spec:
   rules:
     - host: node-red.cluster
