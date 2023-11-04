@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: home-assistant-light-config
+  namespace: home-assistant
+data:
+  light.yaml: |
+    light:
+      - name: "Große Schlafzimmerlampe"
+        unique_id : b89671b9-c4b5-46fe-9020-26d06b6de2d3
+        state_topic: "stat/sonoff_fan/RESULT"
+        command_topic: "cmnd/sonoff_fan/POWER1"
+        optimistic: false
+        availability_topic: "tele/sonoff_fan/LWT"
+        payload_available: "Online"
+        state_value_template: "{{ value_json.POWER1 }}"
+      - name: "Große Wohnzimmerlampe"
+        unique_id : 2943c331-7780-490c-9c95-957b7aacc9b2
+        state_topic: "stat/wohnzimmer_fan/RESULT"
+        command_topic: "cmnd/wohnzimmer_fan/POWER1"
+        optimistic: false
+        availability_topic: "tele/wohnzimmer_fan/LWT"
+        payload_available: "Online"
+        state_value_template: "{{ value_json.POWER1 }}"

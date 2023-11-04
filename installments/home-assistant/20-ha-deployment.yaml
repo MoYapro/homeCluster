@@ -46,9 +46,8 @@ spec:
             - name: config-volume
               mountPath: /config/automations.yaml
               subPath: automations.yaml
-            - name: config-volume
-              mountPath: /config/light.yaml
-              subPath: light.yaml
+            - name: config-lights
+              mountPath: /config/lights
           resources:
             requests:
               memory: 75Mi
@@ -58,6 +57,9 @@ spec:
         - name: config-volume
           configMap:
             name: home-assistant-config
+        - name: config-lights
+          configMap:
+            name: home-assistant-light-config
         - name: persistence
           persistentVolumeClaim:
             claimName: nas-persitant-volume-claim-ha
