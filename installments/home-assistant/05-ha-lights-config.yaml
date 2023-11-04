@@ -23,6 +23,7 @@ data:
         payload_available: "Online"
         state_value_template: "{{ value_json.POWER1 }}"
       - name: "Kleine Buerolampe"
+        unique_id: 8af5002d-f113-4a3f-ab74-90ecb7ef94b0
         state_topic: "shellies/shellyplug-s-F8CC85/relay/0"
         command_topic: "shellies/shellyplug-s-F8CC85/relay/0/command"
         payload_on: "on"
@@ -30,3 +31,27 @@ data:
         availability_topic: "shellies/shellyplug-s-F8CC85/online"
         payload_available: "true"
         optimistic: false
+#      - name: "Schreibtisch Vintage"
+#        unique_id: cafdc15e-5137-456d-b606-1f55549572d1
+#        command_topic: "shellies/ShellyVintage-98CDAC1EFF08/light/0/set"
+#        command_on_template: >
+#          {"turn": "on"
+#          {%- if brightness is defined -%}
+#          , "brightness": {{brightness | float | multiply(0.3922) | round(0)}}
+#          {%- endif -%}
+#          {%- if white_value is defined and white_value > 0 -%}
+#          , "temp": {{(1000000/(white_value | int)) | round(0,floor)}}
+#          {%- endif -%}
+#          {%- if white_value == 0 -%}
+#          , "temp": 2800
+#          {%- endif -%}
+#          }
+#        command_off_template: '{"turn":"off"}'
+#        state_topic: "shellies/ShellyVintage-98CDAC1EFF08/light/0/status"
+#        state_template: "{% if value_json.ison %}on{% else %}off{% endif %}"
+#        payload_on: "on"
+#        payload_off: "off"
+#        availability_topic: "shellies/ShellyVintage-98CDAC1EFF08/online"
+#        payload_available: "true"
+#        brightness_template: "{{ value_json.brightness | float | multiply(2.55) | round(0) }}"
+#        optimistic: false
