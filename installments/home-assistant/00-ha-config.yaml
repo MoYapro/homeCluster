@@ -43,9 +43,16 @@ data:
       login_attempts_threshold: 5
         
     
-    mqtt:
-      light:
-          unique_id : 1234
-          name: "Große Schlafzimmerlampe"
-          state_topic: "stat/sonoff_fan/RESULT"
-          command_topic: "cmnd/sonoff_fan/POWER1"
+    mqtt: !include light.yaml
+      
+
+  light.yaml: |
+    light:
+        unique_id : 1234
+        name: "Große Schlafzimmerlampe"
+        state_topic: "stat/sonoff_fan/RESULT"
+        command_topic: "cmnd/sonoff_fan/POWER1"
+        optimistic: false
+        availability_topic: "tele/sonoff_fan/LWT"
+        payload_available: "Online"
+        state_value_template: "{{ value_json.POWER1 }}"
