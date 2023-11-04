@@ -35,7 +35,7 @@ spec:
             - name: OPS
               value: "MoYapro,Katze2011"
             - name: WHITELIST
-              value: "MoYapro,Katze2011,lululaara,lululara,Lululara,Lululaara,Merlinze2_0"
+              value: "MoYapro,Katze2011,lululara,Merlinze2_0"
             - name: OVERRIDE_WHITELIST
               value: "true"
             - name: VIEW_DISTANCE
