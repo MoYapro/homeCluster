@@ -33,9 +33,14 @@ data:
         availability_topic: "shellies/shellyplug-s-F8CC85/online"
         payload_available: "true"
         optimistic: false
+        icon: mdi:moon-waning-crescent
       - name: "Schreibtisch Vintage"
         unique_id: cafdc15e-5137-456d-b606-1f55549572d1
         command_topic: "shellies/ShellyVintage-98CDAC1EFF08/light/0/set"
+        payload_on: >-
+          {"turn": "on"}
+        payload_off: >-
+          {"turn": "off"}
         state_topic: "shellies/ShellyVintage-98CDAC1EFF08/light/0/status"
         state_value_template: >-
           {% if value_json.ison %}{"turn": "on"}{% else %}{"turn": "off"}{% endif %}
@@ -44,11 +49,31 @@ data:
         brightness_value_template: "{{ value_json.brightness }}"
         brightness_command_topic: "shellies/ShellyVintage-98CDAC1EFF08/light/0/set"
         brightness_command_template: "{ brightness: {{ value }} }"
+        availability_topic: "shellies/ShellyVintage-98CDAC1EFF08/online"
+        payload_available: "true"
+        optimistic: false
+      - name: "Grosse Buerolampe"
+        unique_id: c7baed3d-017a-438c-b1f7-8c1d90f9d3f4
+        command_topic: "shellies/ShellyBulbDuo-8CAAB55F678A/light/0/set"
         payload_on: >-
           {"turn": "on"}
         payload_off: >-
           {"turn": "off"}
-        availability_topic: "shellies/ShellyVintage-98CDAC1EFF08/online"
+        state_topic: "shellies/ShellyBulbDuo-8CAAB55F678A/light/0/status"
+        state_value_template: >-
+          {% if value_json.ison %}{"turn": "on"}{% else %}{"turn": "off"}{% endif %}
+        brightness_state_topic: "shellies/ShellyBulbDuo-8CAAB55F678A/light/0/status"
+        brightness_scale: 100
+        brightness_value_template: "{{ value_json.brightness }}"
+        brightness_command_topic: "shellies/ShellyBulbDuo-8CAAB55F678A/light/0/set"
+        brightness_command_template: "{ brightness: {{ value }} }"
+        color_temp_command_topic: "shellies/ShellyBulbDuo-8CAAB55F678A/light/0/set"
+        #temprange: 2700 - 6500
+        color_temp_command_template: >-
+          { temp: {{ (((((500 - value) / (500 - 153))) * (6500 - 2700)) + 2700) | round(0) }} }
+        color_temp_state_topic: "shellies/ShellyBulbDuo-8CAAB55F678A/light/0/status"
+        color_temp_value_template: "{{ value_json.temp }}"
+        availability_topic: "shellies/ShellyBulbDuo-8CAAB55F678A/online"
         payload_available: "true"
         optimistic: false
-        icon: mdi:alarm-light
+        icon: mdi:wall-sconce-round
