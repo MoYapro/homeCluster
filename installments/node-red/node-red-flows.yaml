@@ -192,8 +192,8 @@ data:
         "id": "7b5ecff5.099ee",
         "type": "mqtt out",
         "z": "2cd58079.e8e5c",
-        "name": "Grosses Aquarium",
-        "topic": "shellies/shellyrgbw2-6CA20C/color/0/set",
+        "name": "Grosses Aquarium I",
+        "topic": "shellies/shellyrgbw2-6CA20C/white/2/set",
         "qos": "",
         "retain": "",
         "respTopic": "",
@@ -207,16 +207,21 @@ data:
         "wires": []
       },
       {
-        "id": "48af4cd.e69a4b4",
+        "id": "7b5ecff5.099ef",
         "type": "mqtt out",
         "z": "2cd58079.e8e5c",
-        "name": "Kleines Aquarium",
-        "topic": "shellies/shellyplug-s-7A3532/relay/0/command",
+        "name": "Grosses Aquarium II",
+        "topic": "shellies/shellyrgbw2-6CA20C/white/3/set",
         "qos": "",
         "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
         "broker": "b4ac6d6a.829f3",
         "x": 750,
-        "y": 460,
+        "y": 450,
         "wires": []
       },
       {
@@ -966,33 +971,6 @@ data:
         "wires": []
       },
       {
-        "id": "a8e22cb0.a690e",
-        "type": "change",
-        "z": "2cd58079.e8e5c",
-        "name": " -> off",
-        "rules": [
-          {
-            "t": "set",
-            "p": "payload",
-            "pt": "msg",
-            "to": "off",
-            "tot": "str"
-          }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 490,
-        "y": 300,
-        "wires": [
-          [
-            "48af4cd.e69a4b4"
-          ]
-        ]
-      },
-      {
         "id": "f4dde9e4.d09c48",
         "type": "change",
         "z": "2cd58079.e8e5c",
@@ -1015,34 +993,8 @@ data:
         "y": 260,
         "wires": [
           [
-            "7b5ecff5.099ee"
-          ]
-        ]
-      },
-      {
-        "id": "667b0d8c.9814e4",
-        "type": "change",
-        "z": "2cd58079.e8e5c",
-        "name": " -> on",
-        "rules": [
-          {
-            "t": "set",
-            "p": "payload",
-            "pt": "msg",
-            "to": "on",
-            "tot": "str"
-          }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 490,
-        "y": 420,
-        "wires": [
-          [
-            "48af4cd.e69a4b4"
+            "7b5ecff5.099ee",
+            "7b5ecff5.099ef"
           ]
         ]
       },
@@ -1069,7 +1021,8 @@ data:
         "y": 380,
         "wires": [
           [
-            "7b5ecff5.099ee"
+            "7b5ecff5.099ee",
+            "7b5ecff5.099ef"
           ]
         ]
       },
