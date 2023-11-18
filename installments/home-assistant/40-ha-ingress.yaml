@@ -5,6 +5,8 @@ metadata:
   namespace: home-assistant
   annotations:
     cert-manager.io/issuer: "letsencrypt-issuer"
+    traefik.ingress.kubernetes.io/router.entrypoints: https
+    traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   tls:
     - hosts:
