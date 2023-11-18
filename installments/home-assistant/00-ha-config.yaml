@@ -34,6 +34,16 @@ data:
 
     lovelace:
       mode: storage
+      
+    google_assistant:
+      project_id: hassio-integration-1e887
+      api_key: AIzaSyA-6kOMTvYajbaBSQZo1_qnOuGaLHTwnlU
+      expose_by_default: true
+      exposed_domains:
+        - light
+        - switch
+        - script
+        - fan
 
     http:
       server_port: 8123
