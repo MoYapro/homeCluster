@@ -7,16 +7,16 @@ data:
   light.yaml: |
     light:
       - name: "Große Schlafzimmerlampe"
-        unique_id : b89671b9-c4b5-46fe-9020-26d06b6de2d3
+        unique_id: b89671b9-c4b5-46fe-9020-26d06b6de2d3
         state_topic: "stat/sonoff_fan/RESULT"
         command_topic: "cmnd/sonoff_fan/POWER1"
         optimistic: false
         availability_topic: "tele/sonoff_fan/LWT"
         payload_available: "Online"
         state_value_template: "{{ value_json.POWER1 }}"
-        icon: mdi:ceiling-fan-light 
+        icon: mdi:ceiling-fan-light
       - name: "Große Wohnzimmerlampe"
-        unique_id : 2943c331-7780-490c-9c95-957b7aacc9b2
+        unique_id: 2943c331-7780-490c-9c95-957b7aacc9b2
         state_topic: "stat/wohnzimmer_fan/RESULT"
         command_topic: "cmnd/wohnzimmer_fan/POWER1"
         optimistic: false
@@ -191,4 +191,19 @@ data:
         payload_available: "true"
         optimistic: false
         icon: mdi:lightbulb-variant
+      - name: "Bunte Stehlampe 1"
+        command_topic: "shellies/shellycolorbulb-3494546B54F0/color/0/set"
+        payload_on: >-
+          {"turn": "on", "mode": "color"}
+        payload_off: >-
+          {"turn": "off", "mode": "color"}
+        state_topic: "shellies/shellycolorbulb-3494546B54F0/color/0/status"
+        state_value_template: "{% if value_json.ison %}on{% else %}off{% endif %}"
+        brightness_value_template: "{{ value_json.gain }}"
         
+        brightness_command_topic: "shellies/shellycolorbulb-3494546B54F0/color/0/set"
+        brightness_command_template: >-
+          { turn: "on", "mode": "color", "gain": {{ value }} }
+        brightness_scale: 100
+    #    availability_topic: "shellies/shellycolorbulb-3494546B54F0/online"
+        optimistic: false
