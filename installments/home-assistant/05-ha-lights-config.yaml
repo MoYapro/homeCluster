@@ -133,7 +133,7 @@ data:
         availability_topic: "shellies/deckenlampe_kombiniert/online"
         payload_available: "true"
         optimistic: true
-        icon: mdi:lightbulb-variant
+        icon: mdi:lightbulb-group
       - name: "Deckenlampe 1"
         unique_id: 16360f4d-d972-4bbd-9d5f-f8d622e11cdd
         command_topic: "shellies/ShellyVintage-3494546E705F/light/0/set"
