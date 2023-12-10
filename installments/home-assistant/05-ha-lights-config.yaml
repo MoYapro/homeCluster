@@ -205,5 +205,9 @@ data:
         brightness_command_template: >-
           { turn: "on", "mode": "color", "gain": {{ value }} }
         brightness_scale: 100
-    #    availability_topic: "shellies/shellycolorbulb-3494546B54F0/online"
+        rgb_command_topic: "shellies/shellycolorbulb-3494546B54F0/color/0/set"
+        rgb_command_template: >-
+          {% set red, green, blue = value.split(',') %}
+          {turn: "on", "mode": "color", "red": "{{red}}", "green":"{{green}}", "blue":"{{blue}}" }
+        #    availability_topic: "shellies/shellycolorbulb-3494546B54F0/online"
         optimistic: false
